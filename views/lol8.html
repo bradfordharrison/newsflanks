@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link href="../static/css/ui.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Links</title>
+
+</head>
+
+<body>
+<font face="Verdana, Arial, Helvetica, sans-serif">
+<div class=container-fluid>
+<div class=row>
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+<script language="javascript">
+   if ({{usercode}} < 10) {
+      document.writeln("<div>");
+      document.writeln("<center>");
+      document.writeln("<nav>");
+      document.writeln("<ul class=nav-font>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/{{usercode}}'><strong><font color='#006500'>&nbspCURRENT <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/links/{{usercode}}'><strong><font color='#006500'>&nbsp;MORE <b>?</b>s&nbsp;</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/flip/{{usercode}}'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/track/{{usercode}}'><strong><font color='#006500'>&nbspLOGIN&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("</ul>");
+      document.writeln("</nav>");
+      document.writeln("</center>");
+      document.writeln("</div>");
+      document.writeln("<div>");
+      document.writeln("<h4><font color='#FF0000'>When you choose &quot;No opinion,&quot; News Flanks shows you all links associated with question, pro and con.</font></h4>");
+      document.writeln("</div>");
+   }
+   else {
+      document.writeln("<div>");
+      document.writeln("<center>");
+      document.writeln("<nav>");
+      document.writeln("<ul class=nav-font>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/{{usercode}}'><strong><font color='#006500'>&nbspCURRENT <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/links/{{usercode}}'><strong><font color='#006500'>&nbsp;MORE <b>?</b>s&nbsp;</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/flip/{{usercode}}'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.write("<a class='rollover' href='/track/{{usercode}}'><strong><font color='#006500'>&nbsp");
+      var holder = {{usercode}};
+      document.write(holder);
+      document.writeln("&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("</ul>");
+      document.writeln("</nav>");
+      document.writeln("</center>");
+      document.writeln("</div>");
+            document.writeln("<div>");
+      document.writeln("<h4><font color='#FF0000'>Showing all links associated with question, pro and con.</font></h4>");
+      document.writeln("</div>");
+   }
+</script>
+<div class="table-border">
+    <span><font color="#006500" size="4">{{top_question}}?</font></span>
+ 	<div id="graphDiv1"></div>
+	<!--[if IE]><script src="../static/js/excanvas.js"></script><![endif]-->
+	<script src="../static/js/html5-canvas-bar-graph.js"></script>
+	<script>(function () {
+
+		function createCanvas(divName) {
+
+			var div = document.getElementById(divName);
+			var canvas = document.createElement('canvas');
+			div.appendChild(canvas);
+			if (typeof G_vmlCanvasManager != 'undefined') {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}
+			var ctx = canvas.getContext("2d");
+			return ctx;
+		}
+
+		var ctx = createCanvas("graphDiv1");
+
+		var graph = new BarGraph(ctx);
+		graph.maxValue = "";
+		graph.margin = 2;
+		graph.colors = ["#006500", "#006500"];
+		graph.xAxisLabelArr = ["Yes", "No"];
+		setInterval(function () {
+			graph.update([{{yes_votes}}, {{no_votes}}]);
+		}, 0);
+
+	}());</script>
+     <font color="#006500" size="4">All links:</font><br /><br />
+     {% for link in link_list %}
+         <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}">&nbsp{{link.content_link}}</a><br>
+         <img src="{{link.flip_grfx}}" width="25" height="25"><a href="{{link.flip_href}}">&nbsp{{link.flip_link}}</a><br></font>
+     {% endfor %}
+</div>
+{% include "includes/footer.html" %}
+</div>
+<div class="col-lg-2"></div>
+</div>
+</div>
+</font>
+</body>
+
+</html>

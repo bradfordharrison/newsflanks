@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+	<meta name="description" content="News Flanks provides the two extreme sides (flanks) to trending news 
+	stories and issues.">
+    <meta name="keywords" content="collusion Don Jr. Paris Climate Agreement global warming Donald Trump Hillary Clinton Comey impeach Russian hack hackers wikileaks electoral 
+	college Syria Benghazi Clinton Foundation Muslims racism racist Iran misogynist Constitution POTUS President of the
+	United States">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link href="../static/css/ui.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>News Flanks</title>
+
+</head>
+
+<body>
+<font face="Verdana, Arial, Helvetica, sans-serif">
+<div class=container-fluid>
+<div class=row>
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+<script>
+    window.name = "3";
+</script>
+
+<div class="table-border">
+    <table>
+	<tr>
+	<td>
+    <img src="http://www.flanks.org/52.jpg" width="60" height="61" alt="[newsflanks]">
+	</td>
+	<td>
+	<table>
+	<tr>
+	<td>
+	<font size="4"><b>Welcome to News Flanks!</b></font>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2"><b><i>&quot;Get both sides...&quot;</i></b></font>
+	</td>
+	</tr>
+	</table>
+	</td>
+	</tr>
+	</table>
+	<br />
+   	&nbsp;&nbsp;<img src="{{animated_gif}}"><br><br>
+    <font color="#006500" size="4"><b><span> {{top_question}}</span></b><br>
+   <form action="/links/{{usercode}}" method="POST">
+       {% for yes_no in choices %}
+         <p>
+<div class="options">
+  <input id="option" type="radio" name="answer" value="{{yes_no}}"><label for="option"><span><span></span></span>{{yes_no}}</label>
+</div>
+         </p>
+
+      {% endfor %}
+          <script>
+        var code = window.name;
+        document.write("<input type='hidden' name='code' value='");
+        document.write(code);
+        document.writeln("'>");
+    </script>
+      <input type="submit" value="Submit">
+   </form>
+   </font></div>
+{% include "includes/footer.html" %}
+</div>
+<div class="col-lg-2"></div>
+</div>
+</div>
+</font>
+</body>
+
+</html>

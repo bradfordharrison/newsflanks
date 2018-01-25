@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link href="../static/css/ui.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Validate</title>
+
+</head>
+
+<body>
+<font face="Verdana, Arial, Helvetica, sans-serif">
+<div class=container-fluid>
+<div class=row>
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+ <script language="javascript">
+ function showfield(name) {
+     if (name=='challenge_0') document.getElementById('div1').innerHTML='Answer: <input type="text" name="challenge_0" value="" />';
+     else if (name=='challenge_1') document.getElementById('div1').innerHTML='Answer: <input type="text" name="challenge_1" value="" />';
+     else if (name=='challenge_2') document.getElementById('div1').innerHTML='Answer: <input type="text" name="challenge_2" value="" />';
+     else if (name=='challenge_3') document.getElementById('div1').innerHTML='Answer: <input type="text" name="challenge_3" value="" />';
+     else document.getElementById('div1').innerHTML='Answer: <input type="text" name="challenge_4" value="" />';
+ }
+  function showfield2(name) {
+     if (name=='challenge_5') document.getElementById('div2').innerHTML='Answer: <input type="text" name="challenge_5" value="" />';
+     else if (name=='challenge_6') document.getElementById('div2').innerHTML='Answer: <input type="text" name="challenge_6" value="" />';
+     else if (name=='challenge_7') document.getElementById('div2').innerHTML='Answer: <input type="text" name="challenge_7" value="" />';
+     else if (name=='challenge_8') document.getElementById('div2').innerHTML='Answer: <input type="text" name="challenge_8" value="" />';
+     else document.getElementById('div2').innerHTML='Answer: <input type="text" name="challenge_9" value="" />';
+ }
+  function showfield3(name) {
+      if (name=='challenge_10') document.getElementById('div3').innerHTML='Answer: <input type="text" name="challenge_10" value="" />';
+     else if (name=='challenge_11') document.getElementById('div3').innerHTML='Answer: <input type="text" name="challenge_11" value="" />';
+     else if (name=='challenge_12') document.getElementById('div3').innerHTML='Answer: <input type="text" name="challenge_12" value="" />';
+     else if (name=='challenge_13') document.getElementById('div3').innerHTML='Answer: <input type="text" name="challenge_13" value="" />';
+     else document.getElementById('div3').innerHTML='Answer: <input type="text" name="challenge_14" value="" />';
+}
+    if ({{usercode}} < 10) {
+      document.writeln("<div>");
+      document.writeln("<center>");
+      document.writeln("<nav>");
+      document.writeln("<ul class=nav-font>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/{{usercode}}'><strong><font color='#006500'>&nbspCURRENT <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/links/{{usercode}}'><strong><font color='#006500'>&nbsp;MORE <b>?</b>s&nbsp;</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/flip/{{usercode}}'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/track/{{usercode}}'><strong><font color='#006500'>&nbspLOGIN&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("</ul>");
+      document.writeln("</nav>");
+      document.writeln("</center>");
+      document.writeln("</div>");
+      document.writeln("<div>");
+      document.writeln("<h4><font color='#FF0000'>Please log into the website by clicking the LOGIN menu item above! This allows newsflanks.com to capture your votes and customize your experience.</font></h4>");
+      document.writeln("</div>");
+   }
+   else {
+      document.writeln("<div>");
+      document.writeln("<center>");
+      document.writeln("<nav>");
+      document.writeln("<ul class=nav-font>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/{{usercode}}'><strong><font color='#006500'>&nbspCURRENT <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/links/{{usercode}}'><strong><font color='#006500'>&nbsp;MORE <b>?</b>s&nbsp;</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/flip/{{usercode}}'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.write("<a class='rollover' href='/track/{{usercode}}'><strong><font color='#006500'>&nbsp");
+      var holder = {{usercode}};
+      document.write(holder);
+      document.writeln("&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("</ul>");
+      document.writeln("</nav>");
+      document.writeln("</center>");
+      document.writeln("</div>");
+   }
+</script>
+<div>
+<div class="table-border">
+   <font color="#006500" size="4">
+   Hello {{good_username}}! Your usercode is {{usercode}}. You can log in with either your email address or usercode when you
+   make future visits to this site. newsflanks.com doesn't use passwords for authentication, just challenge questions.
+   Please answer one, two or three challenge questions below by using the dropdown menus, or you can skip this step
+   by simply clicking "Submit" (but your account won't be protected).
+<br><br>
+<div>
+    <form action="/challenge/{{usercode}}" method="POST">
+<div>
+ <p>
+    <select name="challenge" id="challenge" onchange="showfield(this.options[this.selectedIndex].value)">
+       <option selected="selected">Group one&mdash;Please answer one question</option>
+           <option value="challenge_0">{{challenge_question_0}}</option>
+           <option value="challenge_1">{{challenge_question_1}}</option>
+           <option value="challenge_2">{{challenge_question_2}}</option>
+           <option value="challenge_3">{{challenge_question_3}}</option>
+           <option value="challenge_4">{{challenge_question_4}}</option>
+    </select>
+ </p>
+ <p>
+    <div id="div1"></div>
+ </p>
+ <p>
+    <select name="challenge2" id="challenge" onchange="showfield2(this.options[this.selectedIndex].value)">
+       <option selected="selected">Group two&mdash;Please answer one question</option>
+           <option value="challenge_5">{{challenge_question_5}}</option>
+           <option value="challenge_6">{{challenge_question_6}}</option>
+           <option value="challenge_7">{{challenge_question_7}}</option>
+           <option value="challenge_8">{{challenge_question_8}}</option>
+           <option value="challenge_9">{{challenge_question_9}}</option>
+    </select>
+ </p>
+ <p>
+    <div id="div2"></div>
+ </p>
+ <p>
+    <select name="challenge3" id="challenge" onchange="showfield3(this.options[this.selectedIndex].value)">
+       <option selected="selected">Group three&mdash;Please answer one question</option>
+           <option value="challenge_10">{{challenge_question_10}}</option>
+           <option value="challenge_11">{{challenge_question_11}}</option>
+           <option value="challenge_12">{{challenge_question_12}}</option>
+           <option value="challenge_13">{{challenge_question_13}}</option>
+           <option value="challenge_14">{{challenge_question_14}}</option>
+    </select>
+  </p>
+  <p>
+    <div id="div3"></div>
+  </p>
+</div>
+    <script>
+        var code = window.name;
+        document.write("<input type='hidden' name='code' value='");
+        document.write(code);
+        document.writeln("'>");
+    </script> 
+     <input type="submit" value="Submit"/>
+    </form></font>
+</div>
+</div>
+{% include "includes/footer.html" %}
+</div>
+</div>
+<div class="col-lg-2"></div>
+</div>
+</div>
+</font>
+</body>
+
+</html>
