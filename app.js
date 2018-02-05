@@ -2300,19 +2300,18 @@ db.open(function(err, db) {
             if (visitor_code < 10) {
                 visitor_code = +answer;
                 questions.get_default_question(function (quest) {
-                    questions.get_yes_votes(quest._id, function (yes_vote) {
-                        questions.get_no_votes(quest._id, function (no_vote) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol', {
                                     usercode: visitor_code,
                                     top_question: quest.question,
-                                    yes_votes: yes_vote,
-                                    no_votes: no_vote,
+                                    yes_votes: quest.yes,
+                                    no_votes: quest.no,
                                     link_list: links,
+                                    x: quest.mm_yes_x,
+                                    y: quest.mm_yes_y,
+                                    file: quest.mm_file_yes,
                                     user_answer: answer
                                 });
-                            });
-                        });
                     });
                 });
             }
@@ -2336,6 +2335,9 @@ db.open(function(err, db) {
                                                             yes_votes: number,
                                                             no_votes: no_vote,
                                                             link_list: links,
+                                                            x: quest.mm_yes_x,
+                                                            y: quest.mm_yes_y,
+                                                            file: quest.mm_file_yes,
                                                             user_answer: answer //setting answer in template, but not used later in the program
                                                         });
                                                     });
@@ -2357,20 +2359,19 @@ db.open(function(err, db) {
             if (visitor_code < 10) {
                 visitor_code = +answer;
                 questions.get_default_question(function (quest) {
-                    questions.get_yes_votes(quest._id, function (yes_vote) {
-                        questions.get_no_votes(quest._id, function (no_vote) {
                            lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol2', {
                                     usercode: visitor_code,
                                     top_question: quest.question,
-                                    yes_votes: yes_vote,
-                                    no_votes: no_vote,
+                                    yes_votes: quest.yes,
+                                    no_votes: quest.no,
                                     link_list: links,
+                                    x: quest.mm_no_x,
+                                    y: quest.mm_no_y,
+                                    file: quest.mm_file_no,
                                     user_answer: answer
-                                });
-                            });
-                        });
-                    });
+                               });
+                           });
                 });
             }
             else { //registered user
@@ -2389,10 +2390,13 @@ db.open(function(err, db) {
                                                                 res.render('lol2', {
                                                                     usercode: visitor_code,
                                                                     top_question: quest.question,
-                                                                    no_votes: number,
                                                                     yes_votes: yes_vote,
+                                                                    no_votes: number,
                                                                     link_list: links,
-                                                                    user_answer: 1 //setting answer in template, but not used later in the program
+                                                                    x: quest.mm_no_x,
+                                                                    y: quest.mm_no_y,
+                                                                    file: quest.mm_file_no,
+                                                                    user_answer: 1
                                                                 });
                                                             });
                                                         });
@@ -3053,19 +3057,18 @@ db.open(function(err, db) {
             var answer = "0";
             visitor_code = +answer;
             questions.get_user_question(question_code, function (quest) { // look up with ID
-                questions.get_yes_votes(quest._id, function (yes_vote) {
-                    questions.get_no_votes(quest._id, function (no_vote) {
-                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol10', {
                                 usercode: question_code,
                                 top_question: quest.question,
-                                yes_votes: yes_vote,
-                                no_votes: no_vote,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
                                 link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
                                 user_answer: answer
                             });
-                        });
-                    });
                 });
             });
         }
@@ -3073,19 +3076,18 @@ db.open(function(err, db) {
             var answer = "1";
             visitor_code = +answer;
             questions.get_user_question(question_code, function (quest) { //look up with ID
-                questions.get_yes_votes(quest._id, function (yes_vote) {
-                    questions.get_no_votes(quest._id, function (no_vote) {
                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol11', {
                                 usercode: question_code,
                                 top_question: quest.question,
-                                yes_votes: yes_vote,
-                                no_votes: no_vote,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
                                 link_list: links,
+                                x: quest.mm_no_x,
+                                y: quest.mm_no_y,
+                                file: quest.mm_file_no,
                                 user_answer: answer
                             });
-                        });
-                    });
                 });
             });
         }
@@ -3136,35 +3138,33 @@ db.open(function(err, db) {
 
                     if ((visitor_code == 0) || (visitor_code == 5)) {
                         questions.get_default_question(function (quest) {
-                            questions.get_yes_votes(quest._id, function (yes_vote) {
-                                questions.get_no_votes(quest._id, function (no_vote) {
                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                         res.render('lol6', { //yes template
                                             usercode: visitor_code,
                                             top_question: quest.question,
-                                            yes_votes: yes_vote,
-                                            no_votes: no_vote,
+                                            yes_votes: quest.yes,
+                                            no_votes: quest.no,
                                             link_list: links,
+                                            x: quest.mm_yes_x,
+                                            y: quest.mm_yes_y,
+                                            file: quest.mm_file_yes
                                         });
-                                    });
-                                });
-                            });
+                             });
                         });
                     }
                     else if ((visitor_code == 1) || (visitor_code == 4)) {
                         questions.get_default_question(function (quest) {
-                            questions.get_yes_votes(quest._id, function (yes_vote) {
-                                questions.get_no_votes(quest._id, function (no_vote) {
                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                         res.render('lol7', { // no template
                                             usercode: visitor_code,
                                             top_question: quest.question,
-                                            yes_votes: yes_vote,
-                                            no_votes: no_vote,
+                                            yes_votes: quest.yes,
+                                            no_votes: quest.no,
                                             link_list: links,
+                                            x: quest.mm_no_x,
+                                            y: quest.mm_no_y,
+                                            file: quest.mm_file_no
                                         });
-                                    });
-                                });
                             });
                         });
                     }
@@ -3208,18 +3208,17 @@ db.open(function(err, db) {
                                 users.update_user_lol_state(visitor_code, 1, function (result) {
                                     users.get_current_user_question(visitor_code, function (question_id) {
                                         questions.get_user_question(question_id.current_question, function (quest) {
-                                            questions.get_yes_votes(quest._id, function (yes_vote) {
-                                                questions.get_no_votes(quest._id, function (no_vote) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol7', {
                                                             usercode: visitor_code,
                                                             top_question: quest.question,
-                                                            yes_votes: yes_vote,
-                                                            no_votes: no_vote,
-                                                            link_list: links
+                                                            yes_votes: quest.yes,
+                                                            no_votes: quest.no,
+                                                            link_list: links,
+                                                            x: quest.mm_no_x,
+                                                            y: quest.mm_no_y,
+                                                            file: quest.mm_file_no
                                                         });
-                                                    });
-                                                });
                                             });
                                         });
                                     });
@@ -3229,18 +3228,17 @@ db.open(function(err, db) {
                                 users.update_user_lol_state(visitor_code, 0, function (result) {
                                     users.get_current_user_question(visitor_code, function (question_id) {
                                         questions.get_user_question(question_id.current_question, function (quest) {
-                                            questions.get_yes_votes(quest._id, function (yes_vote) {
-                                                questions.get_no_votes(quest._id, function (no_vote) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol6', {
                                                             usercode: visitor_code,
                                                             top_question: quest.question,
-                                                            yes_votes: yes_vote,
-                                                            no_votes: no_vote,
-                                                            link_list: links
+                                                            yes_votes: quest.yes,
+                                                            no_votes: quest.no,
+                                                            link_list: links,
+                                                            x: quest.mm_yes_x,
+                                                            y: quest.mm_yes_y,
+                                                            file: quest.mm_file_yes
                                                         });
-                                                    });
-                                                });
                                             });
                                         });
                                     });
@@ -3567,18 +3565,17 @@ db.open(function(err, db) {
         "use strict";
         var question_code = ObjectID.createFromHexString(req.params.visitor);
             questions.get_user_question(question_code, function (quest) {
-                questions.get_yes_votes(question_code, function (yes_vote) {
-                    questions.get_no_votes(question_code, function (no_vote) {
-                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol11', {
                                 usercode: question_code,
                                 top_question: quest.question,
-                                yes_votes: yes_vote,
-                                no_votes: no_vote,
-                                link_list: links
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_no_x,
+                                y: quest.mm_no_y,
+                                file: quest.mm_file_no
                             });
-                        });
-                    });
                 });
             });
      });
@@ -3587,19 +3584,18 @@ db.open(function(err, db) {
         "use strict";
         var question_code = ObjectID.createFromHexString(req.params.visitor);
             questions.get_user_question(question_code, function (quest) {
-                questions.get_yes_votes(question_code, function (yes_vote) {
-                    questions.get_no_votes(question_code, function (no_vote) {
-                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol10', {
                                 usercode: question_code,
                                 top_question: quest.question,
-                                yes_votes: yes_vote,
-                                no_votes: no_vote,
-                                link_list: links
-                            });
-                        });
-                    });
-                });
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes
+                             });
+                         });
             });
     });
 
