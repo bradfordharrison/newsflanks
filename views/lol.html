@@ -125,7 +125,24 @@
          <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}">&nbsp{{link.content_link}}</a><br></font>
      {% endfor %}
 </div>
-{% include "includes/footer.html" %}
+<script language="javascript">
+function popup(mypage,myname,w,h,features) {
+  if(screen.width){
+  var winl = (screen.width-w)/2;
+  var wint = (screen.height-h)/2;
+  }else{winl = 0;wint =0;}
+  if (winl < 0) winl = 0;
+  if (wint < 0) wint = 0;
+  var settings = 'height=' + h + ',';
+  settings += 'width=' + w + ',';
+  settings += 'top=' + wint + ',';
+  settings += 'left=' + winl + ',';
+  settings += features;
+  win = window.open(mypage,myname,settings);
+  win.window.focus();
+}
+</script>
+       <a href="javascript:popup('http://www.flanks.org/29.html','_blank',325,468, 'scrollbars=auto');"><img src="http://www.flanks.org/3.jpg" width="15" height="16" alt="[newsflanks]"></a>&nbsp;<strong><font color="#006500">support@newsflanks.com</strong></font>&nbsp;<a href="http://www.twitter.com/newsflanks"><img src="http://www.flanks.org/1.png" width="15" height="15" alt="[twitter]"></a>&nbsp;<a href="http://www.facebook.com/newsflanks"><img src="http://www.flanks.org/2.jpg" width="15" height="15" alt="[facebook]"></a>&nbsp;<a href="https://www.instagram.com/newsflanks"><img src="http://www.flanks.org/2d.jpg" width="15" height="15" alt="[instagram]"></a></font></strong>
 </div>
 <div class="col-lg-2"></div>
 </div>
