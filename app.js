@@ -2310,6 +2310,7 @@ db.open(function(err, db) {
                                     x: quest.mm_yes_x,
                                     y: quest.mm_yes_y,
                                     file: quest.mm_file_yes,
+                                    mm_win_size: quest.mm_win_yes_y,
                                     user_answer: answer
                                 });
                     });
@@ -2338,6 +2339,7 @@ db.open(function(err, db) {
                                                             x: quest.mm_yes_x,
                                                             y: quest.mm_yes_y,
                                                             file: quest.mm_file_yes,
+                                                            mm_win_size: quest.mm_win_yes_y,
                                                             user_answer: answer //setting answer in template, but not used later in the program
                                                         });
                                                     });
@@ -2369,6 +2371,7 @@ db.open(function(err, db) {
                                     x: quest.mm_no_x,
                                     y: quest.mm_no_y,
                                     file: quest.mm_file_no,
+                                    mm_win_size: quest.mm_win_no_y,
                                     user_answer: answer
                                });
                            });
@@ -2396,6 +2399,7 @@ db.open(function(err, db) {
                                                                     x: quest.mm_no_x,
                                                                     y: quest.mm_no_y,
                                                                     file: quest.mm_file_no,
+                                                                    mm_win_size: quest.mm_win_no_y,
                                                                     user_answer: 1
                                                                 });
                                                             });
@@ -2426,6 +2430,7 @@ db.open(function(err, db) {
                                     yes_votes: yes_vote,
                                     no_votes: no_vote,
                                     link_list: links,
+                                    mm_win_size: quest.mm_win_all_y,
                                     user_answer: answer
                                 });
                             });
@@ -2452,6 +2457,7 @@ db.open(function(err, db) {
                                                                 yes_votes: yes_vote,
                                                                 no_votes: no_vote,
                                                                 link_list: links,
+                                                                mm_win_size: quest.mm_win_all_y,
                                                                 user_answer: 2 //setting answer in template, but not used later in the program
                                                             });
                                                         });
@@ -3067,6 +3073,7 @@ db.open(function(err, db) {
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
                                 file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
                                 user_answer: answer
                             });
                 });
@@ -3086,6 +3093,7 @@ db.open(function(err, db) {
                                 x: quest.mm_no_x,
                                 y: quest.mm_no_y,
                                 file: quest.mm_file_no,
+                                mm_win_size: quest.mm_win_no_y,
                                 user_answer: answer
                             });
                 });
@@ -3104,6 +3112,7 @@ db.open(function(err, db) {
                                 yes_votes: yes_vote,
                                 no_votes: no_vote,
                                 link_list: links,
+                                mm_win_size: quest.mm_win_all_y,
                                 user_answer: answer
                             });
                         });
@@ -3147,6 +3156,7 @@ db.open(function(err, db) {
                                             link_list: links,
                                             x: quest.mm_yes_x,
                                             y: quest.mm_yes_y,
+                                            mm_win_size: quest.mm_win_yes_y,
                                             file: quest.mm_file_yes
                                         });
                              });
@@ -3163,6 +3173,7 @@ db.open(function(err, db) {
                                             link_list: links,
                                             x: quest.mm_no_x,
                                             y: quest.mm_no_y,
+                                            mm_win_size: quest.mm_win_no_y,
                                             file: quest.mm_file_no
                                         });
                             });
@@ -3178,7 +3189,8 @@ db.open(function(err, db) {
                                             top_question: quest.question,
                                             yes_votes: yes_vote,
                                             no_votes: no_vote,
-                                            link_list: links,
+                                            mm_win_size: quest.mm_win_all_y,
+                                            link_list: links
                                         });
                                     });
                                 });
@@ -3195,7 +3207,8 @@ db.open(function(err, db) {
                                             top_question: quest.question,
                                             yes_votes: yes_vote,
                                             no_votes: no_vote,
-                                            link_list: links,
+                                            mm_win_size: quest.mm_win_all_y,
+                                            link_list: links
                                         });
                                     });
                                 });
@@ -3217,6 +3230,7 @@ db.open(function(err, db) {
                                                             link_list: links,
                                                             x: quest.mm_no_x,
                                                             y: quest.mm_no_y,
+                                                            mm_win_size: quest.mm_win_no_y,
                                                             file: quest.mm_file_no
                                                         });
                                             });
@@ -3237,6 +3251,7 @@ db.open(function(err, db) {
                                                             link_list: links,
                                                             x: quest.mm_yes_x,
                                                             y: quest.mm_yes_y,
+                                                            mm_win_size: quest.mm_win_yes_y,
                                                             file: quest.mm_file_yes
                                                         });
                                             });
@@ -3255,6 +3270,7 @@ db.open(function(err, db) {
                                                         top_question: quest.question,
                                                         yes_votes: yes_vote,
                                                         no_votes: no_vote,
+                                                        mm_win_size: quest.mm_win_all_y,
                                                         link_list: links
                                                     });
                                                 });
@@ -3274,6 +3290,7 @@ db.open(function(err, db) {
                                                         top_question: quest.question,
                                                         yes_votes: yes_vote,
                                                         no_votes: no_vote,
+                                                        mm_win_size: quest.mm_win_all_y,
                                                         link_list: links
                                                     });
                                                 });
@@ -3553,6 +3570,7 @@ db.open(function(err, db) {
                             top_question: quest.question,
                             yes_votes: yes_vote,
                             no_votes: no_vote,
+                            mm_win_size: quest.mm_win_all_y,
                             link_list: links
                         });
                     });
@@ -3574,6 +3592,7 @@ db.open(function(err, db) {
                                 link_list: links,
                                 x: quest.mm_no_x,
                                 y: quest.mm_no_y,
+                                mm_win_size: quest.mm_win_no_y,
                                 file: quest.mm_file_no
                             });
                 });
@@ -3593,6 +3612,7 @@ db.open(function(err, db) {
                                 link_list: links,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
+                                mm_win_size: quest.mm_win_yes_y,
                                 file: quest.mm_file_yes
                              });
                          });
@@ -3611,6 +3631,7 @@ db.open(function(err, db) {
                                 top_question: quest.question,
                                 yes_votes: yes_vote,
                                 no_votes: no_vote,
+                                mm_win_size: quest.mm_win_all_y,
                                 link_list: links
                             });
                         });
