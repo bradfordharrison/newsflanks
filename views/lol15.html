@@ -319,7 +319,7 @@ function BarGraph(ctx) {
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>Click the FLIP menu item above to see links refuting the view presented by the links shown below.</font></h4>");
+      document.writeln("<h4><font color='#FF0000'>Likes and Dislikes are tallied and displayed only if you are logged in! To log in, click the LOGIN menu above. When you choose &quot;No opinion,&quot; News Flanks shows you all links associated with question, pro and con.</font></h4>");
       document.writeln("</div>");
    }
    else {
@@ -350,9 +350,6 @@ function BarGraph(ctx) {
       document.writeln("</center>");
       document.writeln("</div>");
    }
-</script>
-<script>
-    window.name = {{user_answer}};
 </script>
 <div class="table-border">
 <script src="../static/js/jquery.js"></script>
@@ -429,7 +426,7 @@ function BarGraph(ctx) {
 			return ctx;
 		}
 
-		var ctx = createCanvas("graphDiv1");
+				var ctx = createCanvas("graphDiv1");
 
 		var graph = new BarGraph(ctx);
 		graph.maxValue = "";
@@ -441,35 +438,13 @@ function BarGraph(ctx) {
 		}, 0);
 
 	}());</script>
-
-				{% if file != "" %}
-				<div><iframe src="http://flanks.org/{{file}}.html" frameborder="0" width={{x}} height={{y}} allowfullscreen></iframe></div>
-				{% endif %}
-
-     <font color="#006500" size="4">Links that support &quot;No&quot; answer:</font><br /><br />
-
+     <font color="#006500" size="4">All links:</font><br /><br />
      {% for link in link_list %}
-         <font size="3"><img src="{{link.flip_grfx}}" width="25" height="25"><a href="{{link.flip_href}}">&nbsp{{link.flip_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/1"><img src="http://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.flip_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/1"><img src="http://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.flip_dislikes}}&nbsp;<br></font>
+         <font size="3"><font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}">&nbsp{{link.content_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/2"><img src="http://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.content_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/2"><img src="http://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.content_dislikes}}&nbsp;<br>
+ 		 <img src="{{link.flip_grfx}}" width="25" height="25"><a href="{{link.flip_href}}">&nbsp{{link.flip_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/3"><img src="http://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.flip_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/3"><img src="http://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.flip_dislikes}}&nbsp;<br></font>
      {% endfor %}
 </div>
-<script language="javascript">
-function popup(mypage,myname,w,h,features) {
-  if(screen.width){
-  var winl = (screen.width-w)/2;
-  var wint = (screen.height-h)/2;
-  }else{winl = 0;wint =0;}
-  if (winl < 0) winl = 0;
-  if (wint < 0) wint = 0;
-  var settings = 'height=' + h + ',';
-  settings += 'width=' + w + ',';
-  settings += 'top=' + wint + ',';
-  settings += 'left=' + winl + ',';
-  settings += features;
-  win = window.open(mypage,myname,settings);
-  win.window.focus();
-}
-</script>
-       <a href="javascript:popup('http://www.flanks.org/29.html','_blank',325,468, 'scrollbars=auto');"><img src="http://www.flanks.org/3.jpg" width="15" height="16" alt="[newsflanks]"></a>&nbsp;<strong><font color="#006500">support@newsflanks.com</strong></font>&nbsp;<a href="http://www.twitter.com/newsflanks"><img src="http://www.flanks.org/1.png" width="15" height="15" alt="[twitter]"></a>&nbsp;<a href="http://www.facebook.com/newsflanks"><img src="http://www.flanks.org/2.jpg" width="15" height="15" alt="[facebook]"></a>&nbsp;<a href="https://www.instagram.com/newsflanks"><img src="http://www.flanks.org/2d.jpg" width="15" height="15" alt="[instagram]"></a></font></strong>
+{% include "includes/footer.html" %}
 </div>
 <div class="col-lg-2"></div>
 </div>
