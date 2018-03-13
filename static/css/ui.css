@@ -119,3 +119,43 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
     height: 475px;
     background-color: white;
  }
+ 
+ /* default headlines window height = 0*/
+  #nav4 {
+   float: right;
+   position: static;
+   padding: 10px;
+   width: 420px;
+   height: 375px;
+   background-color: white;
+  }
+  
+   /* smallest headlines window height = 1*/
+   #nav5 {
+    float: right;
+    position: static;
+    padding: 10px;
+    width: 420px;
+    height: 180px;
+    background-color: white;
+  }
+  
+   /* medium headlines window height = 2*/
+   #nav6 {
+    float: right;
+    position: static;
+    padding: 10px;
+    width: 420px;
+    height: 425px;
+    background-color: white;
+  }
+  
+   /* tallest headlines window height = 3*/
+    #nav7 {
+     float: right;
+     position: static;
+     padding: 10px;
+     width: 420px;
+     height: 500px;
+     background-color: white;
+ }

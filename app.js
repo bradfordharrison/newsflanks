@@ -6,7 +6,9 @@ var Db = require('mongodb').Db,
     bodyParser = require('body-parser'),
     nunjucks = require('nunjucks'),
     MongoClient = require('mongodb').MongoClient,
-    Server = require('mongodb').Server,
+        Server = require('mongodb').Server,
+
+
     assert = require('assert'),
     QuestionDAO = require('./questions').QuestionDAO;
     LOLDAO = require('./lols').LOLDAO;
@@ -60,10 +62,9 @@ db.open(function (err, db) {
                     animated_gif: quest.mm,
                     quote: quest.text,
                     quote2: quest.text2,
-
-
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -76,6 +77,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -88,6 +90,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -100,6 +103,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -112,6 +116,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -124,6 +129,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -136,6 +142,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -148,6 +155,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -160,6 +168,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -172,6 +181,7 @@ db.open(function (err, db) {
                     quote2: quest.text2,
                     quote3: quest.text3,
                     quote4: quest.text4,
+                    head_win_size: quest.head_win_y,
                     top_question: quest.question + "?",
                     choices: ['yes', 'no', 'no opinion']
                 });
@@ -207,6 +217,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -220,6 +231,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -233,6 +245,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -246,6 +259,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -259,6 +273,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -272,6 +287,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -285,6 +301,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -298,6 +315,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -311,6 +329,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -324,6 +343,7 @@ db.open(function (err, db) {
                         quote2: user_quest.text2,
                         quote3: user_quest.text3,
                         quote4: user_quest.text4,
+                        head_win_size: user_quest.head_win_y,
                         top_question: user_quest.question + "?",
                         choices: ['yes', 'no', 'no opinion', 'next question']
                     });
@@ -346,6 +366,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -358,6 +379,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -370,6 +392,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -382,6 +405,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -394,6 +418,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -406,6 +431,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -418,6 +444,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -430,6 +457,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -442,6 +470,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -454,6 +483,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -487,6 +517,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -500,6 +531,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -513,6 +545,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -526,6 +559,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -539,6 +573,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -552,6 +587,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -565,6 +601,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -578,6 +615,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -591,6 +629,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -604,6 +643,7 @@ db.open(function (err, db) {
                             quote2: user_quest.text2,
                             quote3: user_quest.text3,
                             quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
                             top_question: user_quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -648,6 +688,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -661,6 +702,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -674,6 +716,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -687,6 +730,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -700,6 +744,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -713,6 +758,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -726,6 +772,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -739,6 +786,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -752,6 +800,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -765,6 +814,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -796,6 +846,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -809,6 +860,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -822,6 +874,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -835,6 +888,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -848,6 +902,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -861,6 +916,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -874,6 +930,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -887,6 +944,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -900,6 +958,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -913,6 +972,7 @@ db.open(function (err, db) {
                                             quote2: user_quest.text2,
                                             quote3: user_quest.text3,
                                             quote4: user_quest.text4,
+                                            head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -934,6 +994,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -946,6 +1007,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -958,6 +1020,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -970,6 +1033,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -982,6 +1046,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -994,6 +1059,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1006,6 +1072,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1018,6 +1085,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1030,6 +1098,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1042,6 +1111,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1062,6 +1132,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1074,6 +1145,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1086,6 +1158,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1098,6 +1171,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1110,6 +1184,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1122,6 +1197,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1134,6 +1210,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1146,6 +1223,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1158,6 +1236,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1170,6 +1249,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1219,6 +1299,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1231,6 +1312,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1243,6 +1325,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1255,6 +1338,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1267,6 +1351,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1279,6 +1364,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1291,6 +1377,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1303,6 +1390,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1315,6 +1403,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1327,6 +1416,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -1347,6 +1437,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1359,6 +1450,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1371,6 +1463,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1383,6 +1476,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1395,6 +1489,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1407,6 +1502,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1419,6 +1515,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1431,6 +1528,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1443,6 +1541,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1455,6 +1554,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1486,6 +1586,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1498,6 +1599,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1510,6 +1612,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1522,6 +1625,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1534,6 +1638,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1546,6 +1651,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1558,6 +1664,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1570,6 +1677,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1582,6 +1690,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1594,6 +1703,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -1730,6 +1840,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1743,6 +1854,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1756,6 +1868,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1769,6 +1882,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1782,6 +1896,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1795,6 +1910,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1808,6 +1924,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1821,6 +1938,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1834,6 +1952,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1847,6 +1966,7 @@ db.open(function (err, db) {
                                             quote2: quest.text2,
                                             quote3: quest.text3,
                                             quote4: quest.text4,
+                                            head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
@@ -1882,6 +2002,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1895,6 +2016,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1908,6 +2030,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1921,6 +2044,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1934,6 +2058,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1947,6 +2072,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1960,6 +2086,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1973,6 +2100,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1986,6 +2114,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -1999,6 +2128,7 @@ db.open(function (err, db) {
                                     quote2: quest.text2,
                                     quote3: quest.text3,
                                     quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2027,6 +2157,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2039,6 +2170,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2051,6 +2183,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2063,6 +2196,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2075,6 +2209,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2087,6 +2222,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2099,6 +2235,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2111,6 +2248,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2123,6 +2261,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2135,6 +2274,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2153,6 +2293,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2165,6 +2306,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2177,6 +2319,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2189,6 +2332,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2201,6 +2345,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2213,6 +2358,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2225,6 +2371,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2237,6 +2384,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2249,6 +2397,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2261,6 +2410,7 @@ db.open(function (err, db) {
                                     quote2: user_quest.text2,
                                     quote3: user_quest.text3,
                                     quote4: user_quest.text4,
+                                    head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
@@ -2473,6 +2623,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2486,6 +2637,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2499,6 +2651,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2512,6 +2665,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2525,6 +2679,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2538,6 +2693,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2551,6 +2707,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2564,6 +2721,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2577,6 +2735,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2590,6 +2749,7 @@ db.open(function (err, db) {
                             quote2: quest.text2,
                             quote3: quest.text3,
                             quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -2624,6 +2784,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2637,6 +2798,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2650,6 +2812,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2663,6 +2826,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2676,6 +2840,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2689,6 +2854,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2702,6 +2868,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2715,6 +2882,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2728,6 +2896,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2741,6 +2910,7 @@ db.open(function (err, db) {
                                                 quote2: user_quest.text2,
                                                 quote3: user_quest.text3,
                                                 quote4: user_quest.text4,
+                                                head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2781,6 +2951,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2793,6 +2964,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2805,6 +2977,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2817,6 +2990,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2829,6 +3003,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2841,6 +3016,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2853,6 +3029,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2865,6 +3042,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2877,6 +3055,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2889,6 +3068,7 @@ db.open(function (err, db) {
                                                 quote2: quest[question_index].text2,
                                                 quote3: quest[question_index].text3,
                                                 quote4: quest[question_index].text4,
+                                                head_win_size: quest[question_index].head_win_y,
                                                 top_question: quest[question_index].question + "?",
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
@@ -2920,6 +3100,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -2932,6 +3113,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -2944,6 +3126,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -2956,6 +3139,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -2968,6 +3152,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -2980,6 +3165,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -2992,6 +3178,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3004,6 +3191,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3016,6 +3204,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3028,6 +3217,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3289,6 +3479,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3301,6 +3492,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3313,6 +3505,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3325,6 +3518,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3337,6 +3531,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3349,6 +3544,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3361,6 +3557,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3373,6 +3570,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3385,6 +3583,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3397,6 +3596,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3417,6 +3617,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3429,6 +3630,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3441,6 +3643,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3453,6 +3656,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3465,6 +3669,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3477,6 +3682,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3489,6 +3695,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3501,6 +3708,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3513,6 +3721,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3525,6 +3734,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3644,6 +3854,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3656,6 +3867,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3668,6 +3880,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3680,6 +3893,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3692,6 +3906,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3704,6 +3919,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3716,6 +3932,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3728,6 +3945,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3740,6 +3958,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3752,6 +3971,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3772,6 +3992,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3784,6 +4005,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3796,6 +4018,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3808,6 +4031,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3820,6 +4044,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3832,6 +4057,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3844,6 +4070,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3856,6 +4083,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3868,6 +4096,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3880,6 +4109,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -3927,6 +4157,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3939,6 +4170,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3951,6 +4183,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3963,6 +4196,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3975,6 +4209,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3987,6 +4222,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -3999,6 +4235,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4011,6 +4248,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4023,6 +4261,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4035,6 +4274,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4055,6 +4295,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4067,6 +4308,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4079,6 +4321,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4091,6 +4334,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4103,6 +4347,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4115,6 +4360,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4127,6 +4373,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4139,6 +4386,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4151,6 +4399,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4163,6 +4412,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4218,6 +4468,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4230,6 +4481,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4242,6 +4494,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4254,6 +4507,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4266,6 +4520,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4278,6 +4533,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4290,6 +4546,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4302,6 +4559,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4314,6 +4572,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4326,6 +4585,7 @@ db.open(function (err, db) {
                                 quote2: quest.text2,
                                 quote3: quest.text3,
                                 quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
                                 top_question: quest.question + "?",
                                 choices: ['yes', 'no', 'no opinion']
                             });
@@ -4346,6 +4606,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4358,6 +4619,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4370,6 +4632,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4382,6 +4645,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4394,6 +4658,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4406,6 +4671,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4418,6 +4684,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4430,6 +4697,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4442,6 +4710,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4454,6 +4723,7 @@ db.open(function (err, db) {
                         quote2: quest.text2,
                         quote3: quest.text3,
                         quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
                         top_question: quest.question + "?",
                         choices: ['yes', 'no', 'no opinion']
                     });
@@ -4525,6 +4795,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4538,6 +4809,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4551,6 +4823,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4564,6 +4837,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4577,6 +4851,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4590,6 +4865,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4603,6 +4879,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4616,6 +4893,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4629,6 +4907,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4642,6 +4921,7 @@ db.open(function (err, db) {
                                                                                     quote2: user_quest.text2,
                                                                                     quote3: user_quest.text3,
                                                                                     quote4: user_quest.text4,
+                                                                                    head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
@@ -4728,6 +5008,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4741,6 +5022,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4754,6 +5036,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4767,6 +5050,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4780,6 +5064,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4793,6 +5078,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4806,6 +5092,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4819,6 +5106,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4832,6 +5120,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4845,6 +5134,7 @@ db.open(function (err, db) {
                                                                                 quote2: user_quest.text2,
                                                                                 quote3: user_quest.text3,
                                                                                 quote4: user_quest.text4,
+                                                                                head_win_size: user_quest.head_win_y,
                                                                                 top_question: user_quest.question + "?",
                                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                                             });
@@ -4932,6 +5222,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -4945,6 +5236,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -4958,6 +5250,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -4971,6 +5264,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -4984,6 +5278,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -4997,6 +5292,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -5010,6 +5306,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -5023,6 +5320,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -5036,6 +5334,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
@@ -5049,6 +5348,7 @@ db.open(function (err, db) {
                                                                 quote2: user_quest.text2,
                                                                 quote3: user_quest.text3,
                                                                 quote4: user_quest.text4,
+                                                                head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });

@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="">
-	<meta name="description" content="News Flanks provides the two extreme sides (flanks) to trending news 
+	<meta name="description" content="News Flanks provides the two extreme sides (flanks) to trending news
 	stories and issues.">
-    <meta name="keywords" content="collusion Don Jr. Paris Climate Agreement global warming Donald Trump Hillary Clinton Comey impeach Russian hack hackers wikileaks electoral 
+    <meta name="keywords" content="collusion Don Jr. Paris Climate Agreement global warming Donald Trump Hillary Clinton Comey impeach Russian hack hackers wikileaks electoral
 	college Syria Benghazi Clinton Foundation Muslims racism racist Iran misogynist Constitution POTUS President of the
 	United States">
     <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
@@ -54,6 +54,64 @@
 	</tr>
 	</table>
 	<br />
+	<script src="../static/js/jquery.js"></script>
+		<div id="users-device-size">
+		  <div id="xs" class="visible-xs"></div>
+		  <div id="sm" class="visible-sm"></div>
+		  <div id="md" class="visible-md"></div>
+		  <div id="lg" class="visible-lg"></div>
+		</div>
+
+	<script>
+		function getBootstrapDeviceSize() {
+			return  $('#users-device-size').find('div:visible').first().attr('id');
+		}
+	</script>
+			{% if head_win_size == 0 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav4'>");
+				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=355 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 1 %}
+
+		<script language="javascript">
+
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav5'>");
+				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=180 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 2 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav6'>");
+				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=255 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 3 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav7'>");
+				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=455 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
    	&nbsp;&nbsp;<img src="{{animated_gif}}"><br>
 	&nbsp;&nbsp;<font color="#000000" size="4"><i>{{quote}}</i></font><br>
     &nbsp;&nbsp;<font color="#000000" size="4"><i>{{quote2}}</i></font><br><br>
@@ -65,7 +123,7 @@
   <input id="option" type="radio" name="answer" value="{{yes_no}}"><label for="option"><span><span></span></span>{{yes_no}}</label>
 </div>
          </p>
-		 
+
       {% endfor %}
           <script>
         var code = window.name;
