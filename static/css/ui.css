@@ -126,7 +126,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
    position: static;
    padding: 10px;
    width: 420px;
-   height: 375px;
+   height: 355px;
    background-color: white;
   }
   
@@ -146,7 +146,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
     position: static;
     padding: 10px;
     width: 420px;
-    height: 425px;
+    height: 255px;
     background-color: white;
   }
   
@@ -156,6 +156,6 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
      position: static;
      padding: 10px;
      width: 420px;
-     height: 500px;
+     height: 455px;
      background-color: white;
  }
