@@ -94,11 +94,30 @@
       <input type="submit" value="Logout">
    </form></font><br>
       <font color="#006500" size="4">
-    Questions you have already seen (select any question to change your response):<br>
+    Here's a summary of your answers (select any question to change your response):<br>
+        {% set counter = 0 %}
         {% for link in questions_list %}
-        &bull;<a class='rollover' href='/new_quest/{{link._id}}/{{usercode}}'>{{link.question}}?</a><br>
+	      {% set temp = link.yes %}
+	      {% set temp2 = link.no %}
+	      {% set total = temp + temp2 %}
+	      {% set yes_percent_temp = temp/total %}
+	      {% set no_percent_temp = temp2/total %}
+	      {% set yes_percent = yes_percent_temp * 100 %}
+	      {% set no_percent = no_percent_temp * 100 %}
+	    &bull;<a class='rollover' href='/new_quest/{{link._id}}/{{usercode}}'>{{link.question}}?</a><br>
+{% if answers_list[counter] == '0' %}
+          &nbsp;&nbsp;You answered: Yes<br>
+{% elif answers_list[counter] == '1' %}
+          &nbsp;&nbsp;You answered: No<br>
+{% else %}
+          &nbsp;&nbsp;You saw this question but didn't answer Yes or No<br>
+{% endif %}
+        &nbsp;&nbsp;Total responses: {{total}}<br>
+        &nbsp;&nbsp;Yes responses: {{yes_percent}}%<br>
+        &nbsp;&nbsp;No responses: {{no_percent}}%<br>
+        {% set counter = counter + 1 %}
         {% endfor %}
-      </font>
+    </font>
 </div>
 
 {% include "includes/footer.html" %}

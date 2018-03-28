@@ -174,6 +174,23 @@ function UserDAO(database) {
             });
     }
 
+    this.build_userresps_list = function (visitor_code, imps_list, callback) {
+        "use strict";
+        var resps_list = [];
+        this.db.collection("user").find({ "usercode": visitor_code })
+            .toArray(function (err, resps_array) {
+                assert.equal(null, err);
+                for (var i = 0; i < imps_list.length; i++) {
+                    for (var j = 0; j < resps_array[0].impressions_array.length; j++) {    
+                        if (imps_list[i]._id.equals(resps_array[0].impressions_array[j].question)) {
+                            resps_list[i] = resps_array[0].impressions_array[j].answer;
+                        };
+                    };
+                };
+                callback(resps_list);
+            });
+    }
+
     this.get_user_answer_to_question = function (visitor_code, quest, callback) {
         "use strict";
         var imps_list_temp = [];
