@@ -112,9 +112,13 @@
 {% else %}
           &nbsp;&nbsp;You saw this question but didn't answer Yes or No<br>
 {% endif %}
+{% if answers_list[counter] == '0' %}
         &nbsp;&nbsp;Total responses: {{total}}<br>
         &nbsp;&nbsp;Yes responses: {{yes_percent}}%<br>
+{% elif answers_list[counter] == '1' %}
+        &nbsp;&nbsp;Total responses: {{total}}<br>
         &nbsp;&nbsp;No responses: {{no_percent}}%<br>
+{% endif %}
         {% set counter = counter + 1 %}
         {% endfor %}
     </font>
