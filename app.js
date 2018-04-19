@@ -187,6 +187,8 @@ db.open(function (err, db) {
         });
     });
 
+    //add new_quest2 -- takes all 4 questions and parameters
+
     app.get('/new_quest/:question/:visitor', function (req, res, next) {
         var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor); // pass in as usercode2
@@ -3670,11 +3672,14 @@ db.open(function (err, db) {
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
         };
+
+        //modify so new_visitor gets visitor_info2 with all get_front_questions variables, but first is one he clicked
+
         if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
                 if (valid || new_visitor) {
                     questions.get_question(function (quest) {
-                        res.render('visitor_info3', {
+                        res.render('visitor_info2', {
                             usercode: visitor_code,
                             questions_list: quest
                         });
