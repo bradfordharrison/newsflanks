@@ -6,13 +6,11 @@ var Db = require('mongodb').Db,
     bodyParser = require('body-parser'),
     nunjucks = require('nunjucks'),
     MongoClient = require('mongodb').MongoClient,
-        Server = require('mongodb').Server,
-
-
+    Server = require('mongodb').Server,
     assert = require('assert'),
-    QuestionDAO = require('./questions').QuestionDAO;
-    LOLDAO = require('./lols').LOLDAO;
-    UserDAO = require('./users').UserDAO;6
+    QuestionDAO = require('./questions').QuestionDAO,
+    LOLDAO = require('./lols').LOLDAO,
+    UserDAO = require('./users').UserDAO,
 
 // Set up express
 app = express();
@@ -5343,7 +5341,7 @@ db.open(function (err, db) {
                 });
             });
         }
-        else {     
+        else {
             users.check_valid_usercode(visitor_code, function (valid) {
                 if (valid) {
                     if (state_code == 0) {
@@ -5634,7 +5632,7 @@ db.open(function (err, db) {
                 else {
                     //no op
                 }; //end not valid
-            });          
+            });
     };//end else
 });
 
