@@ -3672,14 +3672,21 @@ db.open(function (err, db) {
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
         };
-
-        //modify so new_visitor gets visitor_info2 with all get_front_questions variables, but first is one he clicked
-
         if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
-                if (valid || new_visitor) {
+                if (new_visitor) {
+                    questions.get_front_questions(function (quest) {
+                        questions.get_full_front_questions(quest, function (front_quest) {
+                            res.render('visitor_info2', {
+                                usercode: visitor_code,
+                                questions_list: front_quest
+                            });
+                        });
+                    });
+                }
+                else if (valid) { 
                     questions.get_question(function (quest) {
-                        res.render('visitor_info2', {
+                        res.render('visitor_info3', {
                             usercode: visitor_code,
                             questions_list: quest
                         });
@@ -3964,10 +3971,12 @@ db.open(function (err, db) {
     app.get('/links2/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = 2;
-        questions.get_question(function (quest) {
-            res.render('visitor_info3', {
-                usercode: visitor_code,
-                questions_list: quest
+        questions.get_front_questions(function (quest) {
+            questions.get_full_front_questions(quest, function (front_quest) {
+                res.render('visitor_info2', {
+                    usercode: visitor_code,
+                    questions_list: front_quest
+                });
             });
         });
     });
