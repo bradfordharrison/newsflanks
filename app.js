@@ -191,13 +191,14 @@ db.open(function (err, db) {
 
     app.get('/new_quest/:question/:visitor', function (req, res, next) {
         var user_answer_text = "";
-        var visitor_code = parseInt(req.params.visitor); // pass in as usercode2
+        var visitor_code = parseInt(req.params.visitor);
         var links_res = ObjectID.createFromHexString(req.params.question);
         if ((visitor_code > -1) && (visitor_code < 10)) {
             questions.get_user_question(links_res, function (quest) {
                 if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                     res.render('home81', {
-                        usercode: links_res, //passing in question ID
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -210,7 +211,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
                     res.render('home82', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -223,7 +225,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
                     res.render('home83', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -236,7 +239,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                     res.render('home84', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -249,7 +253,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                     res.render('home85', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -262,7 +267,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                     res.render('home86', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -275,7 +281,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
                     res.render('home87', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -288,7 +295,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
                     res.render('home88', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -301,7 +309,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                     res.render('home89', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -314,7 +323,8 @@ db.open(function (err, db) {
                 }
                 else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                     res.render('home90', {
-                        usercode: links_res,
+                        question: links_res, //passing in question ID
+                        usercode: visitor_code,
                         animated_gif: quest.mm,
                         quote: quest.text,
                         quote2: quest.text2,
@@ -347,6 +357,7 @@ db.open(function (err, db) {
                     };
                     if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                         res.render('home61', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -361,6 +372,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
                         res.render('home62', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -375,6 +387,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
                         res.render('home63', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -389,6 +402,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
                         res.render('home64', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -403,6 +417,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
                         res.render('home65', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -417,6 +432,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                         res.render('home66', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -431,6 +447,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
                         res.render('home67', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -445,6 +462,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
                         res.render('home68', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -459,6 +477,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
                         res.render('home69', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -473,6 +492,7 @@ db.open(function (err, db) {
                     }
                     else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
                         res.render('home70', {
+                            question: links_res, //passing in question ID
                             usercode: visitor_code,
                             response: user_answer_text,
                             animated_gif: user_quest.mm,
@@ -2923,11 +2943,11 @@ db.open(function (err, db) {
         }; //main conditional
     }); //post call
 
-    app.post('/links2/:visitor', function (req, res, next) {
+    app.post('/links2/:question', function (req, res, next) {
         var links_res = req.body.answer;
         var user_answer_text = "";
         var visitor_code = 2;
-        var question_code = ObjectID.createFromHexString(req.params.visitor);
+        var question_code = ObjectID.createFromHexString(req.params.question);
         if (typeof links_res == 'undefined') {
             var answer = "3";
             visitor_code = +answer;
@@ -3070,7 +3090,8 @@ db.open(function (err, db) {
             questions.get_user_question(question_code, function (quest) { // look up with ID
                 lols.get_lol(quest.frame, quest.impression, function (links) {
                     res.render('lol10', {
-                        usercode: question_code,
+                        question: question_code,
+                        usercode: visitor_code,
                         top_question: quest,
                         yes_votes: quest.yes,
                         no_votes: quest.no,
@@ -3090,7 +3111,8 @@ db.open(function (err, db) {
             questions.get_user_question(question_code, function (quest) { //look up with ID
                 lols.get_lol(quest.frame, quest.impression, function (links) {
                     res.render('lol11', {
-                        usercode: question_code,
+                        question: question_code,
+                        usercode: visitor_code,
                         top_question: quest,
                         yes_votes: quest.yes,
                         no_votes: quest.no,
@@ -3112,7 +3134,8 @@ db.open(function (err, db) {
                     questions.get_no_votes(quest._id, function (no_vote) {
                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol12', {
-                                usercode: question_code,//question code
+                                question: question_code,
+                                usercode: visitor_code,
                                 top_question: quest,
                                 yes_votes: yes_vote,
                                 no_votes: no_vote,
@@ -3583,15 +3606,17 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/flip2/:visitor', function (req, res, next) { //still need to display default if not valid question code (error)
+    app.get('/flip2/:question/:visitor', function (req, res, next) { //still need to display default if not valid question code (error)
         "use strict";
-        var question_code = ObjectID.createFromHexString(req.params.visitor);
+        var visitor_code = parseInt(req.params.visitor);
+        var question_code = ObjectID.createFromHexString(req.params.question);
         questions.get_user_question(question_code, function (quest) {
             questions.get_yes_votes(question_code, function (yes_vote) {
                 questions.get_no_votes(question_code, function (no_vote) {
                     lols.get_lol(quest.frame, quest.impression, function (links) {
                         res.render('lol9', {
-                            usercode: question_code,
+                            question: question_code,
+                            usercode: visitor_code,
                             top_question: quest,
                             yes_votes: yes_vote,
                             no_votes: no_vote,
@@ -3604,13 +3629,15 @@ db.open(function (err, db) {
         });
     });
 
-    app.get('/flip3/:visitor', function (req, res, next) {
+    app.get('/flip3/:question/:visitor', function (req, res, next) {
         "use strict";
-        var question_code = ObjectID.createFromHexString(req.params.visitor);
+        var visitor_code = parseInt(req.params.visitor);
+        var question_code = ObjectID.createFromHexString(req.params.question);
         questions.get_user_question(question_code, function (quest) {
             lols.get_lol(quest.frame, quest.impression, function (links) {
                 res.render('lol11', {
-                    usercode: question_code,
+                    question: question_code,
+                    usercode: visitor_code,
                     top_question: quest,
                     yes_votes: quest.yes,
                     no_votes: quest.no,
@@ -3624,13 +3651,15 @@ db.open(function (err, db) {
         });
     });
 
-    app.get('/flip4/:visitor', function (req, res, next) {
+    app.get('/flip4/:question/:visitor', function (req, res, next) {
         "use strict";
-        var question_code = ObjectID.createFromHexString(req.params.visitor);
+        var visitor_code = parseInt(req.params.visitor);
+        var question_code = ObjectID.createFromHexString(req.params.question);
         questions.get_user_question(question_code, function (quest) {
             lols.get_lol(quest.frame, quest.impression, function (links) {
                 res.render('lol10', {
-                    usercode: question_code,
+                    question: question_code,
+                    usercode: visitor_code,
                     top_question: quest,
                     yes_votes: quest.yes,
                     no_votes: quest.no,
@@ -3644,15 +3673,17 @@ db.open(function (err, db) {
         });
     });
 
-    app.get('/flip5/:visitor', function (req, res, next) {
+    app.get('/flip5/:question/:visitor', function (req, res, next) {
         "use strict";
-        var question_code = ObjectID.createFromHexString(req.params.visitor);
+        var visitor_code = parseInt(req.params.visitor);
+        var question_code = ObjectID.createFromHexString(req.params.question);
         questions.get_user_question(question_code, function (quest) {
             questions.get_yes_votes(question_code, function (yes_vote) {
                 questions.get_no_votes(question_code, function (no_vote) {
                     lols.get_lol(quest.frame, quest.impression, function (links) {
                         res.render('lol12', {
-                            usercode: question_code,
+                            question: question_code,
+                            usercode: visitor_code,
                             top_question: quest,
                             yes_votes: yes_vote,
                             no_votes: no_vote,
