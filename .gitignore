@@ -11,6 +11,7 @@ static/css/bootstrap-theme.min.css
 static/css/bootstrap-theme.min.css.map
 NodejsConsoleApp1.njsproj
 Web.config
+package-lock.json
 .ntvs_analysis.dat
 bin/
 typings/

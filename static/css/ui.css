@@ -159,3 +159,13 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
      height: 455px;
      background-color: white;
  }
+ 
+    /* image map for trending (visitor_info_2) */
+     #nav8 {
+      float: right;
+      position: static;
+      padding: 10px;
+      width: 420px;
+      height: 455px;
+      background-color: white;
+ }
