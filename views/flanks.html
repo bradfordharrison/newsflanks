@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+ <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="/static/js/jquery.js"></script>
 
-    <title>News Flanks</title>
+    <title>Visitor Information</title>
 
 </head>
 
@@ -50,7 +50,7 @@
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>This is the News Flanks Question of the Day. A new or updated Question of the Day is presented to you each day when you arrive at the site.</font></h4>");
+      document.writeln("<h4><font color='#FF0000'>Please log into the website by clicking the LOGIN menu item above! This allows newsflanks.com to capture your votes and customize your experience.</font></h4>");
       document.writeln("</div>");
    }
    else {
@@ -83,90 +83,16 @@
       document.writeln("</nav>");
       document.writeln("</center>");
       document.writeln("</div>");
-	  document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>For user {{usercode}}&mdash;your current answer to this question is &quot;{{response}}&quot;; you can change your answer by voting again.</font></h4>");
-      document.writeln("</div>");
    }
 </script>
 <div class="table-border">
-		<script src="../static/js/jquery.js"></script>
-		<div id="users-device-size">
-		  <div id="xs" class="visible-xs"></div>
-		  <div id="sm" class="visible-sm"></div>
-		  <div id="md" class="visible-md"></div>
-		  <div id="lg" class="visible-lg"></div>
-		</div>
-
-	<script>
-		function getBootstrapDeviceSize() {
-			return  $('#users-device-size').find('div:visible').first().attr('id');
-		}
-	</script>
-			{% if head_win_size == 0 %}
-		<script language="javascript">
-				  var temp = getBootstrapDeviceSize();
-				  if (temp === 'lg') {
-				  document.write("<div id='nav4'>");
-				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=355 allowfullscreen></iframe></div>");
-		          document.write("</div>");
-		          };
-		</script>
-		{% endif %}
-
-		{% if head_win_size == 1 %}
-
-		<script language="javascript">
-
-				  var temp = getBootstrapDeviceSize();
-				  if (temp === 'lg') {
-				  document.write("<div id='nav5'>");
-				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=180 allowfullscreen></iframe></div>");
-		          document.write("</div>");
-		          };
-		</script>
-		{% endif %}
-
-		{% if head_win_size == 2 %}
-		<script language="javascript">
-				  var temp = getBootstrapDeviceSize();
-				  if (temp === 'lg') {
-				  document.write("<div id='nav6'>");
-				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=255 allowfullscreen></iframe></div>");
-		          document.write("</div>");
-		          };
-		</script>
-		{% endif %}
-
-		{% if head_win_size == 3 %}
-		<script language="javascript">
-				  var temp = getBootstrapDeviceSize();
-				  if (temp === 'lg') {
-				  document.write("<div id='nav7'>");
-				  document.write("<div><iframe src='http://flanks.org/d4.html' frameborder='0' width=100% height=455 allowfullscreen></iframe></div>");
-		          document.write("</div>");
-		          };
-		</script>
-		{% endif %}
-	&nbsp;&nbsp;<font color="#000000" size="4"><i>{{quote}}</i></font><br><br>
-       <font color="#006500" size="4"><b><span> {{top_question}}</span></b><br>
-   <form action="/links/{{usercode}}" method="POST">
-      {% for yes_no in choices %}
-         <p>
-<div class="options">
-  <input id="option" type="radio" name="answer" value="{{yes_no}}"><label for="option"><span><span></span></span>{{yes_no}}</label>
+   <font color="#006500" size="4">
+<b>A flank is a collection users who responded to some number of binary questions in the same way (a binary question is defined as consisting of two possible answer choices, not including "no opinion"). A counterflank is the converse of a flank&mdash;i.e., a collection of users with exactly the opposite answers as those of the corresponding flank. The wonderful thing about binary questions is that you can easily and effectively look to see where intersections of responses
+occur: If 100 people vote one way on a series of binary questions (a flank) and 100 people vote the other way (a counterflank), but all 200 people vote the same on just one other binary question, then you definitely have consensus on the one binary question. Of course there
+are varying degrees of consensus. But consensus is what we're looking for at News Flanks. The more people who participate then the better the data and the clearer the consensus (when it appears).</b>
+   </font>
 </div>
-         </p>
 
-      {% endfor %}
-    <script>
-        var code = window.name;
-        document.write("<input type='hidden' name='code' value='");
-        document.write(code);
-        document.writeln("'>");
-    </script>
-      <input type="submit" value="Submit">
-   </form>
-   </font></div>
 {% include "includes/footer.html" %}
 </div>
 <div class="col-lg-2"></div>
