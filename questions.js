@@ -116,6 +116,12 @@ function QuestionDAO(database) {
             });
     }
 
+    this.sort_front_questions_descending_by_date = function (full_front_quest, callback) {
+        "use strict";
+        full_front_quest.sort(function (a, b) { return b.date - a.date});
+        callback(full_front_quest);
+}
+
     this.get_full_front_questions = function (quest, callback) {
         "use strict";
         var front_quest = [];
