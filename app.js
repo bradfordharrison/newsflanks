@@ -3708,12 +3708,10 @@ db.open(function (err, db) {
                 if (new_visitor) {
                     questions.get_front_questions(function (quest) {
                         questions.get_full_front_questions(quest, function (front_quest) {
-                            questions.sort_front_questions_descending_by_date(front_quest, function(sorted_front_quest) {
                                 res.render('visitor_info2', {
                                     usercode: visitor_code,
-                                    questions_list: sorted_front_quest
+                                    questions_list: front_quest
                                 });
-                            });
                         });
                     });
                 }

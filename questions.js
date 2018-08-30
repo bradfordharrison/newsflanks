@@ -116,12 +116,6 @@ function QuestionDAO(database) {
             });
     }
 
-    this.sort_front_questions_descending_by_date = function (full_front_quest, callback) {
-        "use strict";
-        full_front_quest.sort(function (a, b) { return b.date - a.date});
-        callback(full_front_quest);
-}
-
     this.get_full_front_questions = function (quest, callback) {
         "use strict";
         var front_quest = [];
@@ -129,10 +123,10 @@ function QuestionDAO(database) {
         this.db.collection("question").find({})
             .toArray(function (err, all_quest) {
                 assert.equal(null, err);
-                for (var i = 0; i < all_quest.length; i++) {
-                    for (var j = 0; j < quest.length; j++) {
-                        if ((all_quest[i].frame == quest[j].frame) && (all_quest[i].impression == quest[j].impression)) {
-                            front_quest[counter++] = all_quest[i];
+                for (var i = 0; i < quest.length; i++) {
+                    for (var j = 0; j < all_quest.length; j++) {
+                        if ((quest[i].frame == all_quest[j].frame) && (quest[i].impression == all_quest[j].impression)) {
+                            front_quest[counter++] = all_quest[j];
                             break;
                         };
                     };
