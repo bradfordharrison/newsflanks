@@ -5319,73 +5319,75 @@ db.open(function (err, db) {
         var question_res = ObjectID.createFromHexString(req.params.question);
         if ((visitor_code > -1) && (visitor_code < 10)) {
             questions.get_user_question(question_res, function (quest) {
-                lols.get_lol(quest.frame, quest.impression, function (links) {
-                    if (visitor_code == 0) {
-                        res.render('lol13', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if (visitor_code == 1) {
-                        res.render('lol14', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if ((visitor_code == 2) || (visitor_code == 3)) {
-                        res.render('lol15', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if (visitor_code == 4) {
-                        res.render('lol14', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if (visitor_code == 5) {
-                        res.render('lol13', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    };
-                });
+                if (quest != undefined) {
+                    lols.get_lol(quest.frame, quest.impression, function (links) {
+                        if (visitor_code == 0) {
+                            res.render('lol13', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if (visitor_code == 1) {
+                            res.render('lol14', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if ((visitor_code == 2) || (visitor_code == 3)) {
+                            res.render('lol15', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if (visitor_code == 4) {
+                            res.render('lol14', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if (visitor_code == 5) {
+                            res.render('lol13', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        };
+                    });
+                };
             });
         }
         else {
@@ -5690,73 +5692,75 @@ db.open(function (err, db) {
         var question_res = ObjectID.createFromHexString(req.params.question);
         if ((visitor_code > -1) && (visitor_code < 10)) {
             questions.get_user_question(question_res, function (quest) {
-                lols.get_lol(quest.frame, quest.impression, function (links) {
-                    if (visitor_code == 0) {
-                        res.render('lol13', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if (visitor_code == 1) {
-                        res.render('lol14', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if ((visitor_code == 2) || (visitor_code == 3)) {
-                        res.render('lol15', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if (visitor_code == 4) {
-                        res.render('lol14', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y,
-                        });
-                    }
-                    else if (visitor_code == 5) {
-                        res.render('lol13', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            yes_votes: quest.yes,
-                            no_votes: quest.no,
-                            link_list: links,
-                            x: quest.mm_yes_x,
-                            y: quest.mm_yes_y,
-                            file: quest.mm_file_yes,
-                            mm_win_size: quest.mm_win_yes_y
-                        });
-                    };
-                });
+                if (quest != undefined) {
+                    lols.get_lol(quest.frame, quest.impression, function (links) {
+                        if (visitor_code == 0) {
+                            res.render('lol13', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if (visitor_code == 1) {
+                            res.render('lol14', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if ((visitor_code == 2) || (visitor_code == 3)) {
+                            res.render('lol15', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if (visitor_code == 4) {
+                            res.render('lol14', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                            });
+                        }
+                        else if (visitor_code == 5) {
+                            res.render('lol13', {
+                                usercode: visitor_code,
+                                top_question: quest,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y
+                            });
+                        };
+                    });
+                };
             });
         }
         else {
