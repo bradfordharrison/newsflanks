@@ -489,21 +489,22 @@ function UserDAO(database) {
         callback(done);
     }
 
-    this.add_to_imps_if_not_present = function (visitor_code, userimps_array, current_question, callback) {
+    this.add_to_imps_if_not_present = function (visitor_code, userimps_array, callback) {
     var found = false;
-    for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
-        if (current_question.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
+    for (var i = 0; i < userimps_array.impressions_array.length; i++) {
+        if (userimps_array.current_question.equals(userimps_array.impressions_array[i].question)) { //== compares with call by reference so you have to use this
             found = true;
             break;
         };
     }
-                if (found == false) {
-                    this.db.collection("user").updateOne({ "usercode": visitor_code }, //update impressions array
-                        { "$push": { "impressions_array": { "$each": [{ "question": current_question, "answer": 3 }] } } });
-                    found = true;
-                };
-                callback(found);
-            }
+    if (found == false) {
+    this.db.collection("user").updateOne({ "usercode": visitor_code }, //update impressions array
+        { "$push": { "impressions_array": { "$each": [{ "question": userimps_array.current_question, "answer": 3 }] } } });
+        found = true;
+    };
+    callback(found);
+    }
+
 
     this.get_usercode = function (user_name, callback) { //already validated as good
         "use strict";

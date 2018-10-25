@@ -2307,8 +2307,7 @@ db.open(function (err, db) {
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                        users.get_userimps_array(visitor_code, function (userimps_array) {
-                            users.add_to_imps_if_not_present(visitor_code, userimps_array, question_id.current_question, function (result) {
+                            users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
                                 users.get_userimps_array(visitor_code, function (userimps_array2) {
                                     questions.cancel_existing_vote(quest, userimps_array2, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 0, question_id.current_question, function (result) {
@@ -2332,7 +2331,6 @@ db.open(function (err, db) {
                                                             });
                                                         });
                                                     });
-                                                });
                                             });
                                         });
                                     });
@@ -2367,8 +2365,7 @@ db.open(function (err, db) {
             else { //registered user
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                        users.get_userimps_array(visitor_code, function (userimps_array) {
-                            users.add_to_imps_if_not_present(visitor_code, userimps_array, question_id.current_question, function (result) {
+                            users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
                                 users.get_userimps_array(visitor_code, function (userimps_array2) {
                                     questions.cancel_existing_vote(quest, userimps_array2, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 1, question_id.current_question, function (result) {
@@ -2392,7 +2389,6 @@ db.open(function (err, db) {
                                                             });
                                                         });
                                                     });
-                                                });
                                             });
                                         });
                                     });
@@ -2429,8 +2425,7 @@ db.open(function (err, db) {
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                        users.get_userimps_array(visitor_code, function (userimps_array) {
-                            users.add_to_imps_if_not_present(visitor_code, userimps_array, question_id.current_question, function (result) {
+                            users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
                                 users.get_userimps_array(visitor_code, function (userimps_array2) {
                                     questions.cancel_existing_vote(quest, userimps_array2, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 2, question_id.current_question, function (result) {
@@ -2451,7 +2446,6 @@ db.open(function (err, db) {
                                                     });
                                                 });
                                             });
-                                        });
                                     });
                                 });
                             });
