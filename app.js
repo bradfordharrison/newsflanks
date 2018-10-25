@@ -2308,8 +2308,8 @@ db.open(function (err, db) {
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
                             users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
-                                users.get_userimps_array(visitor_code, function (userimps_array2) {
-                                    questions.cancel_existing_vote(quest, userimps_array2, function (result) {
+                                users.get_current_user_question(visitor_code, function (question_id) {
+                                    questions.cancel_existing_vote(quest, question_id, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 0, question_id.current_question, function (result) {
                                             questions.get_yes_votes(quest._id, function (number) {
                                                 questions.add_yes_vote(quest._id, ++number, function (yes_vote) {
@@ -2366,8 +2366,8 @@ db.open(function (err, db) {
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
                             users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
-                                users.get_userimps_array(visitor_code, function (userimps_array2) {
-                                    questions.cancel_existing_vote(quest, userimps_array2, function (result) {
+                                users.get_current_user_question(visitor_code, function (question_id) {
+                                    questions.cancel_existing_vote(quest, question_id, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 1, question_id.current_question, function (result) {
                                             questions.get_no_votes(quest._id, function (number) {
                                                 questions.add_no_vote(quest._id, ++number, function (no_vote) {
@@ -2426,8 +2426,8 @@ db.open(function (err, db) {
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
                             users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
-                                users.get_userimps_array(visitor_code, function (userimps_array2) {
-                                    questions.cancel_existing_vote(quest, userimps_array2, function (result) {
+                                users.get_current_user_question(visitor_code, function (question_id) {
+                                    questions.cancel_existing_vote(quest, question_id, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 2, question_id.current_question, function (result) {
                                             questions.get_yes_votes(quest._id, function (yes_vote) {
                                                 questions.get_no_votes(quest._id, function (no_vote) {
