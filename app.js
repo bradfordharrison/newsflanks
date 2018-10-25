@@ -28,7 +28,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('192.168.1.7', 27017));
+var db = new Db('newsflanks', new Server('192.168.1.3', 27017));
 
 
 db.open(function (err, db) {
@@ -2313,14 +2313,14 @@ db.open(function (err, db) {
                                     questions.cancel_existing_vote(quest, userimps_array2, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 0, question_id.current_question, function (result) {
                                             questions.get_yes_votes(quest._id, function (number) {
-                                                questions.add_yes_vote(quest._id, ++number, function (result) {
+                                                questions.add_yes_vote(quest._id, ++number, function (yes_vote) {
                                                     questions.get_no_votes(quest._id, function (no_vote) {
                                                         users.write_new_userdata(visitor_code, quest, 0, function (result) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol', {
                                                                     usercode: visitor_code,
                                                                     top_question: quest,
-                                                                    yes_votes: number,
+                                                                    yes_votes: yes_vote,
                                                                     no_votes: no_vote,
                                                                     link_list: links,
                                                                     x: quest.mm_yes_x,
@@ -2373,7 +2373,7 @@ db.open(function (err, db) {
                                     questions.cancel_existing_vote(quest, userimps_array2, function (result) {
                                         users.update_user_lol_state_and_vote_status(visitor_code, 1, question_id.current_question, function (result) {
                                             questions.get_no_votes(quest._id, function (number) {
-                                                questions.add_no_vote(quest._id, ++number, function (result) {
+                                                questions.add_no_vote(quest._id, ++number, function (no_vote) {
                                                     questions.get_yes_votes(quest._id, function (yes_vote) {
                                                         users.write_new_userdata(visitor_code, quest, 1, function (result) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
@@ -2381,7 +2381,7 @@ db.open(function (err, db) {
                                                                     usercode: visitor_code,
                                                                     top_question: quest,
                                                                     yes_votes: yes_vote,
-                                                                    no_votes: number,
+                                                                    no_votes: no_vote,
                                                                     link_list: links,
                                                                     x: quest.mm_no_x,
                                                                     y: quest.mm_no_y,

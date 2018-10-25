@@ -86,7 +86,7 @@ function QuestionDAO(database) {
         var set = true;
         this.db.collection('question').updateOne({ "_id": id },
             { "$set": { "yes": number } });
-        callback(set);
+        callback(number);
     }
 
     this.get_no_votes = function (id, callback) {
@@ -102,7 +102,7 @@ function QuestionDAO(database) {
         var result = true;
         this.db.collection('question').updateOne({ "_id": id },
             { "$set": { "no": number } });
-        callback(result);
+        callback(number);
     }
 
 
