@@ -32,8 +32,16 @@ function QuestionDAO(database) {
             });
     };
 
-    this.get_user_question = function (_id, callback) {
+    this.get_user_question = function (_id, callback) { //get question with _id
         this.db.collection("question").find({ "_id": _id })
+            .toArray(function (err, user_quest) {
+                assert.equal(null, err);
+                callback(user_quest[0]);
+            });
+    };
+
+    this.get_user_question2 = function (frame, impression, callback) { //get question with frame, impression
+        this.db.collection("question").find({ "frame": frame, "impression": impression })
             .toArray(function (err, user_quest) {
                 assert.equal(null, err);
                 callback(user_quest[0]);

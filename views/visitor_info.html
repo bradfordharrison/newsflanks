@@ -109,7 +109,7 @@
 	      {% set no_percent_temp = temp2/total %}
 	      {% set yes_percent = yes_percent_temp * 100 %}
 	      {% set no_percent = no_percent_temp * 100 %}
-	    &bull;<a class='rollover' href='/new_quest/{{link._id}}/{{usercode}}'>{{link.question}}?</a><br>
+	    &bull;<a class='rollover' href='/new_question/{{link.frame}}/{{link.impression}}/{{usercode}}'>{{link.question}}?</a><br>
 {% if answers_list[counter] == '0' %}
           &nbsp;&nbsp;You answered: Yes<br>
 {% elif answers_list[counter] == '1' %}

@@ -189,326 +189,327 @@ db.open(function (err, db) {
 
     //add new_quest2 -- takes all 4 questions and parameters
 
-    app.get('/new_quest/:question/:visitor', function (req, res, next) {
+    app.get('/new_question/:frame/:impression/:visitor', function (req, res, next) {   
         var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor);
-        var links_res = ObjectID.createFromHexString(req.params.question);
-            if ((visitor_code > -1) && (visitor_code < 10)) {
-                questions.get_user_question(links_res, function (quest) {
-                    if (quest != undefined) {
-                        if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                            res.render('home81', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                            res.render('home82', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home83', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home84', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home85', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                            res.render('home86', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                            res.render('home87', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home88', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home89', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home90', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
+        var new_question_frame = parseInt(req.params.frame);
+        var new_question_impression = parseInt(req.params.impression);
+        if ((visitor_code > -1) && (visitor_code < 10)) {
+            questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
+                if (quest != undefined) {
+                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                        res.render('home81', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
                     }
+                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        res.render('home82', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        res.render('home83', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        res.render('home84', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        res.render('home85', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                        res.render('home86', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        res.render('home87', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        res.render('home88', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        res.render('home89', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        res.render('home90', {
+                            question: quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            animated_gif: quest.mm,
+                            quote: quest.text,
+                            quote2: quest.text2,
+                            quote3: quest.text3,
+                            quote4: quest.text4,
+                            head_win_size: quest.head_win_y,
+                            top_question: quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion']
+                        });
+                    }
+                }
+            });
+        }
+        else { //handles user
+            questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
+                users.get_user_answer_to_question(visitor_code, user_quest._id, function (user_answer) { // handle case where user might not have answered
+                    if (user_answer == 0) {
+                        user_answer_text = "Yes"
+                    };
+                    if (user_answer == 1) {
+                        user_answer_text = "No"
+                    };
+                    if (user_answer == 2) {
+                        user_answer_text = "No opinion"
+                    };
+                    if (user_answer == 3) {
+                        user_answer_text = "Saw question but didn't answer"
+                    };
+                    if (user_answer == -1) {
+                        user_answer_text = "You haven't provided an answer to this question in any past visits to the site";
+                    };
+                    if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                        res.render('home61', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                        res.render('home62', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                        res.render('home63', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                        res.render('home64', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                        res.render('home65', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                        res.render('home66', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                        res.render('home67', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                        res.render('home68', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                        res.render('home69', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    }
+                    else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                        res.render('home70', {
+                            question: user_quest._id, //passing in question ID
+                            usercode: visitor_code,
+                            response: user_answer_text,
+                            animated_gif: user_quest.mm,
+                            quote: user_quest.text,
+                            quote2: user_quest.text2,
+                            quote3: user_quest.text3,
+                            quote4: user_quest.text4,
+                            head_win_size: user_quest.head_win_y,
+                            top_question: user_quest.question + "?",
+                            choices: ['yes', 'no', 'no opinion', 'next question']
+                        });
+                    };
                 });
-            }
-            else { //handles user
-                questions.get_user_question(links_res, function (user_quest) {
-                    users.get_user_answer_to_question(visitor_code, links_res, function (user_answer) { // handle case where user might not have answered
-                        if (user_answer == 0) {
-                            user_answer_text = "Yes"
-                        };
-                        if (user_answer == 1) {
-                            user_answer_text = "No"
-                        };
-                        if (user_answer == 2) {
-                            user_answer_text = "No opinion"
-                        };
-                        if (user_answer == 3) {
-                            user_answer_text = "Saw question but didn't answer"
-                        };
-                        if (user_answer == -1) {
-                            user_answer_text = "You haven't provided an answer to this question in any past visits to the site";
-                        };
-                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                            res.render('home61', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                            res.render('home62', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                            res.render('home63', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                            res.render('home64', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                            res.render('home65', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                            res.render('home66', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                            res.render('home67', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                            res.render('home68', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                            res.render('home69', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        }
-                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                            res.render('home70', {
-                                question: links_res, //passing in question ID
-                                usercode: visitor_code,
-                                response: user_answer_text,
-                                animated_gif: user_quest.mm,
-                                quote: user_quest.text,
-                                quote2: user_quest.text2,
-                                quote3: user_quest.text3,
-                                quote4: user_quest.text4,
-                                head_win_size: user_quest.head_win_y,
-                                top_question: user_quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion', 'next question']
-                            });
-                        };
-                    });
-                });
+            });
         };
     });
 

@@ -91,7 +91,7 @@
    <font color="#006500" size="4">
    Select any question.<br><br>
         {% for link in questions_list %}
-        &bull;<a class='rollover' href='/new_quest/{{link._id}}/{{usercode}}'>{{link.question}}?</a><br>
+        &bull;<a class='rollover' href='/new_question/{{link.frame}}/{{link.impression}}/{{usercode}}'>{{link.question}}?</a><br>
         {% endfor %}
 </font>
 </div>
