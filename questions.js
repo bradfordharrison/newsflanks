@@ -103,6 +103,16 @@ function QuestionDAO(database) {
         callback(result);
     };
 
+    this.check_valid_question = function (frame_in, impression_in, callback) {
+        var found = false;
+        this.db.collection('question').find({ frame: frame_in, impression: impression_in })
+            .toArray(function (err, check_question) {
+                assert.equal(null, err);
+                if (check_question.length === 1) found = true;
+                callback(found);
+            });
+    };
+
 
     this.get_front_questions = function (callback) {
         "use strict";
