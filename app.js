@@ -189,7 +189,7 @@ db.open(function (err, db) {
 
     //add new_quest2 -- takes all 4 questions and parameters
 
-    app.get('/new_question/:frame/:impression/:visitor', function (req, res, next) {   
+    app.get('/new_question/:frame/:impression/:visitor/:url_text', function (req, res, next) {   
         var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor);
         var new_question_frame = parseInt(req.params.frame);

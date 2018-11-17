@@ -115,7 +115,7 @@
    Select any question.<br><br>
         {% for link in questions_list %}
 		<img src="{{link.mm_front}}"><br>
-        <a class='rollover' href='/new_question/{{link.frame}}/{{link.impression}}/{{usercode}}'>{{link.question}}?</a><br><br>
+        <a class='rollover' href='/new_question/{{link.frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.question}}?</a><br><br>
         {% endfor %}
 </font>
 </div>
