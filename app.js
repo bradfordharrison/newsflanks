@@ -11,6 +11,7 @@ var Db = require('mongodb').Db,
     QuestionDAO = require('./questions').QuestionDAO,
     LOLDAO = require('./lols').LOLDAO,
     UserDAO = require('./users').UserDAO,
+    FlanksDAO = require('./flanks').FlanksDAO,
 
 // Set up express
 app = express();
@@ -46,6 +47,7 @@ db.open(function (err, db) {
     var questions = new QuestionDAO(db);
     var lols = new LOLDAO(db);
     var users = new UserDAO(db);
+    var flanks = new FlanksDAO(db);
 
     // var router = express.Router();
 
@@ -8338,8 +8340,10 @@ db.open(function (err, db) {
     app.get('/flanks/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        res.render('flanks', {
-            usercode: visitor_code
+        flanks.get_yes_table(function (yes_table) {
+            res.render('flanks', {
+                usercode: visitor_code
+            });
         });
     });
 
