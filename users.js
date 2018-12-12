@@ -298,11 +298,11 @@ function UserDAO(database) {
        if (response === true) {
            for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
                if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
-                   if ((userimps_array[0].impressions_array[i].answer) === 0) {
+                   if (userimps_array[0].impressions_array[i].answer === 0) {
                        this.db.collection("question").updateOne({ "_id": current_question._id },
                            { "$inc": { "yes": -1 } });
                    }
-                   if ((userimps_array[0].impressions_array[i].answer) === 1) {
+                   if (userimps_array[0].impressions_array[i].answer === 1) {
                        this.db.collection("question").updateOne({ "_id": current_question._id },
                            { "$inc": { "no": -1 } });
                    }
@@ -512,6 +512,23 @@ function UserDAO(database) {
             .toArray(function (err, state) {
                 assert.equal(null, err);
                 callback(state[0].usercode);
+            });
+    };
+
+    this.get_user_responses = function (callback) {
+        "use strict";
+        var user_data_array = [];
+        var user_data_codes_array = [];
+        this.db.collection('user').find()
+            .toArray(function (err, user_data) {
+                assert.equal(null, err);
+                for (var i = 0; i < user_data.length; i++) {
+                    user_data_array[i] = user_data[i].impressions_array;
+                    user_data_codes_array[i] = user_data[i].usercode;
+                    }
+                //console.log(user_data_array);
+                //console.log(user_data_codes_array);
+                callback(user_data_array, user_data_codes_array);
             });
     };
 }

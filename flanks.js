@@ -11,13 +11,26 @@ function FlanksDAO(database) {
 
     this.db = database;
 
-    this.get_yes_table = function (callback) {
+
+    this.get_number_of_questions = function (callback) { //gets number of questions in questions collections
         "use strict";
-        var built_yes_table = [];
-        callback(built_yes_table);
+        var number_of_questions = 0;
+        //update this callback to get just the questions actually referenced in the user responses -- pass in user responses
+        this.db.collection("question").find({})
+            .toArray(function (err, quest) {
+                assert.equal(null, err);
+                callback(quest.length);
+            });
     };
 
-    
+    this.get_permutations_table = function (number_of_questions, callback) { //builds permutations table
+        "use strict";
+        var permutations_table = [];
+        //build permutations table
+        callback(permutations_table);
+    };
+
+
 }
 
 module.exports.FlanksDAO = FlanksDAO;
