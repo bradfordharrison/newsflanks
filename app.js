@@ -8340,12 +8340,14 @@ db.open(function (err, db) {
     app.get('/flanks/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        users.get_user_responses(function (user_responses, user_responses_codes) {
+        users.get_user_responses(function (user_responses, number_of_users, user_responses_codes) {
             flanks.get_number_of_questions(function (number_of_questions) {
                 flanks.get_permutations_table(number_of_questions, function (permutations_table) {
                     //console.log(permutations_table);
                     res.render('flanks', {
-                        usercode: visitor_code
+                        usercode: visitor_code,
+                        number_questions: number_of_questions,
+                        number_users: number_of_users,
                     });
                 });
             });

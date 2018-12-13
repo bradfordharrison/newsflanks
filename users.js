@@ -528,7 +528,7 @@ function UserDAO(database) {
                     }
                 //console.log(user_data_array);
                 //console.log(user_data_codes_array);
-                callback(user_data_array, user_data_codes_array);
+                callback(user_data_array, (user_data.length + 2), user_data_codes_array);
             });
     };
 }
