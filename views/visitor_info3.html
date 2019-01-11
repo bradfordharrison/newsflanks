@@ -61,7 +61,7 @@
       document.writeln("<a class='rollover' href='/{{usercode}}'><strong><font color='#006500'>&nbspCURRENT&#47;NEXT <b>?</b>&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/links/{{usercode}}'><strong><font color='#006500'>&nbsp;MORE <b>?</b>s&nbsp;</font></strong></a>");
+      document.writeln("<a class='rollover' href='/links/{{usercode}}'><strong><font color='#006500'>&nbsp;SEQUENCES&nbsp;</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
       document.writeln("<a class='rollover' href='/flip/{{usercode}}'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
@@ -89,9 +89,9 @@
 </script>
 <div class="table-border">
    <font color="#006500" size="4">
-   Select any question.<br><br>
-        {% for link in questions_list %}
-        &bull;<a class='rollover' href='/new_question/{{link.frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.question}}?</a><br>
+   Select a topic or a question.<br><br>
+        {% for link in categories_list %}
+        <a class='rollover' href='/{{link.api}}/{{link.metacode_frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.name_question}}?</a><br>
         {% endfor %}
 </font>
 </div>

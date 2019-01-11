@@ -22,6 +22,24 @@ function QuestionDAO(database) {
             });
     };
 
+    this.get_categories = function (callback) { //get all categories
+        "use strict";
+        var sequences_questions_array = [];
+        var next_available = 0;
+        this.db.collection("metaframe").find({})
+            .toArray(function (err, sequences) {
+                assert.equal(null, err);
+                for (var i = 0; i < sequences.length; i++) {
+                    sequences_questions_array[next_available++] = { "api": sequences[i].api2, "metacode_frame": sequences[i].metacode, "name_question": sequences[i].name, "impression": 0, "url_text": "0" }; //impression and url_text are a hack
+                    for (var j = 0; j < sequences[i].metaframes_array.length; j++) {
+                        sequences_questions_array[j + next_available] = { "api": sequences[i].api, "metacode_frame": sequences[i].metaframes_array[j].frame, "name_question": sequences[i].metaframes_array[j].question, "impression": sequences[i].metaframes_array[j].impression, "url_text": sequences[i].metaframes_array[j].url_text  };
+                    }
+                    next_available = next_available + sequences[i].metaframes_array.length;
+                }
+                callback(sequences_questions_array);
+            });
+    };
+
     this.get_default_question = function (callback) { //just get the default question of the day
         "use strict";
         this.db.collection("question").find({})

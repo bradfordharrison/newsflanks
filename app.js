@@ -5626,10 +5626,11 @@ db.open(function (err, db) {
                     });
                 }
                 else if (valid) { 
-                    questions.get_question(function (quest) {
+                    //get categories
+                    questions.get_categories(function (quest) {
                         res.render('visitor_info3', {
                             usercode: visitor_code,
-                            questions_list: quest
+                            categories_list: quest
                         });
                     });
                 }
@@ -8352,6 +8353,13 @@ db.open(function (err, db) {
                 });
             });
         });
+    });
+
+    app.get('/sequence/:metaframe/:impression/:visitor/:url_text', function (req, res, next) {
+        "use strict";
+        var visitor_code = parseInt(req.params.visitor);
+        var metaframe_id = parseInt(req.params.metaframe);
+        console.log("sequence", metaframe_id);
     });
 
     app.use(errorHandler);
