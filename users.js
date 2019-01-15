@@ -63,7 +63,8 @@ function UserDAO(database) {
             next_challenge: 0,
             challenges_since_login: 0,
             current_question: current_quest._id,
-            impressions_array: [{ "question": current_quest._id, "answer": current_answer }]
+            impressions_array: [{ "question": current_quest._id, "answer": current_answer }],
+            sequence: 0
         };
 
         if (current_answer === 0) {  // score answer
@@ -515,6 +516,14 @@ function UserDAO(database) {
             });
     };
 
+    this.update_sequence_number = function (user_code, number, callback) {
+        "use strict";
+        var done = true;
+        this.db.collection('user').updateOne({ usercode: user_code },
+            { "$set": { "sequence": number } });
+        callback(true);
+    };
+
     this.get_user_responses = function (callback) {
         "use strict";
         var user_data_array = [];
@@ -528,7 +537,7 @@ function UserDAO(database) {
                     }
                 //console.log(user_data_array);
                 //console.log(user_data_codes_array);
-                callback(user_data_array, (user_data.length + 2), user_data_codes_array);
+                callback(user_data_array, (user_data.length), user_data_codes_array);
             });
     };
 }

@@ -22,6 +22,28 @@ function QuestionDAO(database) {
             });
     };
 
+    this.get_sequence_questions = function (questions, metaframe_id, callback) { //get all sequence questions
+        var quests_list_temp = [];
+        var quests_list = [];
+        var counter = 0;
+        this.db.collection("metaframe").find({"metacode": metaframe_id})
+            .toArray(function (err, metaframe_code) {
+                assert.equal(null, err);
+                for (var j = 0; j < metaframe_code[0].metaframes_array.length; j++) {
+                    quests_list_temp[j] = metaframe_code[0].metaframes_array[j];
+                }
+                for (j = 0; j < quests_list_temp.length; j++) {
+                    for (var i = 0; i < questions.length; i++) {
+                        if (((questions[i].frame) === (quests_list_temp[j].frame)) && ((questions[i].impression) === (quests_list_temp[j].impression))) {
+                            quests_list[counter++] = questions[i]._id;
+                        }
+                    }
+                }
+                callback(quests_list);
+            });
+    };
+
+
     this.get_categories = function (callback) { //get all categories
         "use strict";
         var sequences_questions_array = [];
