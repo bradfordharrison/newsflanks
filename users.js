@@ -524,6 +524,16 @@ function UserDAO(database) {
         callback(true);
     };
 
+    this.get_sequence_number = function (user_code, callback) {
+        "use strict";
+        var done = true;
+        this.db.collection('user').find({ usercode: user_code })
+            .toArray(function (err, user_data) {
+                assert.equal(null, err);
+            callback(user_data[0].sequence);
+            });
+    };
+
     this.get_user_responses = function (callback) {
         "use strict";
         var user_data_array = [];
