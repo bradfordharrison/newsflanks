@@ -8572,8 +8572,8 @@ db.open(function (err, db) {
                     else { //found the first seq question not seen = question_index into sequence array
                         users.update_sequence_number(visitor_code, metaframe_id, function (sequence_set_result) {
                             users.update_user_lol_state(visitor_code, 3, function (result) {
-                                users.update_current_question(visitor_code, seq_quests[question_index], function (result) {
-                                    questions.get_user_question(seq_quests[question_index], function(user_seq_quest) {
+                                questions.get_user_question(seq_quests[question_index], function (user_seq_quest) {
+                                 users.update_current_question(visitor_code, user_seq_quest, function (result) {
                                         if (result = true) {
                                             if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
                                                 res.render('home71', {
