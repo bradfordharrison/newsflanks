@@ -83,15 +83,15 @@
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-	  document.writeln("<h4><font color='#FF0000'>To automatically see questions that you haven't seen yet, select CURRENT ? from the menus above and then select 'next question'.</font></h4>");
+	  document.writeln("<h4><font color='#FF0000'>To automatically see questions that you haven't seen yet, select CURRENT/NEXT ? from the menus above and then select 'next question'. If you have selected a sequence, then the next question that you haven't seen yet in the sequence will be presented.</font></h4>");
 	  document.writeln("</div>");
    }
 </script>
 <div class="table-border">
    <font color="#006500" size="4">
-   Select a topic or a question.<br><br>
+   Select a sequence or a question. When you select a sequence (in all CAPS), you are presented with all the questions listed for the sequence.<br><br>
         {% for link in categories_list %}
-        <a class='rollover' href='/{{link.api}}/{{link.metacode_frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.name_question}}?</a><br>
+        <a class='rollover' href='/{{link.api}}/{{link.metacode_frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.name_question}}</a><br>
         {% endfor %}
 </font>
 </div>
