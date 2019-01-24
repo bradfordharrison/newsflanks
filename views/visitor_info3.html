@@ -91,7 +91,7 @@
    <font color="#006500" size="4">
    Select a sequence or a question. When you select a sequence (in all CAPS), you are presented with all the questions listed for the sequence.<br><br>
         {% for link in categories_list %}
-        <a class='rollover' href='/{{link.api}}/{{link.metacode_frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.name_question}}</a><br>
+        &#8226;<a class='rollover' href='/{{link.api}}/{{link.metacode_frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.name_question}}</a><br>
         {% endfor %}
 </font>
 </div>
