@@ -23,11 +23,13 @@ function FlanksDAO(database) {
             });
     };
 
-    this.get_permutations_table = function (number_of_questions, callback) { //builds permutations table
+    this.get_permutations_table = function (callback) { //builds permutations table
         "use strict";
-        var permutations_table = [];
-        //build permutations table
-        callback(permutations_table);
+        this.db.collection("permutation").find({})
+            .toArray(function (err, permutations) {
+                assert.equal(null, err);
+                callback(permutations[0]);
+            });
     };
 
 

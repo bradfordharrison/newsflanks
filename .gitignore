@@ -9,7 +9,6 @@ static/css/bootstrap-theme.css
 static/css/bootstrap-theme.css.map
 static/css/bootstrap-theme.min.css
 static/css/bootstrap-theme.min.css.map
-NodejsConsoleApp1.njsproj
 Web.config
 package-lock.json
 .ntvs_analysis.dat
@@ -24,4 +23,6 @@ static/fonts/
 static/img/
 static/js/
 static/less/
+newsflanks.njsproj
+newsflanks.sln
 
