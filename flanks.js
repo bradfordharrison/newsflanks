@@ -12,14 +12,13 @@ function FlanksDAO(database) {
     this.db = database;
 
 
-    this.get_number_of_questions = function (callback) { //gets number of questions in questions collections
+    this.get_categories = function (callback) { //gets number of questions in questions collections
         "use strict";
-        var number_of_questions = 0;
         //update this callback to get just the questions actually referenced in the user responses -- pass in user responses
-        this.db.collection("question").find({})
-            .toArray(function (err, quest) {
+        this.db.collection("metaframe").find({})
+            .toArray(function (err, metaframes) {
                 assert.equal(null, err);
-                callback(quest.length);
+                callback(metaframes);
             });
     };
 
@@ -31,6 +30,7 @@ function FlanksDAO(database) {
                 callback(permutations[0]);
             });
     };
+
 
 
 }
