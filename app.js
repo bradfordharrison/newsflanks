@@ -8733,8 +8733,6 @@ db.open(function (err, db) {
     app.get('/flanks/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        flanks.get_permutations_table(function (permutations_array) {
-            //console.log(permutations_array.permutations_table[1023][0]);
             users.get_user_responses(function (user_responses, number_of_users, user_responses_codes) {
                             //console.log(user_responses_codes[0]); //user (int) 1
                             //console.log(user_responses[0]); //array of objects with impressions for user 1
@@ -8744,7 +8742,6 @@ db.open(function (err, db) {
                         usercode: visitor_code,
                         number_users: number_of_users
                     });
-                });
             });
         });
     });

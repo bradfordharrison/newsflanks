@@ -22,14 +22,14 @@ function FlanksDAO(database) {
             });
     };
 
-    this.get_permutations_table = function (callback) { //builds permutations table
-        "use strict";
-        this.db.collection("permutation").find({})
-            .toArray(function (err, permutations) {
-                assert.equal(null, err);
-                callback(permutations[0]);
-            });
-    };
+//    this.get_permutations_table = function (callback) { //builds permutations table
+//        "use strict";
+//        this.db.collection("permutation").find({})
+//            .toArray(function (err, permutations) {
+//                assert.equal(null, err);
+//                callback(permutations[0]);
+//            });
+//    };
 
 
 
