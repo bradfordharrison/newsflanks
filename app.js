@@ -8733,15 +8733,18 @@ db.open(function (err, db) {
     app.get('/flanks/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-            users.get_user_responses(function (user_responses, number_of_users, user_responses_codes) {
+            users.get_user_responses(function (user_responses, user_responses_codes) {
                             //console.log(user_responses_codes[0]); //user (int) 1
                             //console.log(user_responses[0]); //array of objects with impressions for user 1
-            flanks.get_categories(function (metaframes) {
-                //console.log(metaframes);
+                flanks.get_categories(function (metaframes) {
+                    flanks.get_completed_user_categories(visitor_code, user_responses, user_responses_codes, metaframes, function (completed_user_cats) { 
+                        console.log(completed_user_cats); //[1,2]
                     res.render('flanks', {
-                        usercode: visitor_code,
-                        number_users: number_of_users
-                    });
+                            usercode: visitor_code,
+                            number_users: user_responses_codes.length + 2,
+                            sequences: completed_user_cats
+                        });
+                });
             });
         });
     });

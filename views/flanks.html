@@ -89,20 +89,11 @@
 <div class="table-border">
    <font color="#006500" size="4">
 <b><p>Currently there are {{number_users}} active users on News Flanks.</p>
-   <p>Currently there are {{number_questions}} questions available for responses.</p>
-   <p>A &quot;<i>flank</i>&quot; is a collection (set) of users who responded to some number (set) of questions in the
-   same way. A &quot;<i>counterflank</i>&quot; is the converse of a flank&mdash;i.e., a set of users
-   with exactly the opposite set of responses to the corresponding flank.</p>
-   <p>If users across the &quot;<i>flank</i>&quot;&dash;&quot;<i>counterflank</i>&quot; disjoint 2-tuple have
-   answered other questions in the <i>same</i> way, these answers are considered &quot;<i>revelations</i>&quot;
-   because users in both groups agree. The larger the &quot;<i>flank</i>&quot;&dash;&quot;<i>counterflank</i>&quot; 2-tuple in terms of both number of users <i>and</i> number of questions,
-   the more significant the revelations become.</p>
-   <p>Due to long processing times, flanks, counterflanks and revelations are not processed in realtime. We
-   are working to improve these processing times so that users can received realtime feedback to their answers.
-   In the meantime, contact support@newsflanks.com if you
-   would like to see where your responses fit into the larger data sets. We can also tell you what
-   revelations you contributed to, and how significant those revelations (truths) appear to be.</p></b>
-   </font>
+<b><p>Congratulations! You have completed the following sequences:</p>
+  </font>
+       {% for sequence in sequences %}
+       <br>{{sequence}}</br>
+       {% endfor %}
 </div>
 
 {% include "includes/footer.html" %}
