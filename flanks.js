@@ -45,20 +45,59 @@ function FlanksDAO(database) {
         }
         this.db.collection('question').find()
             .toArray(function (err, quests) {
-                for (i = 0; i < metaframes.length; i++) { //massive loop for length of metaframes collection
+                for (var i = 0; i < metaframes.length; i++) { //massive loop for length of metaframes collection
                     metaframe_array_holder[i] = metaframes[i].metaframes_array;
                     for (var j = 0; j < quests.length; j++) {
                         for (var k = 0; k < metaframe_array_holder[i].length; k++) {
                             if ((quests[j].frame) === (metaframe_array_holder[i][k].frame) && (quests[j].impression) === (metaframe_array_holder[i][k].impression)) {
                                 questions_counter++;
                             if (questions_counter === metaframe_array_holder[i].length)
-                                    results_array.push(metaframes[i].name);
+                                    results_array.push(metaframes[i].metacode);
                             }
                         }
                     }
                  questions_counter = 0;
                 }
                 callback(results_array);
+            });
+    };
+
+    this.get_users_with_categories = function (user_responses, user_responses_codes, metaframes, callback) {
+        "use strict";
+        var user_results_array = [];
+        //var temp_array = [];
+        var hits = 0;
+        var results_array = [];
+        var metaframe_array_holder = [];
+        this.db.collection('question').find()
+            .toArray(function (err, quests) {
+                for (var i = 0; i < user_responses.length; i++) {
+                    for (var l = 0; l < metaframes.length; l++) { 
+                    metaframe_array_holder[l] = metaframes[l].metaframes_array; //consecutively builds
+                        for (var j = 0; j < quests.length; j++) {
+                            for (var k = 0; k < metaframe_array_holder[l].length; k++) {
+                                if (((quests[j].frame) === (metaframe_array_holder[l][k].frame)) && ((quests[j].impression) === (metaframe_array_holder[l][k].impression))) {
+                                    for (var m = 0; m < user_responses[i].length; m++) {
+                                        if (quests[j]._id.equals(user_responses[i][m].question)) {
+                                        hits++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    if (hits === metaframe_array_holder[l].length) {
+                        results_array.push(metaframes[l].metacode);
+                            hits = 0;
+                    }
+                    else {
+                            results_array.push([]); //push empty array because user has completed no sequences
+
+                        }
+                    }
+                user_results_array.push(results_array);
+                results_array = [];
+                }
+                callback(user_results_array);
             });
     };
 
