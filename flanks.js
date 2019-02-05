@@ -65,7 +65,6 @@ function FlanksDAO(database) {
     this.get_users_with_categories = function (user_responses, user_responses_codes, metaframes, callback) {
         "use strict";
         var user_results_array = [];
-        //var temp_array = [];
         var hits = 0;
         var results_array = [];
         var metaframe_array_holder = [];
@@ -99,6 +98,21 @@ function FlanksDAO(database) {
                 }
                 callback(user_results_array);
             });
+    };
+
+    this.get_users_with_same_categories = function (completed_user_cats, users_with_cats, user_responses_codes, callback) {
+        "use strict";
+        var results_array = [];
+        var a = [];
+        var b = [];
+        for (var i = 0; i < users_with_cats.length; i++) {
+            a = users_with_cats[i].toString;
+            b = completed_user_cats.toString;
+            if ((a === b) && (users_with_cats[i][0].length !== 0)) { 
+                results_array.push(user_responses_codes[i]);
+            }
+        }
+        callback(results_array);
     };
 
 }

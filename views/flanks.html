@@ -94,6 +94,13 @@
        {% for sequence in sequences %}
        <br>{{sequence}}</br>
        {% endfor %}
+<br /><br />
+<b><p>All users who have completed the same sequences as you are:</p>
+  </font>
+       {% for user in all_users %}
+       <br>{{user}}</br>
+       {% endfor %}
+
 </div>
 
 {% include "includes/footer.html" %}
