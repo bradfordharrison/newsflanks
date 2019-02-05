@@ -8737,19 +8737,22 @@ db.open(function (err, db) {
                             //console.log(user_responses_codes[0]); //user (int) 1
                             //console.log(user_responses[0]); //array of objects with impressions for user 1
                 flanks.get_categories(function (metaframes) {
-                    flanks.get_completed_user_categories(visitor_code, user_responses, user_responses_codes, metaframes, function (completed_user_cats) { 
+                    flanks.get_completed_user_categories(visitor_code, user_responses, user_responses_codes, metaframes, function (completed_user_cats) {
                         //console.log(completed_user_cats); //[1,2]
                         //only get cats for all users if completed_user_cats != []
                         flanks.get_users_with_categories(user_responses, user_responses_codes, metaframes, function (users_with_cats) {
+                            console.log(users_with_cats);
                             flanks.get_users_with_same_categories(completed_user_cats, users_with_cats, user_responses_codes, function (users_with_same_cats) {
+                                flanks.get_users_with_overlapping_categories(completed_user_cats, users_with_cats, user_responses_codes, function (users_with_overlapping_categories) {
                                 res.render('flanks', {
-                                    usercode: visitor_code,
-                                    number_users: user_responses_codes.length + 2,
-                                    sequences: completed_user_cats,
-                                    all_users: users_with_same_cats
-                                });
+                                        usercode: visitor_code,
+                                        number_users: user_responses_codes.length + 2,
+                                        sequences: completed_user_cats,
+                                        all_users: users_with_same_cats
+                                    });
                             });
                         });
+                    });
                 });
             });
         });

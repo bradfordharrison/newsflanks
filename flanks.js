@@ -1,3 +1,5 @@
+
+
 //mongo_connect
 
 var MongoClient = require("mongodb").MongoClient,
@@ -86,10 +88,11 @@ function FlanksDAO(database) {
                         }
                     if (hits === metaframe_array_holder[l].length) {
                         results_array.push(metaframes[l].metacode);
-                            hits = 0;
+                        hits = 0;
                     }
                     else {
-                            results_array.push([]); //push empty array because user has completed no sequences
+                        results_array.push([]); //push empty array because user has completed no sequences
+                        hits = 0;
 
                         }
                     }
@@ -114,6 +117,12 @@ function FlanksDAO(database) {
         }
         callback(results_array);
     };
+
+        this.get_users_with_overlapping_categories = function (completed_user_cats, users_with_cats, user_responses_codes, callback) {
+            "use strict";
+            var results_array = [];
+            callback(results_array);
+        };
 
 }
 
