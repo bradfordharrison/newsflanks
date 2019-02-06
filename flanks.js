@@ -118,10 +118,22 @@ function FlanksDAO(database) {
         callback(results_array);
     };
 
-        this.get_users_with_overlapping_categories = function (completed_user_cats, users_with_cats, user_responses_codes, callback) {
+       this.get_users_with_overlapping_categories = function (completed_user_cats, users_with_cats, callback) {
             "use strict";
-            var results_array = [];
-            callback(results_array);
+           var temp_results_array = [];
+           var results_array = [];
+           for (var i = 0; i < users_with_cats.length; i++) { // go through entire users_with_cats [i]
+               for (var j = 0; j < completed_user_cats.length; j++) {  // for each user, go through completed_user_cats [j]
+                   for (var k = 0; k < users_with_cats[i].length; k++) {
+                       if (users_with_cats[i][k] === completed_user_cats[j]) {
+                           temp_results_array.push(users_with_cats[i][k]);
+                       }
+                   }
+               }
+               results_array.push(temp_results_array);
+               temp_results_array = [];
+           }
+           callback(results_array);
         };
 
 }
