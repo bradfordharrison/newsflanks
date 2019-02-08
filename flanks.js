@@ -134,7 +134,15 @@ function FlanksDAO(database) {
                temp_results_array = [];
            }
            callback(results_array);
-        };
+    };
+
+    this.get_flanks = function (visitor_code, sequences, completed_user_cats, users_with_overlapping, user_responses, callback) {
+        "use strict";
+        var cats_in_flank = [sequences[0].name, sequences[1].name];
+        var percent_users_same_answers = [28, 34];
+        //add code to generate actual data in the two arrays
+        callback(cats_in_flank, percent_users_same_answers);
+    };
 
 }
 

@@ -87,19 +87,14 @@
    }
 </script>
 <div class="table-border">
-   <font color="#006500" size="4">
-<b><p>Currently there are {{number_users}} active users on News Flanks.</p>
-<b><p>Congratulations! You have completed the following sequences:</p>
-  </font>
-       {% for sequence in sequences %}
-       <br>{{sequence}}</br>
-       {% endfor %}
-<br /><br />
-<b><p>All users who have completed the same sequences as you are:</p>
-  </font>
-       {% for user in all_users %}
-       <br>{{user}}</br>
-       {% endfor %}
+   <font color="#006500" size="4">Here are all the sequences you completed, along with the percentage of total users (including you) who provided the same Yes/No answers to the same questions in the sequences (questions in sequences that you answered &quot;No Opinion&quot; or &quot;Seen but no answer given&quot; are excluded from analysis).
+  </font><br /><br />
+        {% set counter = 0 %}
+        {% for sequence in sequences %}
+                <b>{{sequence}}<br />
+        % of users with same answers as you:</b>&nbsp;&nbsp;{{percent[counter]}}<br /><br />
+        {% set counter = counter + 1 %}
+        {% endfor %}
 
 </div>
 
