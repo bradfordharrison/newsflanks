@@ -139,14 +139,69 @@ function FlanksDAO(database) {
     this.get_flanks = function (visitor_code, sequences, completed_user_cats, users_with_overlapping, user_responses, callback) {
         "use strict";
         var cats_in_flank = [];
-        var percent_users_same_answers = [28, 34];
+        var percent_users_same_answers = [];
+        var total_users = [];
+        var total_same = [];
+        var index_holder = 0;
+        var match = 0;
+        var answers_given = 0;
+        visitor_code = visitor_code - 10000;
         for (var j = 0; j < sequences.length; j++) {
             cats_in_flank.push(sequences[j].name);
         }
-        //add code to generate actual data in percent_users_same_answers
-        callback(cats_in_flank, percent_users_same_answers);
+        //console.log(completed_user_cats);
+        //console.log(users_with_overlapping);
+        for (var o = 0; o < completed_user_cats.length; o++) {
+            total_users.push(0);
+            total_same.push(0);
+        };
+        this.db.collection('question').find()
+            .toArray(function (err, quests) {
+                for (var i = 0; i < completed_user_cats.length; i++) {
+                    for (var j = 0; j < users_with_overlapping.length; j++) {
+                        for (var k = 0; k < users_with_overlapping[j].length; k++) {
+                            for (var l = 0; l < users_with_overlapping[k].length; l++) {
+                                if (users_with_overlapping[k][l] === completed_user_cats[i]) {
+                                    total_users[i] = total_users[i] + 1;
+                                    index_holder = completed_user_cats[i];
+                                    --index_holder; //sequences begin at 1, not 0
+                                    answers_given = sequences[index_holder].metaframes_array.length;
+                                    for (var p = 0; p < sequences[index_holder].metaframes_array.length; p++) {
+                                        for (var q = 0; q < quests.length; q++) {
+                                            if ((quests[q].frame === sequences[index_holder].metaframes_array[p].frame) && (quests[q].impression === sequences[index_holder].metaframes_array[p].impression)) {
+                                                for (var r = 0; r < user_responses[visitor_code].length; r++) {
+                                                    if ((user_responses[visitor_code][r].question === quests[q]._id) && ((user_responses[visitor_code][r].answer === 0) || (user_responses[visitor_code][r].answer === 1))) {
+                                                        for (var s = 0; s < user_responses[j].length; s++) {
+                                                            if ((user_responses[j][s].question === quests[q]._id) && (user_responses[j][s].answer === user_responses[visitor_code][r].answer)) {
+                                                                match = match + 1;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    if (answers_given === match) {
+                                        total_same[i] = total_same[i] + 1;
+                                    };
+                                    answers_given = 0;
+                                    match = 0;
+                                };
+                            }
+                        }
+                    }
+                }
+                for (var m = 0; m < completed_user_cats.length; m++) {
+                    if (total_users[m] !== 0) {
+                        percent_users_same_answers.push((total_same[m]) / (total_users[m]));
+                    }
+                };
+                for (var n = 0; n < completed_user_cats.length; n++) {
+                    percent_users_same_answers[n] = percent_users_same_answers[n] * 100;
+                };
+            callback(cats_in_flank, percent_users_same_answers);
+            });
     };
-
 }
 
 module.exports.FlanksDAO = FlanksDAO;
