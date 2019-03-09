@@ -8735,7 +8735,7 @@ db.open(function (err, db) {
         var visitor_code = parseInt(req.params.visitor);
             users.get_user_responses(function (user_responses, user_responses_codes) {
                 flanks.get_categories(function (metaframes) {
-                    flanks.get_completed_user_categories(visitor_code, user_responses, user_responses_codes, metaframes, function (completed_user_cats) {
+                    flanks.get_completed_user_categories(visitor_code, user_responses, metaframes, function (completed_user_cats) {
                         flanks.get_users_with_categories(user_responses, user_responses_codes, metaframes, function (users_with_cats) {
                             flanks.get_users_with_same_categories(completed_user_cats, users_with_cats, user_responses_codes, function (users_with_same_cats) {
                                 flanks.get_users_with_overlapping_categories(completed_user_cats, users_with_cats, function (users_with_overlapping_categories) {
