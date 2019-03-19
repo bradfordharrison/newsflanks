@@ -41,28 +41,30 @@ function FlanksDAO(database) {
         var metaframe_array_holder = [];
         var questions_counter = 0;
         visitor_code = visitor_code - 10000;
-        user_imps_list = user_responses[visitor_code];
-        this.db.collection('question').find()
-            .toArray(function (err, quests) {
-                for (var i = 0; i < metaframes.length; i++) { //massive loop for length of metaframes collection
-                    metaframe_array_holder[i] = metaframes[i].metaframes_array;
-                    for (var j = 0; j < quests.length; j++) {
-                        for (var k = 0; k < metaframe_array_holder[i].length; k++) {
-                            if ((quests[j].frame) === (metaframe_array_holder[i][k].frame) && (quests[j].impression) === (metaframe_array_holder[i][k].impression)) {
-                                for (var l = 0; l < user_imps_list.length; l++) {
-                                    if (quests[j]._id.equals(user_imps_list[l].question)) {
-                                        questions_counter++;
+        if ((visitor_code > -1) && (visitor_code < user_responses.length)) {
+            user_imps_list = user_responses[visitor_code];
+            this.db.collection('question').find()
+                .toArray(function (err, quests) {
+                    for (var i = 0; i < metaframes.length; i++) { //massive loop for length of metaframes collection
+                        metaframe_array_holder[i] = metaframes[i].metaframes_array;
+                        for (var j = 0; j < quests.length; j++) {
+                            for (var k = 0; k < metaframe_array_holder[i].length; k++) {
+                                if ((quests[j].frame) === (metaframe_array_holder[i][k].frame) && (quests[j].impression) === (metaframe_array_holder[i][k].impression)) {
+                                    for (var l = 0; l < user_imps_list.length; l++) {
+                                        if (quests[j]._id.equals(user_imps_list[l].question)) {
+                                            questions_counter++;
+                                        };
                                     };
                                 };
                             };
                         };
+                        if (questions_counter === metaframe_array_holder[i].length)
+                            results_array.push(metaframes[i].metacode);
+                        questions_counter = 0;
                     };
-                    if (questions_counter === metaframe_array_holder[i].length)
-                        results_array.push(metaframes[i].metacode);
-                    questions_counter = 0;
-                };
-                callback(results_array);
-            });
+                    callback(results_array);
+                });
+        };
     };
 
     this.get_users_with_categories = function (user_responses, user_responses_codes, metaframes, callback) {
@@ -149,7 +151,7 @@ function FlanksDAO(database) {
         var answers_given = 0;
         visitor_code = visitor_code - 10000;
         for (var o = 0; o < completed_user_cats.length; o++) {
-            seq_index_holder = completed_user_cats[0];
+            seq_index_holder = completed_user_cats[o];
             --seq_index_holder;
             cats_in_flank.push(sequences[seq_index_holder].name);
             total_users.push(0);
@@ -196,7 +198,6 @@ function FlanksDAO(database) {
                 for (var n = 0; n < completed_user_cats.length; n++) {
                     percent_users_same_answers[n] = percent_users_same_answers[n] * 100;
                 };
-                console.log(cats_in_flank);
             callback(cats_in_flank, percent_users_same_answers);
             });
     };
