@@ -84,7 +84,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
  #nav {
   float: right;
   position: static;
-  padding: 10px;
+  padding: 0px;
   width: 420px;
   height: 375px;
   background-color: white;
@@ -94,7 +94,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
   #nav1 {
    float: right;
    position: static;
-   padding: 10px;
+   padding: 0px;
    width: 420px;
    height: 200px;
    background-color: white;
@@ -104,7 +104,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
   #nav2 {
    float: right;
    position: static;
-   padding: 10px;
+   padding: 0px;
    width: 420px;
    height: 275px;
    background-color: white;
@@ -114,7 +114,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
    #nav3 {
     float: right;
     position: static;
-    padding: 10px;
+    padding: 0px;
     width: 420px;
     height: 475px;
     background-color: white;
@@ -124,7 +124,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
   #nav4 {
    float: right;
    position: static;
-   padding: 10px;
+   padding: 0px;
    width: 420px;
    height: 355px;
    background-color: white;
@@ -134,7 +134,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
    #nav5 {
     float: right;
     position: static;
-    padding: 10px;
+    padding: 0px;
     width: 420px;
     height: 180px;
     background-color: white;
@@ -144,7 +144,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
    #nav6 {
     float: right;
     position: static;
-    padding: 10px;
+    padding: 0px;
     width: 420px;
     height: 255px;
     background-color: white;
@@ -154,7 +154,7 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
     #nav7 {
      float: right;
      position: static;
-     padding: 10px;
+     padding: 0px;
      width: 420px;
      height: 455px;
      background-color: white;
