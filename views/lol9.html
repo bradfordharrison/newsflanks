@@ -226,7 +226,7 @@ function BarGraph(ctx) {
 		  var temp = getBootstrapDeviceSize();
 		  if (temp === 'lg') {
 		  document.write("<div id='nav'>");
-		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=355 allowfullscreen></iframe></div>");
+		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=65 allowfullscreen></iframe></div>");
           document.write("</div>");
           };
 </script>
@@ -237,7 +237,7 @@ function BarGraph(ctx) {
 		  var temp = getBootstrapDeviceSize();
 		  if (temp === 'lg') {
 		  document.write("<div id='nav1'>");
-		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=180 allowfullscreen></iframe></div>");
+		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=130 allowfullscreen></iframe></div>");
           document.write("</div>");
           };
 </script>
@@ -248,7 +248,7 @@ function BarGraph(ctx) {
 		  var temp = getBootstrapDeviceSize();
 		  if (temp === 'lg') {
 		  document.write("<div id='nav2'>");
-		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=255 allowfullscreen></iframe></div>");
+		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=195 allowfullscreen></iframe></div>");
           document.write("</div>");
           };
 </script>
@@ -259,12 +259,55 @@ function BarGraph(ctx) {
 		  var temp = getBootstrapDeviceSize();
 		  if (temp === 'lg') {
 		  document.write("<div id='nav3'>");
+		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=260 allowfullscreen></iframe></div>");
+          document.write("</div>");
+          };
+</script>
+{% endif %}
+
+{% if mm_win_size == 4 %}
+<script language="javascript">
+		  var temp = getBootstrapDeviceSize();
+		  if (temp === 'lg') {
+		  document.write("<div id='nav4'>");
+		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=325 allowfullscreen></iframe></div>");
+          document.write("</div>");
+          };
+</script>
+{% endif %}
+
+{% if mm_win_size == 5 %}
+<script language="javascript">
+		  var temp = getBootstrapDeviceSize();
+		  if (temp === 'lg') {
+		  document.write("<div id='nav5'>");
+		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=390 allowfullscreen></iframe></div>");
+          document.write("</div>");
+          };
+</script>
+{% endif %}
+
+{% if mm_win_size == 6 %}
+<script language="javascript">
+		  var temp = getBootstrapDeviceSize();
+		  if (temp === 'lg') {
+		  document.write("<div id='nav6'>");
 		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=455 allowfullscreen></iframe></div>");
           document.write("</div>");
           };
 </script>
 {% endif %}
 
+{% if mm_win_size == 7 %}
+<script language="javascript">
+		  var temp = getBootstrapDeviceSize();
+		  if (temp === 'lg') {
+		  document.write("<div id='nav7'>");
+		  document.write("<div><iframe src='http://flanks.org/ca.html' frameborder='0' width=100% height=520 allowfullscreen></iframe></div>");
+          document.write("</div>");
+          };
+</script>
+{% endif %}
     <span><font color="#006500" size="4"><b>{{top_question.question}}?</b></font></span>
  	<div id="graphDiv1"></div>
 	<!--[if IE]><script src="../static/js/excanvas.js"></script><![endif]-->

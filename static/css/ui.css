@@ -80,83 +80,83 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
   background:url(http://flanks.org/c6.jpg) center left no-repeat;
  } */
  
- /* default mm window height = 0*/
+ /*window height = 0*/
  #nav {
   float: right;
   position: static;
   padding: 0px;
   width: 420px;
-  height: 375px;
+  height: 65px;
   background-color: white;
  }
  
-  /* smallest mm window height = 1*/
+  /*window height = 1*/
   #nav1 {
    float: right;
    position: static;
    padding: 0px;
    width: 420px;
-   height: 200px;
+   height: 130px;
    background-color: white;
  }
  
-  /* medium mm window height = 2*/
+  /*window height = 2*/
   #nav2 {
    float: right;
    position: static;
    padding: 0px;
    width: 420px;
-   height: 275px;
+   height: 195px;
    background-color: white;
  }
  
-  /* tallest mm window height = 3*/
+  /*window height = 3*/
    #nav3 {
     float: right;
     position: static;
     padding: 0px;
     width: 420px;
-    height: 475px;
+    height: 260px;
     background-color: white;
  }
  
- /* default headlines window height = 0*/
+ /*window height = 4*/
   #nav4 {
    float: right;
    position: static;
    padding: 0px;
    width: 420px;
-   height: 355px;
+   height: 325px;
    background-color: white;
   }
   
-   /* smallest headlines window height = 1*/
+   /*window height = 5*/
    #nav5 {
     float: right;
     position: static;
     padding: 0px;
     width: 420px;
-    height: 180px;
+    height: 390px;
     background-color: white;
   }
   
-   /* medium headlines window height = 2*/
+   /*window height = 6*/
    #nav6 {
     float: right;
     position: static;
     padding: 0px;
     width: 420px;
-    height: 255px;
+    height: 455px;
     background-color: white;
   }
   
-   /* tallest headlines window height = 3*/
+   /*window height = 7*/
     #nav7 {
      float: right;
      position: static;
      padding: 0px;
      width: 420px;
-     height: 455px;
+     height: 520px;
      background-color: white;
  }
  
