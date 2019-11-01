@@ -160,8 +160,58 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
      background-color: white;
  }
  
-    /* image map for trending (visitor_info_2) */
+    /*window height = 8*/
      #nav8 {
+      float: right;
+      position: static;
+      padding: 0px;
+      width: 420px;
+      height: 585px;
+      background-color: white;
+  }
+
+   /*window height = 9*/
+    #nav9 {
+     float: right;
+     position: static;
+     padding: 0px;
+     width: 420px;
+     height: 650px;
+     background-color: white;
+ }
+
+   /*window height = 10*/
+    #nav10 {
+     float: right;
+     position: static;
+     padding: 0px;
+     width: 420px;
+     height: 715px;
+     background-color: white;
+ }
+
+   /*window height = 11*/
+    #nav11 {
+     float: right;
+     position: static;
+     padding: 0px;
+     width: 420px;
+     height: 780px;
+     background-color: white;
+ }
+
+   /*window height = 12*/
+    #nav12 {
+     float: right;
+     position: static;
+     padding: 0px;
+     width: 420px;
+     height: 845px;
+     background-color: white;
+ }
+ 
+    /* image map for trending (visitor_info_2) */
+     #nav20 {
       float: right;
       position: static;
       padding: 10px;
