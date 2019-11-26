@@ -2,13 +2,120 @@ APIs
 
 Public APIs
 
-/
-/:visitor
-/new_quest/:question/:visitor
-/track/:visitor
-/track2/:visitor
-/logout/:visitor
-/username/:visitor
-/challenge/:visitor
-/links/:visitor
+GET:/
+GET:/:visitor
+GET:/new_quest/:question/:visitor
+GET:/track/:visitor
+GET:/track2/:visitor
+POST:/logout/:visitor
+POST:/username/:visitor
+POST:/challenge/:visitor
+POST:/links/:visitor
+POST:/links2/visitor
+GET:/flip/visitor
+GET:/flip2/visitor
+GET:/flip3/visitor
+GET:/flip4/visitor
+GET:/flip5/visitor
+GET:/links/:visitor
+GET:/links2/:visitor
+GET:/search/:visitor
+GET:/search2/:visitor
+GET:/search_query/:visitor
+POST:/login/:visitor
+POST:/challenge_response/:visitor
+GET:/like/:link/:question/:visitor/:state
+GET:/hate/:link/:question/:visitor/:state
+
+Private APIs
+
+users.js
+get_usercode_for_update(callback)
+write_new_userdata(user_code, current_quest, current_answer, callback)
+check_unique_username(name_res_caps, callback)
+write_new_user(name_res_caps, visitor_code, user_code, current_quest, current_answer, callback)
+get_challenge_question(callback)
+write_user_challenge(user_code, chal_res_0, chal_res_1, chal_res_2, chal_res_3, chal_res_4, chal_res_5, chal_res_6, chal_res_7, chal_res_8, chal_res_9, chal_res_10, chal_res_11, chal_res_12, chal_res_13, chal_res_14, callback)     
+get_userimps_array(visitor_code, callback)            
+build_userimps_list(visitor_code, quest, callback)
+build_userresps_list(visitor_code, imps_list, callback)
+get_user_answer_to_question(visitor_code, quest, callback)
+get_user_answer_to_question_dont_set_current(visitor_code, quest, callback)             
+get_current_user_question(visitor_code, callback)
+get_username_from_usercode(visitor_code, callback)
+check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, callback)
+update_current_question_with_actual_response(user_code, current_question, response, current_response, userimps_array, callback) {};
+update_current_question(user_code, current_question, callback)
+update_user_lol_state = function (user_code, state, callback)
+update_user_lol_state_and_vote_status(user_code, state, current_quest_id, callback)
+get_user_lol_state(user_code, callback)
+check_valid_username(user_name, callback)
+check_valid_usercode(user_code, callback)
+check_challenge(user_code, callback)
+set_next_challenge(user_code, index, callback)                   
+get_next_challenge = function (user_code, callback)                      
+set_challenge_questions_since_last_login(user_code, number, callback)
+set_logged_in_to_logged_out(user_code, callback)
+get_challenge_questions_since_last_login(user_code, callback)
+get_challenge(question_number, callback)                                     
+check_challenge_exists(visitor_code, callback)               
+write_challenge_exists(visitor_code, callback)
+update_logged_in_state(user_code, state, callback)                                        
+add_to_imps_if_not_present(visitor_code, userimps_array, current_question, callback)
+get_usercode(user_name, callback)
+update_sequence_number(user_code, number, callback)
+get_sequence_number(user_code, callback)
+get_user_response(callback)
+
+questions.js
+get_question(callback) - gets all questions
+get_sequence_questions(questions, metaframe_id, callback)
+get_categories(callback)
+get_default_question(callback) - get question of the day
+get_user_question(id, callback)
+get_user_question2(frame, impression, callback)
+cancel_existing_vote(quest, userimps_array, callback)
+get_yes_votes(id, callback)
+add_yes_vote(id, callback)
+get_no_votes(id, callback)
+add_no_vote(id, callback)
+check_valid_question(frame_in, impression_in, callback)
+get_front_questions(callback)
+get_full_front_questions(quest, callback)
+
+lols.js
+get_lol(frame_search, impression_search, callback)
+search_links(query, callback)
+check_like_already_in_content_likes_array(visitor_code, links_res, callback)
+check_dislike_already_in_content_dislikes_array(visitor_code, links_res, callback)
+delete_dislike_already_in_content_dislikes_array(visitor_code, links_res, callback)
+decrement_content_dislikes(links_res, callback)
+add_dislike_to_content_dislikes_array(visitor_code, links_res, callback)
+increment_content_dislikes(links_res, callback)
+delete_like_already_in_content_likes_array(visitor_code, links_res, callback)
+decrement_content_likes(links_res, callback)
+check_dislike_already_in_flip_dislikes_array(visitor_code, links_res, callback)
+delete_dislike_already_in_flip_dislikes_array(visitor_code, links_res, callback)
+decrement_flip_dislikes(links_res, callback)
+add_dislike_to_flip_dislikes_array(visitor_code, links_res, callback)
+increment_flip_dislikes(links_res, callback)
+check_like_already_in_flip_likes_array(visitor_code, links_res, callback)
+delete_like_already_in_flip_likes_array(visitor_code, links_res, callback)
+decrement_flip_likes(links_res, callback)
+add_like_to_content_likes_array(visitor_code, links_res, callback)
+increment_content_likes(links_res, callback)
+add_like_to_flip_likes_array(visitor_code, links_res, callback)
+increment_flip_likes(links_res, callback)
+
+flanks.js
+get_categories(callback)
+get_permutations_table(callback)
+get_completed_user_categories(visitor_code, user_reponses, metaframe, callback)
+get_users_with_categories(user_responses, user_responses_codes, metaframes, callback)
+get_users_with_same_categories(completed_user_cats, users_with_cats, user_responses_codes, callback)
+get_users_with_overlapping_categories(completed_user_cats, users_with_cats, callback)
+get_flanks(visitor_code, sequences, completed_user_cats, users_with_overlapping, user_responses, callback)
+
+
+
 
