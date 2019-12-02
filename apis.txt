@@ -27,7 +27,7 @@ POST:/challenge_response/:visitor
 GET:/like/:link/:question/:visitor/:state
 GET:/hate/:link/:question/:visitor/:state
 GET:/sequence/:metaframe/:impression/:visitor/:url_text
-GET:/frame/:impression/:visitor/:url_text
+GET:/:frame/:impression/:visitor/:url_text
 GET:/flanks/:visitor
 
 PRIVATE APIs
