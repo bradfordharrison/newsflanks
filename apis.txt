@@ -1,10 +1,10 @@
 APIs
 
-Public APIs
+PUBLIC APIs
 
 GET:/
 GET:/:visitor
-GET:/new_quest/:question/:visitor
+GET:/new_question/:frame/:impression:/:visitor/:url_text
 GET:/track/:visitor
 GET:/track2/:visitor
 POST:/logout/:visitor
@@ -26,10 +26,14 @@ POST:/login/:visitor
 POST:/challenge_response/:visitor
 GET:/like/:link/:question/:visitor/:state
 GET:/hate/:link/:question/:visitor/:state
+GET:/sequence/:metaframe/:impression/:visitor/:url_text
+GET:/frame/:impression/:visitor/:url_text
+GET:/flanks/:visitor
 
-Private APIs
+PRIVATE APIs
 
 users.js
+--------
 get_usercode_for_update(callback)
 write_new_userdata(user_code, current_quest, current_answer, callback)
 check_unique_username(name_res_caps, callback)
@@ -68,6 +72,7 @@ get_sequence_number(user_code, callback)
 get_user_response(callback)
 
 questions.js
+------------
 get_question(callback) - gets all questions
 get_sequence_questions(questions, metaframe_id, callback)
 get_categories(callback)
@@ -84,6 +89,7 @@ get_front_questions(callback)
 get_full_front_questions(quest, callback)
 
 lols.js
+-------
 get_lol(frame_search, impression_search, callback)
 search_links(query, callback)
 check_like_already_in_content_likes_array(visitor_code, links_res, callback)
@@ -108,6 +114,7 @@ add_like_to_flip_likes_array(visitor_code, links_res, callback)
 increment_flip_likes(links_res, callback)
 
 flanks.js
+---------
 get_categories(callback)
 get_permutations_table(callback)
 get_completed_user_categories(visitor_code, user_reponses, metaframe, callback)
