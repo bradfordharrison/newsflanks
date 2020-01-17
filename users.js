@@ -219,7 +219,7 @@ function UserDAO(database) {
             });
     };
 
-    this.get_user_answer_to_question_dont_set_current = function (visitor_code, quest, callback) {
+    this.get_user_answer_to_question_dont_set_current = function (visitor_code, quest_frame, quest_impression, callback) {
         "use strict";
         var imps_list_temp = [];
         var imps_answer;
@@ -232,7 +232,7 @@ function UserDAO(database) {
                     imps_list_temp[j] = userimps_array[0].impressions_array[j];
                 }
                 for (j = 0; j < imps_list_temp.length; j++) {
-                    if (quest.equals(imps_list_temp[j].question)) {
+                    if ((quest_frame === imps_list_temp[j].frame) && (quest_impression === imps_list_temp[j].impression)){
                         imps_answer = imps_list_temp[j].answer;
                     }
                 }
