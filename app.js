@@ -413,7 +413,7 @@ db.open(function (err, db) {
                             }
                             else { //handles user
                                 questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
-                                    users.get_user_answer_to_question(visitor_code, user_quest._id, function (user_answer) { // handle case where user might not have answered
+                                    users.get_user_answer_to_question(visitor_code, user_quest.frame, user_quest.impression, function (user_answer) { // handle case where user might not have answered
                                         if (user_answer == 0) {
                                             user_answer_text = "Yes"
                                         };
@@ -1330,7 +1330,7 @@ db.open(function (err, db) {
                                 if (user_answer == 3) {
                                     user_answer_text = "Saw question but didn't answer"
                                 };
-                                questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                     if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                         res.render('home2', {
                                             usercode: visitor_code,
@@ -2055,7 +2055,7 @@ db.open(function (err, db) {
                                 if (user_answer == 3) {
                                     user_answer_text = "Saw question but didn't answer"
                                 };
-                                questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                     if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                         res.render('home2', {
                                             usercode: visitor_code,
@@ -3427,7 +3427,7 @@ db.open(function (err, db) {
                         if (user_answer == 3) {
                             user_answer_text = "Saw question but didn't answer"
                         };
-                        questions.get_user_question(current_quest.current_question, function (quest) {
+                        questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (quest) {
                             if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                                 res.render('home6', {
                                     usercode: visitor_code,
@@ -3779,7 +3779,7 @@ db.open(function (err, db) {
             else {
                 users.update_user_lol_state(visitor_code, 3, function (result) {
                     users.get_current_user_question(visitor_code, function (current_quest) {
-                        questions.get_user_question(current_quest.current_question, function (user_quest) {
+                        questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                             if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                 res.render('home3', {
                                     usercode: visitor_code,
@@ -3972,15 +3972,15 @@ db.open(function (err, db) {
             else { //registered user
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
-                    questions.get_user_question(question_id.current_question, function (quest) {
+                    questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                             users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
                                 users.get_current_user_question(visitor_code, function (question_id) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
-                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                        questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                             users.update_user_lol_state_and_vote_status(visitor_code, 0, question_id.current_question, function (result) {
                                                 users.get_current_user_question(visitor_code, function (question_id) {
                                                     questions.add_yes_vote(quest._id, function (result) {
-                                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                                        questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                                 questions.get_yes_votes(quest._id, function (yes_vote) {
                                                     questions.get_no_votes(quest._id, function (no_vote) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
@@ -4040,15 +4040,15 @@ db.open(function (err, db) {
             }
             else { //registered user
                 users.get_current_user_question(visitor_code, function (question_id) {
-                    questions.get_user_question(question_id.current_question, function (quest) {
+                    questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                         users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
                                 users.get_current_user_question(visitor_code, function (question_id) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
-                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                        questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                             users.update_user_lol_state_and_vote_status(visitor_code, 1, question_id.current_question, function (result) {
                                                 users.get_current_user_question(visitor_code, function (question_id) {
                                                     questions.add_no_vote(quest._id, function (result) {
-                                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                                        questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                                             questions.get_no_votes(quest._id, function (no_vote) {
                                                                 questions.get_yes_votes(quest._id, function (yes_vote) {
                                                                         lols.get_lol(quest.frame, quest.impression, function (links) {
@@ -4110,11 +4110,11 @@ db.open(function (err, db) {
             else { //registered user
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
-                    questions.get_user_question(question_id.current_question, function (quest) {
+                    questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                             users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
                                 users.get_current_user_question(visitor_code, function (question_id) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
-                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                        questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                             users.update_user_lol_state_and_vote_status(visitor_code, 2, question_id.current_question, function (result) {
                                                 users.get_current_user_question(visitor_code, function (question_id) {
                                                     questions.get_yes_votes(quest._id, function (yes_vote) {
@@ -4354,7 +4354,7 @@ db.open(function (err, db) {
                                             if (user_answer == 3) {
                                                 user_answer_text = "Saw question but didn't answer"
                                             };
-                                            questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                            questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                                 if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                                     res.render('home4', {
                                                         usercode: visitor_code,
@@ -4755,7 +4755,7 @@ db.open(function (err, db) {
                                                     if (user_answer == 3) {
                                                         user_answer_text = "Saw question but didn't answer"
                                                     };
-                                                    questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                                    questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                                         if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                                             res.render('home91', {
                                                                 usercode: visitor_code,
@@ -5468,7 +5468,7 @@ db.open(function (err, db) {
                             if (state.lol_state == 0) {
                                 users.update_user_lol_state(visitor_code, 1, function (result) {
                                     users.get_current_user_question(visitor_code, function (question_id) {
-                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                        questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol7', {
                                                     usercode: visitor_code,
@@ -5492,7 +5492,7 @@ db.open(function (err, db) {
                             else if (state.lol_state == 1) {
                                 users.update_user_lol_state(visitor_code, 0, function (result) {
                                     users.get_current_user_question(visitor_code, function (question_id) {
-                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                        questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol6', {
                                                     usercode: visitor_code,
@@ -5515,7 +5515,7 @@ db.open(function (err, db) {
                             }
                             else if (state.lol_state == 2) {
                                 users.get_current_user_question(visitor_code, function (question_id) {
-                                    questions.get_user_question(question_id.current_question, function (quest) {
+                                    questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                         questions.get_yes_votes(quest._id, function (yes_vote) {
                                             questions.get_no_votes(quest._id, function (no_vote) {
                                                 lols.get_lol(quest.frame, quest.impression, function (links) {
@@ -5538,7 +5538,7 @@ db.open(function (err, db) {
                             }
                             else { //state.lol_state == 3
                                 users.get_current_user_question(visitor_code, function (question_id) {
-                                    questions.get_user_question(question_id.current_question, function (quest) {
+                                    questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                         questions.get_yes_votes(quest._id, function (yes_vote) {
                                             questions.get_no_votes(quest._id, function (no_vote) {
                                                 lols.get_lol(quest.frame, quest.impression, function (links) {
@@ -7153,7 +7153,7 @@ db.open(function (err, db) {
                                                                         if (user_answer == 3) {
                                                                             user_answer_text = "Saw question but didn't answer"
                                                                         };
-                                                                        questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                                                        questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                                                             if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                                                                 res.render('home6', {
                                                                                     usercode: visitor_code,
@@ -7396,7 +7396,7 @@ db.open(function (err, db) {
                                                                     if (user_answer == 3) {
                                                                         user_answer_text = "Saw question but didn't answer"
                                                                     };
-                                                                    questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                                                    questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                                                         if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                                                             res.render('home6', {
                                                                                 usercode: visitor_code,
@@ -7640,7 +7640,7 @@ db.open(function (err, db) {
                                                     if (user_answer == 3) {
                                                         user_answer_text = "Saw question but didn't answer"
                                                     };
-                                                    questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                                    questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                                         if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                                             res.render('home6', {
                                                                 usercode: visitor_code,
@@ -8794,7 +8794,7 @@ db.open(function (err, db) {
                                     if (user_answer == 3) {
                                         user_answer_text = "Saw question but didn't answer"
                                     };
-                                    questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                    questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (user_quest) {
                                         if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
                                             res.render('home91', {
                                                 usercode: visitor_code,
