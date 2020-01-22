@@ -418,7 +418,7 @@ db.open(function (err, db) {
                                                 questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
                                                     users.add_to_imps_if_not_present(visitor_code, user_quest, userimps_array, function (result) {
                                                         questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
-                                                        users.get_user_answer_to_question(visitor_code, user_quest.frame, user_quest.impression, function (user_answer) { // handle case where user might not have answered
+                                                        users.get_user_answer_to_question(visitor_code, current_quest.current_question, function (user_answer) { // handle case where user might not have answered
                                                             if (user_answer == 0) {
                                                                 user_answer_text = "Yes"
                                                             };
@@ -1327,7 +1327,7 @@ db.open(function (err, db) {
                     }
                     else if (visitor_code > 9) {
                         users.get_current_user_question(visitor_code, function (current_quest) {
-                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                 if (user_answer == 0) {
                                     user_answer_text = "Yes"
                                 };
@@ -2052,7 +2052,7 @@ db.open(function (err, db) {
                     }
                     else if (visitor_code > 9) {
                         users.get_current_user_question(visitor_code, function (current_quest) {
-                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                 if (user_answer == 0) {
                                     user_answer_text = "Yes"
                                 };
@@ -3232,7 +3232,7 @@ db.open(function (err, db) {
                     //registered user
                     users.write_challenge_exists(user_code, function (challenge_exists) {
                         users.get_current_user_question(user_code, function (current_quest) {
-                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                 if (user_answer == 0) {
                                     user_answer_text = "Yes"
                                 };
@@ -3424,7 +3424,7 @@ db.open(function (err, db) {
             }
             else {
                 users.get_current_user_question(user_code, function (current_quest) {
-                    users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                    users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                         if (user_answer == 0) {
                             user_answer_text = "Yes"
                         };
@@ -3988,7 +3988,7 @@ db.open(function (err, db) {
                                 questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
                                         questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
-                                            users.update_user_lol_state_and_vote_status(visitor_code, 0, quest.frame, quest.impression, function (result) {
+                                            users.update_user_lol_state_and_vote_status(visitor_code, 0, quest._id, function (result) {
                                                 users.get_current_user_question(visitor_code, function (question_id) {
                                                     questions.add_yes_vote(quest._id, function (result) {
                                                         questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
@@ -4058,7 +4058,7 @@ db.open(function (err, db) {
                                 questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
                                         questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
-                                            users.update_user_lol_state_and_vote_status(visitor_code, 1, quest.frame, quest.impression, function (result) {
+                                            users.update_user_lol_state_and_vote_status(visitor_code, 1, quest._id, function (result) {
                                                 users.get_current_user_question(visitor_code, function (question_id) {
                                                     questions.add_no_vote(quest._id, function (result) {
                                                         questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
@@ -4130,7 +4130,7 @@ db.open(function (err, db) {
                                     questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
                                         questions.cancel_existing_vote(quest, question_id, function (result) {
                                             questions.get_user_question2(question_id.current_question_frame, question_id.current_question_impression, function (quest) {
-                                                users.update_user_lol_state_and_vote_status(visitor_code, 2, quest.frame, quest.impression, function (result) {
+                                                users.update_user_lol_state_and_vote_status(visitor_code, 2, quest._id, function (result) {
                                                     users.get_current_user_question(visitor_code, function (question_id) {
                                                         questions.get_yes_votes(quest._id, function (yes_vote) {
                                                             questions.get_no_votes(quest._id, function (no_vote) {
@@ -4357,7 +4357,7 @@ db.open(function (err, db) {
                             questions.get_question(function (quest) {
                                 if (quest.length == userimps_array[0].impressions_array.length) { //user already answered all questions
                                     users.get_current_user_question(visitor_code, function (current_quest) {
-                                        users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                                        users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                             if (user_answer == 0) {
                                                 user_answer_text = "Yes"
                                             };
@@ -4758,7 +4758,7 @@ db.open(function (err, db) {
                                     if (question_index === -1) { //there is no seq question not already seen
                                         users.update_sequence_number(visitor_code, 0, function (sequence_set_result) {
                                             users.get_current_user_question(visitor_code, function (current_quest) {
-                                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                     if (user_answer == 0) {
                                                         user_answer_text = "Yes"
                                                     };
@@ -7156,7 +7156,7 @@ db.open(function (err, db) {
                                                         users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                                             users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
                                                                 users.get_current_user_question(visitor_code, function (current_quest) {
-                                                                    users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                                                                    users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                                         if (user_answer == 0) {
                                                                             user_answer_text = "Yes"
                                                                         };
@@ -7399,7 +7399,7 @@ db.open(function (err, db) {
                                                     users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                                         users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
                                                             users.get_current_user_question(visitor_code, function (current_quest) {
-                                                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                                                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                                     if (user_answer == 0) {
                                                                         user_answer_text = "Yes"
                                                                     };
@@ -7643,7 +7643,7 @@ db.open(function (err, db) {
                                     users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                         users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
                                             users.get_current_user_question(visitor_code, function (current_quest) {
-                                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                     if (user_answer == 0) {
                                                         user_answer_text = "Yes"
                                                     };
@@ -8797,7 +8797,7 @@ db.open(function (err, db) {
                     if (question_index === -1) { //there is no seq question not already seen
                         users.update_sequence_number(visitor_code, 0, function (sequence_set_result) {
                             users.get_current_user_question(visitor_code, function (current_quest) {
-                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                     if (user_answer == 0) {
                                         user_answer_text = "Yes"
                                     };

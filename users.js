@@ -64,7 +64,7 @@ function UserDAO(database) {
             challenges_since_login: 0,
             current_question_frame: current_quest.frame,
             current_question_impression: current_quest.impression,
-            impressions_array: [{ "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }],
+            impressions_array: [{ "question": current_quest.id, "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }],
             sequence: 0
         };
 
@@ -167,8 +167,7 @@ function UserDAO(database) {
                 }
                 for (j = 0; j < imps_list_temp.length; j++) {
                     for (var i = 0; i < quest.length; i++) {
-                        if ((quest[i].frame === imps_list_temp[j].frame) && (quest[i].impression === imps_list_temp[j].impression)) {
-//                        if (quest[i]._id.equals(imps_list_temp[j].question)) {
+                        if (quest[i]._id.equals(imps_list_temp[j].question)) {
                             imps_list[counter++] = quest[i];
                         }
                     }
@@ -185,8 +184,7 @@ function UserDAO(database) {
                 assert.equal(null, err);
                 for (var i = 0; i < imps_list.length; i++) {
                     for (var j = 0; j < resps_array[0].impressions_array.length; j++) {
-                        if ((imps_list[i].frame === resps_array[0].impressions_array[j].frame) && (imps_list[i].impression === resps_array[0].impressions_array[j].impression)) {
-//                        if (imps_list[i]._id.equals(resps_array[0].impressions_array[j].question)) {
+                        if (imps_list[i]._id.equals(resps_array[0].impressions_array[j].question)) {
                             resps_list[i] = resps_array[0].impressions_array[j].answer;
                         }
                     }
@@ -195,22 +193,15 @@ function UserDAO(database) {
             });
     };
 
-    this.get_user_answer_to_question = function (visitor_code, quest_frame, quest_impression, callback) {
+    this.get_user_answer_to_question = function (visitor_code, quest, callback) {
         "use strict";
         var imps_list_temp = [];
         var imps_answer = -1;
-        var counter = 0;
 
         //set current question first
         this.db.collection('user').updateOne({ "usercode": visitor_code }, //update current_question
  //       this.db.collection('user').updateOne({ "usercode": visitor_code }, //update current_question
-            { "$set": { "current_question_frame": quest_frame } });
-
-        //set current question first
-        this.db.collection('user').updateOne({ "usercode": visitor_code }, //update current_question
-            //       this.db.collection('user').updateOne({ "usercode": visitor_code }, //update current_question
-            { "$set": { "current_question_impression": quest_impression } });
-
+            { "$set": { "current_question": quest } });
 
         this.db.collection("user").find({ "usercode": visitor_code })
             .toArray(function (err, userimps_array) {
@@ -219,7 +210,7 @@ function UserDAO(database) {
                     imps_list_temp[j] = userimps_array[0].impressions_array[j];
                 }
                 for (j = 0; j < imps_list_temp.length; j++) {
-                    if ((quest_frame === imps_list_temp[j].frame) && (quest_impression === imps_list_temp[j].impression)) {
+                    if (quest.equals(imps_list_temp[j].question)) {
                         imps_answer = imps_list_temp[j].answer;
                     }
                 }
@@ -227,11 +218,10 @@ function UserDAO(database) {
             });
     };
 
-    this.get_user_answer_to_question_dont_set_current = function (visitor_code, quest_frame, quest_impression, callback) {
+    this.get_user_answer_to_question_dont_set_current = function (visitor_code, quest, callback) {
         "use strict";
         var imps_list_temp = [];
         var imps_answer;
-        var counter = 0;
 
         this.db.collection("user").find({ "usercode": visitor_code })
             .toArray(function (err, userimps_array) {
@@ -240,7 +230,7 @@ function UserDAO(database) {
                     imps_list_temp[j] = userimps_array[0].impressions_array[j];
                 }
                 for (j = 0; j < imps_list_temp.length; j++) {
-                    if ((quest_frame === imps_list_temp[j].frame) && (quest_impression === imps_list_temp[j].impression)){
+                    if (quest.equals(imps_list_temp[j].question)) {
                         imps_answer = imps_list_temp[j].answer;
                     }
                 }
@@ -270,8 +260,7 @@ function UserDAO(database) {
        "use strict";
        var result = false;
        for (var i = 0; i < userimps_array.impressions_array.length; i++) {
-           if ((quest.frame === userimps_array.impressions_array[i].frame) && (quest.impression === userimps_array.impressions_array[i].impression)) {
-//           if (quest._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
+           if (quest._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
                result = true;
                break;
            }
@@ -290,16 +279,12 @@ function UserDAO(database) {
            response: current_response
        };
        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-           { "$set": { "current_question_frame": current_question.frame } });
-       this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-           { "$set": { "current_question_impression": current_question.impression } });
+           { "$set": { "current_question": current_question._id } });
        this.db.collection('user').updateOne({ "usercode": user_code }, //update lol_state
            { "$set": { "lol_state": current_response } }); //if user flipped will not show flipped, will show original answer state
        if (response === false) {
            this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
-               { "$push": { "impressions_array": { "$each": [{ "frame": current_question.frame, "impression": current_question.impression, "answer": current_response, "date": new Date(), "wayin": [0] }] } } });
-
-                       // { "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }
+               { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "answer": current_response, "date": new Date(), "wayin": [0] }] } } });
 
            if (current_response === 0) {
                this.db.collection("question").updateOne({ "_id": current_question._id },
@@ -335,7 +320,7 @@ function UserDAO(database) {
                }
            }
 
-           this.db.collection("user").updateOne({ "usercode": user_code, "impressions_array.frame": current_question.frame, "impressions_array.impression": current_question.impression }, //update impressions_array as well
+           this.db.collection("user").updateOne({ "usercode": user_code, "impressions_array.question": current_question._id }, //update impressions_array as well
                { "$set": { "impressions_array.$.answer": current_response } });
        }
        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
@@ -354,13 +339,10 @@ function UserDAO(database) {
        };
 
        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-           { "$set": { "current_question_frame": current_question.frame } });
-       this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-           { "$set": { "current_question_impression": current_question.impression } });
+           { "$set": { "current_question": current_question._id } });
+ 
        this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
-           { "$push": { "impressions_array": { "$each": [{ "frame": current_question.frame, "impression": current_question.impression, "answer": 1, "date": new Date(), "wayin": [0] }] } } });
-
-        // { "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }
+           { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": 1, "date": new Date(), "wayin": [0] }] } } });
 
        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
        callback(done);
@@ -378,10 +360,7 @@ function UserDAO(database) {
         };
 
         this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-            { "$set": { "current_question_frame": current_question.frame } });
-        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-            { "$set": { "current_question_impression": current_question.impression } });
-
+            { "$set": { "current_question": current_question._id } });
 
         this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
         callback(done);
@@ -395,13 +374,13 @@ function UserDAO(database) {
         callback(done);
     };
 
-    this.update_user_lol_state_and_vote_status = function (usercode, state, current_quest_frame, current_quest_impression, callback) {
+    this.update_user_lol_state_and_vote_status = function (usercode, state, current_quest_id, callback) {
         "use strict";
         var done = true;
         this.db.collection('user').updateOne({ "_id": usercode }, //update flip state
             { "$set": { "lol_state": state } });
 
-        this.db.collection("user").updateOne({ "usercode": usercode, "impressions_array.frame": current_quest_frame, "impressions_array.impression": current_quest_impression }, //update impressions_array as well
+        this.db.collection("user").updateOne({ "usercode": usercode, "impressions_array.question": current_quest_id }, //update impressions_array as well
               { "$set": { "impressions_array.$.answer": state } });
 
         callback(done);
@@ -536,14 +515,14 @@ function UserDAO(database) {
     this.add_to_imps_if_not_present = function (visitor_code, question, userimps_array, callback) {
         var found = false;
         for (var i = 0; i < userimps_array.impressions_array.length; i++) {
-            if ((userimps_array.current_question_frame === userimps_array.impressions_array[i].frame) && (userimps_array.current_question_impression === userimps_array.impressions_array[i].impression)) { //== compares with call by reference so you have to use this
+            if (userimps_array.current_question.equals(userimps_array.impressions_array[i].question)) { //== compares with call by reference so you have to use this
                 found = true;
                 break;
             }
         }
         if (found === false) {
             this.db.collection("user").updateOne({ "usercode": visitor_code }, //update impressions array
-                { "$push": { "impressions_array": { "$each": [{ "frame": question.frame, "impression": question.impression, "answer": 3, "date": new Date(), "wayin": [0] }] } } });
+                { "$push": { "impressions_array": { "$each": [{ "question": question._id, "frame": question.frame, "impression": question.impression, "answer": 3, "date": new Date(), "wayin": [0] }] } } });
 
             // { "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }
             found = true;
