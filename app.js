@@ -3222,7 +3222,7 @@ db.open(function (err, db) {
                     //registered user
                     users.write_challenge_exists(user_code, function (challenge_exists) {
                         users.get_current_user_question(user_code, function (current_quest) {
-                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question_frame, current_quest.current_question_impression, function (user_answer) {
+                            users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                 if (user_answer == 0) {
                                     user_answer_text = "Yes"
                                 };
@@ -3235,7 +3235,7 @@ db.open(function (err, db) {
                                 if (user_answer == 3) {
                                     user_answer_text = "Saw question but didn't answer"
                                 };
-                                questions.get_user_question2(current_quest.current_question_frame, current_quest.current_question_impression, function (quest) {
+                                questions.get_user_question(current_quest.current_question, function (quest) {
                                     if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                                         res.render('home6', {
                                             usercode: visitor_code,
