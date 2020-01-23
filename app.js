@@ -418,7 +418,7 @@ db.open(function (err, db) {
                                                 questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
                                                     users.add_to_imps_if_not_present(visitor_code, user_quest, userimps_array, function (result) {
                                                         questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
-                                                        users.get_user_answer_to_question(visitor_code, user_quest._id, function (user_answer) { // handle case where user might not have answered
+                                                        users.get_user_answer_to_question(visitor_code, current_quest.current_question, function (user_answer) { // handle case where user might not have answered
                                                             if (user_answer == 0) {
                                                                 user_answer_text = "Yes"
                                                             };

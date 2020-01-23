@@ -62,10 +62,9 @@ function UserDAO(database) {
             challenge_exists: 0,
             next_challenge: 0,
             challenges_since_login: 0,
-            current_question: current_quest._id,
             current_question_frame: current_quest.frame,
             current_question_impression: current_quest.impression,
-            impressions_array: [{ "question": current_quest._id, "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }],
+            impressions_array: [{ "question": current_quest.id, "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }],
             sequence: 0
         };
 
@@ -299,8 +298,8 @@ function UserDAO(database) {
 
        if (response === true) {
            for (var i = 0; i < userimps_array.impressions_array.length; i++) {
- //              if ((current_question.frame === userimps_array.impressions_array[i].frame) && (current_question.impression === userimps_array.impressions_array[i].impression)) { //== compares with call by reference so you have to use this
-               if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
+               if ((current_question.frame === userimps_array.impressions_array[i].frame) && (current_question.impression === userimps_array.impressions_array[i].impression)) { //== compares with call by reference so you have to use this
+//               if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
                    if (userimps_array.impressions_array[i].answer === 0) {
                        this.db.collection("question").updateOne({ "_id": current_question._id },
                            { "$inc": { "yes": -1 } });
