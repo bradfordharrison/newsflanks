@@ -62,9 +62,8 @@ function UserDAO(database) {
             challenge_exists: 0,
             next_challenge: 0,
             challenges_since_login: 0,
-            current_question_frame: current_quest.frame,
-            current_question_impression: current_quest.impression,
-            impressions_array: [{ "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }],
+            current_question: current_quest._id,
+            impressions_array: [{ "question": current_quest._id, "answer": current_answer, wayin: [0] }],
             sequence: 0
         };
 
