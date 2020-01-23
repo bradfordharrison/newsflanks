@@ -353,6 +353,8 @@ function UserDAO(database) {
            response: 3
        };
 
+       console.log(current_question);
+
        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
            { "$set": { "current_question_frame": current_question.frame } });
        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
@@ -364,28 +366,7 @@ function UserDAO(database) {
 
        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
        callback(done);
-    };
-
-    this.update_current_question_but_not_imp_array = function (user_code, current_question, callback) {
-        "use strict";
-        var done = true;
-        var userRec = {
-            usercode: user_code,
-            frame: current_question.frame,
-            impression: current_question.impression,
-            last_answered: new Date(), //night batch - consolidate multiple answers to same question by same user, don't update (search) while user online
-            response: 3
-        };
-
-        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-            { "$set": { "current_question_frame": current_question.frame } });
-        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-            { "$set": { "current_question_impression": current_question.impression } });
-
-
-        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
-        callback(done);
-    };
+   };
 
     this.update_user_lol_state = function (user_code, state, callback) {
         "use strict";
