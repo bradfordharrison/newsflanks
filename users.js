@@ -150,7 +150,7 @@ function UserDAO(database) {
         this.db.collection("user").find({ "usercode": visitor_code })
             .toArray(function (err, userimps_array) {
                 assert.equal(null, err);
-                callback(userimps_array[0]);
+                callback(userimps_array);
             });
     };
 
@@ -269,8 +269,8 @@ function UserDAO(database) {
    this.check_if_question_of_day_already_in_impressions_array = function (visitor_code, quest, userimps_array, callback) {
        "use strict";
        var result = false;
-       for (var i = 0; i < userimps_array.impressions_array.length; i++) {
-           if ((quest.frame === userimps_array.impressions_array[i].frame) && (quest.impression === userimps_array.impressions_array[i].impression)) {
+       for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
+           if ((quest.frame === userimps_array[0].impressions_array[i].frame) && (quest.impression === userimps_array[0].impressions_array[i].impression)) {
 //           if (quest._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
                result = true;
                break;
@@ -312,14 +312,14 @@ function UserDAO(database) {
        }
 
        if (response === true) {
-           for (var i = 0; i < userimps_array.impressions_array.length; i++) {
-               if ((current_question.frame === userimps_array.impressions_array[i].frame) && (current_question.impression === userimps_array.impressions_array[i].impression)) { //== compares with call by reference so you have to use this
+           for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
+               if ((current_question.frame === userimps_array[0].impressions_array[i].frame) && (current_question.impression === userimps_array[0].impressions_array[i].impression)) { //== compares with call by reference so you have to use this
 //               if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
-                   if (userimps_array.impressions_array[i].answer === 0) {
+                   if (userimps_array[0].impressions_array[i].answer === 0) {
                        this.db.collection("question").updateOne({ "_id": current_question._id },
                            { "$inc": { "yes": -1 } });
                    }
-                   if (userimps_array.impressions_array[i].answer === 1) {
+                   if (userimps_array[0].impressions_array[i].answer === 1) {
                        this.db.collection("question").updateOne({ "_id": current_question._id },
                            { "$inc": { "no": -1 } });
                    }
@@ -352,15 +352,12 @@ function UserDAO(database) {
            last_answered: new Date(), //night batch - consolidate multiple answers to same question by same user, don't update (search) while user online
            response: 3
        };
-
-       console.log(current_question);
-
        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
            { "$set": { "current_question_frame": current_question.frame } });
        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
            { "$set": { "current_question_impression": current_question.impression } });
        this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
-           { "$push": { "impressions_array": { "$each": [{ "frame": current_question.frame, "impression": current_question.impression, "answer": 1, "date": new Date(), "wayin": [0] }] } } });
+           { "$push": { "impressions_array": { "$each": [{ "frame": current_question.frame, "impression": current_question.impression, "answer": 3, "date": new Date(), "wayin": [0] }] } } });
 
         // { "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }
 
@@ -376,14 +373,14 @@ function UserDAO(database) {
         callback(done);
     };
 
-    this.update_user_lol_state_and_vote_status = function (usercode, state, current_quest_frame, current_quest_impression, callback) {
+    this.update_user_lol_state_and_vote_status = function (user_code, state, current_quest_id, callback) {
         "use strict";
         var done = true;
-        this.db.collection('user').updateOne({ "_id": usercode }, //update flip state
+        this.db.collection('user').updateOne({ usercode: user_code }, //update flip state
             { "$set": { "lol_state": state } });
 
-        this.db.collection("user").updateOne({ "usercode": usercode, "impressions_array.frame": current_quest_frame, "impressions_array.impression": current_quest_impression }, //update impressions_array as well
-              { "$set": { "impressions_array.$.answer": state } });
+        this.db.collection("user").updateOne({ "usercode": user_code, "impressions_array.question": current_quest_id }, //update impressions_array as well
+            { "$set": { "impressions_array.$.answer": state } });
 
         callback(done);
     };
@@ -514,7 +511,7 @@ function UserDAO(database) {
         callback(done);
     };
 
-    this.add_to_imps_if_not_present = function (visitor_code, question, userimps_array, callback) {
+    this.add_to_imps_if_not_present = function (visitor_code, userimps_array, callback) {
         var found = false;
         for (var i = 0; i < userimps_array.impressions_array.length; i++) {
             if ((userimps_array.current_question_frame === userimps_array.impressions_array[i].frame) && (userimps_array.current_question_impression === userimps_array.impressions_array[i].impression)) { //== compares with call by reference so you have to use this
@@ -524,7 +521,7 @@ function UserDAO(database) {
         }
         if (found === false) {
             this.db.collection("user").updateOne({ "usercode": visitor_code }, //update impressions array
-                { "$push": { "impressions_array": { "$each": [{ "frame": question.frame, "impression": question.impression, "answer": 3, "date": new Date(), "wayin": [0] }] } } });
+                { "$push": { "impressions_array": { "$each": [{ "frame": userimps_array.frame, "impression": userimps_array.impression, "answer": 3, "date": new Date(), "wayin": [0] }] } } });
 
             // { "frame": current_quest.frame, "impression": current_quest.impression,"answer": current_answer, "date": new Date(), "wayin": [0] }
             found = true;
