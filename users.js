@@ -63,7 +63,7 @@ function UserDAO(database) {
             next_challenge: 0,
             challenges_since_login: 0,
             current_question: current_quest._id,
-            impressions_array: [{ "question": current_quest._id, "answer": current_answer }],
+            impressions_array: [{ "question": current_quest._id, "frame": current_quest.frame, "impression": current_quest.impression, "answer": current_answer, "date": new Date(), "wayin": 0 }],
             sequence: 0
         };
 
@@ -285,7 +285,7 @@ function UserDAO(database) {
            { "$set": { "lol_state": current_response } }); //if user flipped will not show flipped, will show original answer state
        if (response === false) {
            this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
-               { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "answer": current_response }] } } });
+               { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": current_response, "date": new Date(), "wayin": 0 }] } } });
            if (current_response === 0) {
                this.db.collection("question").updateOne({ "_id": current_question._id },
                    { "$inc": { "yes": 1 } });
@@ -339,7 +339,7 @@ function UserDAO(database) {
        this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
            { "$set": { "current_question": current_question._id } });
        this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
-           { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "answer": 3 }] } } });
+           { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": 3, "date": new Date(), "wayin": 0 }] } } });
        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
        callback(done);
    };
@@ -500,7 +500,8 @@ function UserDAO(database) {
         }
         if (found === false) {
             this.db.collection("user").updateOne({ "usercode": visitor_code }, //update impressions array
-                { "$push": { "impressions_array": { "$each": [{ "question": userimps_array.current_question, "answer": 3 }] } } });
+                { "$push": { "impressions_array": { "$each": [{ "question": userimps_array.current_question, "frame": userimps_array.frame, "impression": userimps_array.impression, "answer": 3, "date": new Date(), "wayin": 0 }] } } });
+
             found = true;
         }
         callback(found);
