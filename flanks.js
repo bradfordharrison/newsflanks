@@ -64,6 +64,9 @@ function FlanksDAO(database) {
                     };
                     callback(results_array);
                 });
+        }
+        else {
+            console.log("user code out of range");
         };
     };
 
