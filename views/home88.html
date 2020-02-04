@@ -64,6 +64,9 @@
       document.writeln("</center>");
       document.writeln("</div>");
 </script>
+<script>
+    window.name = 3;
+</script>
 <div class="table-border">
 		<!-- script src="../static/js/jquery.js"></script-->
 		<div id="users-device-size">
@@ -232,7 +235,13 @@
 </div>
          </p>
 
-      {% endfor %}
+            {% endfor %}
+	<script>
+        var code = window.name;
+        document.write("<input type='hidden' name='code' value='");
+        document.write(code);
+        document.writeln("'>");
+    </script>
       <input type="submit" value="Submit">
    </form>
    </font></div>

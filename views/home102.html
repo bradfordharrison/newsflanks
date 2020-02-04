@@ -3,7 +3,7 @@
 
 <head>
 
-	<!-- home81 -->
+	<!-- home102 -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -62,6 +62,9 @@
       document.writeln("</ul>");
       document.writeln("</nav>");
       document.writeln("</center>");
+      document.writeln("</div>");
+	  document.writeln("<div>");
+      document.writeln("<h4><font color='#FF0000'>Please select an option below.</font></h4>");
       document.writeln("</div>");
 </script>
 <script>
@@ -224,11 +227,10 @@
 		          };
 		</script>
 		{% endif %}
-	&nbsp;&nbsp;&nbsp;<img src="{{animated_gif}}"><br>
+	&nbsp;&nbsp;<img src="{{animated_gif}}"><br>
 	&nbsp;&nbsp;<font color="#000000" size="3"><i><b>{{quote}}</b></i></font><br>
     &nbsp;&nbsp;<font color="#000000" size="3"><i><b>{{quote2}}</b></i></font><br>
-    &nbsp;&nbsp;<font color="#000000" size="3"><i><b>{{quote3}}</b></i></font><br>
-    &nbsp;&nbsp;<font color="#000000" size="3"><i><b>{{quote4}}</b></i></font><br><br>
+    &nbsp;&nbsp;<font color="#000000" size="3"><i><b>{{quote3}}</b></i></font><br><br>
        <font color="#006500" size="4"><b><span> {{top_question}}</span></b><br>
    <form action="/links2/{{question}}" method="POST">
       {% for yes_no in choices %}

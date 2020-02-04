@@ -3134,7 +3134,7 @@ db.open(function (err, db) {
         }
         else {
             users.check_unique_username(name_res_caps, function (result) {
-                if (name_res == " ") {
+                if (name_res == " ") {//check for empty
                     result = true;
                 };
                 if (result == false) {
@@ -3142,6 +3142,7 @@ db.open(function (err, db) {
                         users.get_usercode_for_update(function (user_code) {
                             users.write_new_userdata(user_code, default_question, +default_answer, function (result) {
                                 users.write_new_user(name_res_caps, visitor_code, user_code, default_question, +default_answer, function (userDoc) {
+                                    //vote is tallied in write_new_user
                                     users.get_challenge_question(function (quest) {
                                         res.render('good_username', {
                                             good_username: userDoc.username,
@@ -3948,7 +3949,7 @@ db.open(function (err, db) {
         else if (links_res == 'yes') {
             var answer = "0";
             if (visitor_code < 10) {
-                visitor_code = +answer;
+                visitor_code = +answer; //add yes_visitor code
                 questions.get_default_question(function (quest) {
                     lols.get_lol(quest.frame, quest.impression, function (links) {
                         res.render('lol', {
@@ -4333,7 +4334,7 @@ db.open(function (err, db) {
                     };
                 });
             }
-            else {
+            else {//user
                 //check sequence field
                 users.get_sequence_number(visitor_code, function (metaframe_id) {
                     if (metaframe_id === 0) {
@@ -5122,7 +5123,7 @@ db.open(function (err, db) {
             visitor_code = +answer;
             questions.get_user_question(question_code, function (quest) { //look up question with ID
                 if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                    res.render('home3', {
+                    res.render('home101', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5138,7 +5139,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                    res.render('home9', {
+                    res.render('home102', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5154,7 +5155,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home15', {
+                    res.render('home103', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5170,7 +5171,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home21', {
+                    res.render('home104', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5186,7 +5187,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home27', {
+                    res.render('home105', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5202,7 +5203,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                    res.render('home33', {
+                    res.render('home106', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5218,7 +5219,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                    res.render('home39', {
+                    res.render('home107', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5234,7 +5235,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home45', {
+                    res.render('home108', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5250,7 +5251,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home51', {
+                    res.render('home109', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -5266,7 +5267,7 @@ db.open(function (err, db) {
                     });
                 }
                 else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home57', {
+                    res.render('home110', {
                         usercode: visitor_code,
                         animated_gif: quest.mm,
                         frame: quest.frame,
@@ -7139,6 +7140,7 @@ db.open(function (err, db) {
                                                     users.get_userimps_array(visitor_code, function (userimps_array) {
                                                         users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                                             users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
+                                                                //update_current_question_with_actual_response also sets current question and updates tally if needed
                                                                 users.get_current_user_question(visitor_code, function (current_quest) {
                                                                     users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                                         if (user_answer == 0) {
@@ -7382,6 +7384,7 @@ db.open(function (err, db) {
                                                 users.get_userimps_array(visitor_code, function (userimps_array) {
                                                     users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                                         users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
+                                                            //update_current_question_with_actual_response also sets current question and updates tally if needed
                                                             users.get_current_user_question(visitor_code, function (current_quest) {
                                                                 users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                                     if (user_answer == 0) {
@@ -7626,6 +7629,7 @@ db.open(function (err, db) {
                                 users.get_userimps_array(visitor_code, function (userimps_array) {
                                     users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                         users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
+                                            //update_current_question_with_actual_response also sets current question and updates tally if needed
                                             users.get_current_user_question(visitor_code, function (current_quest) {
                                                 users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                     if (user_answer == 0) {
