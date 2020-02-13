@@ -141,6 +141,20 @@ function QuestionDAO(database) {
             });
     };
 
+    this.subtract_yes_vote2 = function (id, callback) {
+        "use strict";
+        this.db.collection('question').findOneAndUpdate(
+            { "_id": id },
+            { "$inc": { "yes_visitor": -1 } },
+            {
+                returnOriginal: false
+            },
+            function (err, result) {
+                assert.equal(null, err);
+                callback(result.value)
+            });
+    };
+
     this.get_no_votes = function (id, callback) {
         "use strict";
         this.db.collection('question').find({ "_id": id })
@@ -162,6 +176,20 @@ function QuestionDAO(database) {
         this.db.collection('question').findOneAndUpdate(
             { "_id": id },
             { "$inc": { "no_visitor": 1 } },
+            {
+                returnOriginal: false
+            },
+            function (err, result) {
+                assert.equal(null, err);
+                callback(result.value)
+            });
+    };
+
+    this.subtract_no_vote2 = function (id, callback) {
+        "use strict";
+        this.db.collection('question').findOneAndUpdate(
+            { "_id": id },
+            { "$inc": { "no_visitor": -1 } },
             {
                 returnOriginal: false
             },
