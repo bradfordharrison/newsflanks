@@ -5985,27 +5985,77 @@ db.open(function (err, db) {
             var answer = "0";
             if (visitor_code < 10) {
                 visitor_code = +answer; //add yes_visitor code
-                questions.get_default_question(function (quest) {
-                    questions.add_yes_vote2(quest._id, function (quest) {
-                        lols.get_lol(quest.frame, quest.impression, function (links) {
-                            res.render('lol', {
-                                usercode: visitor_code,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                top_question: quest,
-                                yes_votes: quest.yes_visitor,
-                                no_votes: quest.no_visitor,
-                                link_list: links,
-                                x: quest.mm_yes_x,
-                                y: quest.mm_yes_y,
-                                file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
-                                user_answer: answer
+                if ((visitor_code === 7) || (visitor_code === 9)) { //previous answer was "no"
+                    //send in message stating that previous answer was "no" and that is now being changed to "yes"
+                    questions.get_default_question(function (quest) {
+                        questions.subtract_no_vote2(quest._id, function (quest) {
+                            questions.add_yes_vote2(quest._id, function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol', {
+                                        usercode: visitor_code,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        top_question: quest,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        user_answer: answer
+                                    });
+                                });
                             });
                         });
                     });
-                });
+                }
+                else if ((visitor_code === 6) || (visitor_code === 8)) { //do nothing, already answered "yes"
+                    //send in message stating that visitor already answered "yes"
+                    questions.get_default_question(function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol', {
+                                        usercode: visitor_code,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        top_question: quest,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        user_answer: answer
+                                    });
+                        });
+                    });
+                }
+                else { //add yes vote
+                    questions.get_default_question(function (quest) {
+                            questions.add_yes_vote2(quest._id, function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol', {
+                                        usercode: visitor_code,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        top_question: quest,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        user_answer: answer
+                                    });
+                                });
+                        });
+                    });
+                }
             }
             else { //registered user
                 //write userimps
@@ -6055,29 +6105,79 @@ db.open(function (err, db) {
         else if (links_res == 'no') {
             var answer = "1";
             if (visitor_code < 10) {
-                visitor_code = +answer;
-                questions.get_default_question(function (quest) {
-                    questions.add_no_vote2(quest._id, function (quest) {
-                        lols.get_lol(quest.frame, quest.impression, function (links) {
-                            res.render('lol2', {
-                                usercode: visitor_code,
-                                top_question: quest,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                yes_votes: quest.yes_visitor,
-                                no_votes: quest.no_visitor,
-                                link_list: links,
-                                x: quest.mm_no_x,
-                                y: quest.mm_no_y,
-                                file: quest.mm_file_no,
-                                mm_win_size: quest.mm_win_no_y,
-                                user_answer: answer
+                    visitor_code = +answer; //add yes_visitor code
+                    if ((visitor_code === 6) || (visitor_code === 8)) { //previous answer was "yes"
+                        //send in message stating that previous answer was "yes" and that is now being changed to "no"
+                        questions.get_default_question(function (quest) {
+                            questions.subtract_yes_vote2(quest._id, function (quest) {
+                                questions.add_no_vote2(quest._id, function (quest) {
+                                    lols.get_lol(quest.frame, quest.impression, function (links) {
+                                        res.render('lol', {
+                                            usercode: visitor_code,
+                                            frame: quest.frame,
+                                            impression: quest.impression,
+                                            url_text: quest.url_text,
+                                            top_question: quest,
+                                            yes_votes: quest.yes_visitor,
+                                            no_votes: quest.no_visitor,
+                                            link_list: links,
+                                            x: quest.mm_yes_x,
+                                            y: quest.mm_yes_y,
+                                            file: quest.mm_file_yes,
+                                            mm_win_size: quest.mm_win_yes_y,
+                                            user_answer: answer
+                                        });
+                                    });
+                                });
                             });
                         });
-                    });
-                });
-            }
+                    }
+                    else if ((visitor_code === 6) || (visitor_code === 8)) { //do nothing, already answered "no"
+                        //send in message stating that visitor already answered "no"
+                        questions.get_default_question(function (quest) {
+                            lols.get_lol(quest.frame, quest.impression, function (links) {
+                                res.render('lol', {
+                                    usercode: visitor_code,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    top_question: quest,
+                                    yes_votes: quest.yes_visitor,
+                                    no_votes: quest.no_visitor,
+                                    link_list: links,
+                                    x: quest.mm_yes_x,
+                                    y: quest.mm_yes_y,
+                                    file: quest.mm_file_yes,
+                                    mm_win_size: quest.mm_win_yes_y,
+                                    user_answer: answer
+                                });
+                            });
+                        });
+                    }
+                    else { //add no vote
+                        questions.get_default_question(function (quest) {
+                            questions.add_no_vote2(quest._id, function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol', {
+                                        usercode: visitor_code,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        top_question: quest,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        user_answer: answer
+                                    });
+                                });
+                            });
+                        });
+                    }
+              }
             else { //registered user
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
