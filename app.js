@@ -56,7 +56,6 @@ db.open(function (err, db) {
     app.get('/', function (req, res, next) {
         "use strict";
         var visitor_code = 2;
-        var quest;
         questions.get_default_question(function (quest) {
             if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                 res.render('home', {
@@ -220,8 +219,6 @@ db.open(function (err, db) {
             };
         });
     });
-
-    //add new_quest2 -- takes all 4 questions and parameters
 
     app.get('/new_question/:frame/:impression/:visitor/:url_text', function (req, res, next) {   
         var user_answer_text = "";
@@ -4137,6 +4134,9 @@ db.open(function (err, db) {
         var links_res = req.body.answer;
         var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor);
+        var prev_answer = req.body.code;
+        console.log(prev_answer);
+        var new_answer = "";
         if (typeof links_res == 'undefined') {
             var answer = "3";
             if (visitor_code < 10) {
@@ -4477,11 +4477,58 @@ db.open(function (err, db) {
             var answer = "0";
             if (visitor_code < 10) {
                 visitor_code = +answer; //add yes_visitor code
+                new_answer = "0";
                 questions.get_default_question(function (quest) {
-                    questions.add_yes_vote2(quest._id, function (quest) {
+                    if (prev_answer === "0") {
+                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                            res.render('lol', {
+                                usercode: visitor_code,
+                                win_name: new_answer,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                top_question: quest,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                                user_answer: answer
+                            });
+                        });
+                    }
+                    else if (prev_answer === "1") {
+                        questions.subtract_no_vote2(quest._id, function (quest) {
+                            questions.add_yes_vote2(quest._id, function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol', {
+                                        usercode: visitor_code,
+                                        win_name: new_answer,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        top_question: quest,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        user_answer: answer
+                                    });
+                                });
+                            });
+                        });
+                    }
+                    else if (prev_answer === "2") {
+                        questions.add_yes_vote2(quest._id, function (quest) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol', {
                                     usercode: visitor_code,
+                                    win_name: new_answer,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -4496,7 +4543,9 @@ db.open(function (err, db) {
                                     user_answer: answer
                                 });
                             });
-                    });
+                        });
+                    }
+                    else { } //error
                 });
             }
             else { //registered user
@@ -4516,6 +4565,7 @@ db.open(function (err, db) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol', {
                                                                     usercode: visitor_code,
+                                                                    previous_answer: prev_answer,
                                                                     top_question: quest,
                                                                     frame: quest.frame,
                                                                     impression: quest.impression,
@@ -4548,28 +4598,77 @@ db.open(function (err, db) {
             var answer = "1";
             if (visitor_code < 10) {
                 visitor_code = +answer;
+                new_answer = "1";
                 questions.get_default_question(function (quest) {
-                    questions.add_no_vote2(quest._id, function (quest) {
+                    if (prev_answer === "1") {
+                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                            res.render('lol2', {
+                                usercode: visitor_code,
+                                win_name: new_answer,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                top_question: quest,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                                user_answer: answer
+                            });
+                        });
+                    }
+                    else if (prev_answer === "0") {
+                        questions.subtract_yes_vote2(quest._id, function (quest) {
+                            questions.add_no_vote2(quest._id, function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol2', {
+                                        usercode: visitor_code,
+                                        win_name: new_answer,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        top_question: quest,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        user_answer: answer
+                                    });
+                                });
+                            });
+                        });
+                    }
+                    else if (prev_answer === "2") {
+                        questions.add_no_vote2(quest._id, function (quest) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol2', {
                                     usercode: visitor_code,
-                                    top_question: quest,
+                                    win_name: new_answer,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
+                                    top_question: quest,
                                     yes_votes: quest.yes_visitor,
                                     no_votes: quest.no_visitor,
                                     link_list: links,
-                                    x: quest.mm_no_x,
-                                    y: quest.mm_no_y,
-                                    file: quest.mm_file_no,
-                                    mm_win_size: quest.mm_win_no_y,
+                                    x: quest.mm_yes_x,
+                                    y: quest.mm_yes_y,
+                                    file: quest.mm_file_yes,
+                                    mm_win_size: quest.mm_win_yes_y,
                                     user_answer: answer
                                 });
+                            });
                         });
-                    }); 
+                    }
+                    else { } //error
                 });
-            }
+             }
             else { //registered user
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
@@ -4586,6 +4685,7 @@ db.open(function (err, db) {
                                                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                             res.render('lol2', {
                                                                                 usercode: visitor_code,
+                                                                                previous_answer: prev_answer,
                                                                                 top_question: quest,
                                                                                 frame: quest.frame,
                                                                                 impression: quest.impression,
@@ -4618,21 +4718,73 @@ db.open(function (err, db) {
             var answer = "2";
             if (visitor_code < 10) {
                 visitor_code = +answer;
+                new_answer = "2";
                 questions.get_default_question(function (quest) {
+                    if (prev_answer === "2") {
+                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                            res.render('lol3', {
+                                usercode: visitor_code,
+                                win_name: new_answer,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                top_question: quest,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                link_list: links,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                mm_win_size: quest.mm_win_yes_y,
+                                user_answer: answer
+                            });
+                        });
+                    }
+                    else if (prev_answer === "1") {
+                        questions.subtract_no_vote2(quest._id, function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol3', {
+                                        usercode: visitor_code,
+                                        win_name: new_answer,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        top_question: quest,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        user_answer: answer
+                                    });
+                                });
+                        });
+                    }
+                    else if (prev_answer === "0") {
+                        questions.subtract_yes_vote2(quest._id, function (quest) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol3', {
                                     usercode: visitor_code,
-                                    top_question: quest,
+                                    win_name: new_answer,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
+                                    top_question: quest,
                                     yes_votes: quest.yes_visitor,
                                     no_votes: quest.no_visitor,
                                     link_list: links,
-                                    mm_win_size: quest.mm_win_all_y,
+                                    x: quest.mm_yes_x,
+                                    y: quest.mm_yes_y,
+                                    file: quest.mm_file_yes,
+                                    mm_win_size: quest.mm_win_yes_y,
                                     user_answer: answer
                                 });
-                    });
+                            });
+                        });
+                    }
+                    else { } //error
                 });
             }
             else { //registered user
@@ -4665,1614 +4817,6 @@ db.open(function (err, db) {
                                                         });
                                                 });
                                             });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            }
-        }
-        else { //"Next Question" selected
-            // if usercode < 10, pop message that you have to register to get more questions
-            if (visitor_code < 10) {
-                if ((visitor_code == 0) || (visitor_code == 4)) {
-                    user_answer_text = "Yes"
-                };
-                if ((visitor_code == 1) || (visitor_code == 5)) {
-                    user_answer_text = "No"
-                };
-                if (visitor_code == 2) {
-                    user_answer_text = "No opinion"
-                };
-                if (visitor_code == 3) {
-                    user_answer_text = "Saw question but didn't answer"
-                };
-                questions.get_default_question(function (quest) {
-                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                        res.render('home5', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                        res.render('home11', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home17', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home23', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home29', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                        res.render('home35', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                        res.render('home41', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home47', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home53', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home59', {
-                            usercode: visitor_code,
-                            response: user_answer_text,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    };
-                });
-            }
-            else {//user
-                //check sequence field
-                users.get_sequence_number(visitor_code, function (metaframe_id) {
-                    if (metaframe_id === 0) {
-                        users.get_userimps_array(visitor_code, function (userimps_array) {
-                            questions.get_question(function (quest) {
-                                if (quest.length == userimps_array[0].impressions_array.length) { //user already answered all questions
-                                    users.get_current_user_question(visitor_code, function (current_quest) {
-                                        users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
-                                            if (user_answer == 0) {
-                                                user_answer_text = "Yes"
-                                            };
-                                            if (user_answer == 1) {
-                                                user_answer_text = "No"
-                                            };
-                                            if (user_answer == 2) {
-                                                user_answer_text = "No opinion"
-                                            };
-                                            if (user_answer == 3) {
-                                                user_answer_text = "Saw question but didn't answer"
-                                            };
-                                            questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                                                    res.render('home4', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                                                    res.render('home10', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                    res.render('home16', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                    res.render('home22', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                    res.render('home28', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                                                    res.render('home34', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                                                    res.render('home40', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                    res.render('home46', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                    res.render('home52', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                    res.render('home58', {
-                                                        usercode: visitor_code,
-                                                        response: user_answer_text,
-                                                        animated_gif: user_quest.mm,
-                                                        frame: user_quest.frame,
-                                                        impression: user_quest.impression,
-                                                        url_text: user_quest.url_text,
-                                                        quote: user_quest.text,
-                                                        quote2: user_quest.text2,
-                                                        quote3: user_quest.text3,
-                                                        quote4: user_quest.text4,
-                                                        head_win_size: user_quest.head_win_y,
-                                                        top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                };
-                                            });
-                                        });
-                                    });
-                                }
-                                else { //get next question
-                                    var found = 1; //yes
-                                    var question_index;
-                                    for (var i = 0; i < quest.length; i++) {
-                                        if (found == 1) {
-                                            found = 0;
-                                        }
-                                        else {
-                                            //found = 0
-                                            break;
-                                        };
-                                        for (var j = 0; j < userimps_array[0].impressions_array.length; j++) {
-                                            if (quest[i]._id.equals(userimps_array[0].impressions_array[j].question)) { //== compares with call by reference so you have to use this
-                                                found = 1;
-                                                break;
-                                            }
-                                            else {
-                                                question_index = i;
-                                            };
-                                        };
-                                    };
-                                    users.update_user_lol_state(visitor_code, 3, function (result) {
-                                        users.update_current_question(visitor_code, quest[question_index], function (result) {
-                                            if (result = true) {
-                                                if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
-                                                    res.render('home71', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home72', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home73', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home74', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home75', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
-                                                    res.render('home76', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home77', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home78', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home79', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
-                                                    res.render('home80', {
-                                                        usercode: visitor_code,
-                                                        animated_gif: quest[question_index].mm,
-                                                        frame: quest[question_index].frame,
-                                                        impression: quest[question_index].impression,
-                                                        url_text: quest[question_index].url_text,
-                                                        quote: quest[question_index].text,
-                                                        quote2: quest[question_index].text2,
-                                                        quote3: quest[question_index].text3,
-                                                        quote4: quest[question_index].text4,
-                                                        head_win_size: quest[question_index].head_win_y,
-                                                        top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
-                                                    });
-                                                };
-                                            }
-                                        })
-                                    });
-                                };
-                            });
-                        });
-                    }
-                    else {
-                        //metaframe_id > 0
-                        var user_answer_text = ""
-                        var question_index = -1;
-                        questions.get_question(function (quest) {
-                            questions.get_sequence_questions(quest, metaframe_id, function (seq_quests) {
-                                users.build_userimps_list(visitor_code, quest, function (userimps_list) {
-                                    for (var i = 0; i < seq_quests.length; i++) {
-                                        if (question_index != -1) {
-                                            break;
-                                        };
-                                        question_index = i;
-                                        for (var j = 0; j < userimps_list.length; j++) {
-                                            if ((seq_quests[i]) === (userimps_list[j]._id)) {
-                                                question_index = -1;
-                                                break;
-                                            }
-                                        }
-                                    };
-                                    if (question_index === -1) { //there is no seq question not already seen
-                                        users.update_sequence_number(visitor_code, 0, function (sequence_set_result) {
-                                            users.get_current_user_question(visitor_code, function (current_quest) {
-                                                users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
-                                                    if (user_answer == 0) {
-                                                        user_answer_text = "Yes"
-                                                    };
-                                                    if (user_answer == 1) {
-                                                        user_answer_text = "No"
-                                                    };
-                                                    if (user_answer == 2) {
-                                                        user_answer_text = "No opinion"
-                                                    };
-                                                    if (user_answer == 3) {
-                                                        user_answer_text = "Saw question but didn't answer"
-                                                    };
-                                                    questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                                                            res.render('home91', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                                                            res.render('home92', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                            res.render('home93', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                            res.render('home94', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                            res.render('home95', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                                                            res.render('home96', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                                                            res.render('home97', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                            res.render('home98', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                            res.render('home99', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        }
-                                                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                                            res.render('home100', {
-                                                                usercode: visitor_code,
-                                                                response: user_answer_text,
-                                                                animated_gif: user_quest.mm,
-                                                                frame: user_quest.frame,
-                                                                impression: user_quest.impression,
-                                                                url_text: user_quest.url_text,
-                                                                quote: user_quest.text,
-                                                                quote2: user_quest.text2,
-                                                                quote3: user_quest.text3,
-                                                                quote4: user_quest.text4,
-                                                                head_win_size: user_quest.head_win_y,
-                                                                top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
-                                                            });
-                                                        };
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    }
-                                    else { //found the first seq question not seen = question_index into sequence array
-                                        users.update_sequence_number(visitor_code, metaframe_id, function (sequence_set_result) {
-                                            users.update_user_lol_state(visitor_code, 3, function (result) {
-                                                questions.get_user_question(seq_quests[question_index], function (user_seq_quest) {
-                                                    users.update_current_question(visitor_code, user_seq_quest, function (result) {
-                                                        if (result = true) {
-                                                            if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
-                                                                res.render('home71', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home72', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home73', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home74', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home75', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
-                                                                res.render('home76', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home77', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home78', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home79', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
-                                                                res.render('home80', {
-                                                                    usercode: visitor_code,
-                                                                    animated_gif: user_seq_quest.mm,
-                                                                    frame: user_seq_quest.frame,
-                                                                    impression: user_seq_quest.impression,
-                                                                    url_text: user_seq_quest.url_text,
-                                                                    quote: user_seq_quest.text,
-                                                                    quote2: user_seq_quest.text2,
-                                                                    quote3: user_seq_quest.text3,
-                                                                    quote4: user_seq_quest.text4,
-                                                                    head_win_size: user_seq_quest.head_win_y,
-                                                                    top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                                                });
-                                                            };
-                                                        }
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    }
-                                });
-                            });
-                        });
-                    }
-                });
-            }
-        }; //main conditional
-    }); //post call
-
-    app.post('/links3/:visitor', function (req, res, next) {
-        var links_res = req.body.answer;
-        var code = req.body.code;
-        var user_answer_text = "";
-        var visitor_code = +code;
-        if (typeof links_res == 'undefined') {
-            var answer = "3";
-            if (visitor_code < 10) {
-                visitor_code = +answer;
-                questions.get_default_question(function (quest) {
-                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                        res.render('home121', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                        res.render('home122', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home123', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home124', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home125', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                        res.render('home126', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                        res.render('home127', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home128', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home129', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    }
-                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                        res.render('home130', {
-                            usercode: visitor_code,
-                            animated_gif: quest.mm,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            quote: quest.text,
-                            quote2: quest.text2,
-                            quote3: quest.text3,
-                            quote4: quest.text4,
-                            head_win_size: quest.head_win_y,
-                            top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
-                        });
-                    };
-                });
-            }
-            else {
-                users.update_user_lol_state(visitor_code, 3, function (result) {
-                    users.get_current_user_question(visitor_code, function (current_quest) {
-                        questions.get_user_question(current_quest.current_question, function (user_quest) {
-                            if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                                res.render('home3', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                                res.render('home9', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                res.render('home15', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                res.render('home21', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                res.render('home27', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
-                                res.render('home33', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
-                                res.render('home39', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                res.render('home45', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                res.render('home51', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            }
-                            else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
-                                res.render('home57', {
-                                    usercode: visitor_code,
-                                    animated_gif: user_quest.mm,
-                                    frame: user_quest.frame,
-                                    impression: user_quest.impression,
-                                    url_text: user_quest.url_text,
-                                    quote: user_quest.text,
-                                    quote2: user_quest.text2,
-                                    quote3: user_quest.text3,
-                                    quote4: user_quest.text4,
-                                    head_win_size: user_quest.head_win_y,
-                                    top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
-                                });
-                            };
-                        });
-                    });
-                });
-            };
-        }
-        else if (links_res == 'yes') {
-            var answer = "0";
-            if (visitor_code < 10) {
-                visitor_code = +answer; //add yes_visitor code
-                if ((visitor_code === 7) || (visitor_code === 9)) { //previous answer was "no"
-                    //send in message stating that previous answer was "no" and that is now being changed to "yes"
-                    questions.get_default_question(function (quest) {
-                        questions.subtract_no_vote2(quest._id, function (quest) {
-                            questions.add_yes_vote2(quest._id, function (quest) {
-                                lols.get_lol(quest.frame, quest.impression, function (links) {
-                                    res.render('lol', {
-                                        usercode: visitor_code,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        top_question: quest,
-                                        yes_votes: quest.yes_visitor,
-                                        no_votes: quest.no_visitor,
-                                        link_list: links,
-                                        x: quest.mm_yes_x,
-                                        y: quest.mm_yes_y,
-                                        file: quest.mm_file_yes,
-                                        mm_win_size: quest.mm_win_yes_y,
-                                        user_answer: answer
-                                    });
-                                });
-                            });
-                        });
-                    });
-                }
-                else if ((visitor_code === 6) || (visitor_code === 8)) { //do nothing, already answered "yes"
-                    //send in message stating that visitor already answered "yes"
-                    questions.get_default_question(function (quest) {
-                                lols.get_lol(quest.frame, quest.impression, function (links) {
-                                    res.render('lol', {
-                                        usercode: visitor_code,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        top_question: quest,
-                                        yes_votes: quest.yes_visitor,
-                                        no_votes: quest.no_visitor,
-                                        link_list: links,
-                                        x: quest.mm_yes_x,
-                                        y: quest.mm_yes_y,
-                                        file: quest.mm_file_yes,
-                                        mm_win_size: quest.mm_win_yes_y,
-                                        user_answer: answer
-                                    });
-                        });
-                    });
-                }
-                else { //add yes vote
-                    questions.get_default_question(function (quest) {
-                            questions.add_yes_vote2(quest._id, function (quest) {
-                                lols.get_lol(quest.frame, quest.impression, function (links) {
-                                    res.render('lol', {
-                                        usercode: visitor_code,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        top_question: quest,
-                                        yes_votes: quest.yes_visitor,
-                                        no_votes: quest.no_visitor,
-                                        link_list: links,
-                                        x: quest.mm_yes_x,
-                                        y: quest.mm_yes_y,
-                                        file: quest.mm_file_yes,
-                                        mm_win_size: quest.mm_win_yes_y,
-                                        user_answer: answer
-                                    });
-                                });
-                        });
-                    });
-                }
-            }
-            else { //registered user
-                //write userimps
-                users.get_current_user_question(visitor_code, function (question_id) {
-                    questions.get_user_question(question_id.current_question, function (quest) {
-                        users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
-                            users.get_current_user_question(visitor_code, function (question_id) {
-                                questions.cancel_existing_vote(quest, question_id, function (result) {
-                                    questions.get_user_question(question_id.current_question, function (quest) {
-                                        users.update_user_lol_state_and_vote_status(visitor_code, 0, question_id.current_question, function (result) {
-                                            users.get_current_user_question(visitor_code, function (question_id) {
-                                                questions.add_yes_vote(quest._id, function (result) {
-                                                    questions.get_user_question(question_id.current_question, function (quest) {
-                                                        questions.get_yes_votes(quest._id, function (yes_vote) {
-                                                            questions.get_no_votes(quest._id, function (no_vote) {
-                                                                lols.get_lol(quest.frame, quest.impression, function (links) {
-                                                                    res.render('lol', {
-                                                                        usercode: visitor_code,
-                                                                        top_question: quest,
-                                                                        frame: quest.frame,
-                                                                        impression: quest.impression,
-                                                                        url_text: quest.url_text,
-                                                                        yes_votes: yes_vote,
-                                                                        no_votes: no_vote,
-                                                                        link_list: links,
-                                                                        x: quest.mm_yes_x,
-                                                                        y: quest.mm_yes_y,
-                                                                        file: quest.mm_file_yes,
-                                                                        mm_win_size: quest.mm_win_yes_y,
-                                                                        user_answer: answer, //setting answer in template, but not used later in the program
-                                                                    });
-                                                                });
-                                                            });
-                                                        });
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            }
-        }
-        else if (links_res == 'no') {
-            var answer = "1";
-            if (visitor_code < 10) {
-                    visitor_code = +answer; //add yes_visitor code
-                    if ((visitor_code === 6) || (visitor_code === 8)) { //previous answer was "yes"
-                        //send in message stating that previous answer was "yes" and that is now being changed to "no"
-                        questions.get_default_question(function (quest) {
-                            questions.subtract_yes_vote2(quest._id, function (quest) {
-                                questions.add_no_vote2(quest._id, function (quest) {
-                                    lols.get_lol(quest.frame, quest.impression, function (links) {
-                                        res.render('lol', {
-                                            usercode: visitor_code,
-                                            frame: quest.frame,
-                                            impression: quest.impression,
-                                            url_text: quest.url_text,
-                                            top_question: quest,
-                                            yes_votes: quest.yes_visitor,
-                                            no_votes: quest.no_visitor,
-                                            link_list: links,
-                                            x: quest.mm_yes_x,
-                                            y: quest.mm_yes_y,
-                                            file: quest.mm_file_yes,
-                                            mm_win_size: quest.mm_win_yes_y,
-                                            user_answer: answer
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    }
-                    else if ((visitor_code === 6) || (visitor_code === 8)) { //do nothing, already answered "no"
-                        //send in message stating that visitor already answered "no"
-                        questions.get_default_question(function (quest) {
-                            lols.get_lol(quest.frame, quest.impression, function (links) {
-                                res.render('lol', {
-                                    usercode: visitor_code,
-                                    frame: quest.frame,
-                                    impression: quest.impression,
-                                    url_text: quest.url_text,
-                                    top_question: quest,
-                                    yes_votes: quest.yes_visitor,
-                                    no_votes: quest.no_visitor,
-                                    link_list: links,
-                                    x: quest.mm_yes_x,
-                                    y: quest.mm_yes_y,
-                                    file: quest.mm_file_yes,
-                                    mm_win_size: quest.mm_win_yes_y,
-                                    user_answer: answer
-                                });
-                            });
-                        });
-                    }
-                    else { //add no vote
-                        questions.get_default_question(function (quest) {
-                            questions.add_no_vote2(quest._id, function (quest) {
-                                lols.get_lol(quest.frame, quest.impression, function (links) {
-                                    res.render('lol', {
-                                        usercode: visitor_code,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        top_question: quest,
-                                        yes_votes: quest.yes_visitor,
-                                        no_votes: quest.no_visitor,
-                                        link_list: links,
-                                        x: quest.mm_yes_x,
-                                        y: quest.mm_yes_y,
-                                        file: quest.mm_file_yes,
-                                        mm_win_size: quest.mm_win_yes_y,
-                                        user_answer: answer
-                                    });
-                                });
-                            });
-                        });
-                    }
-              }
-            else { //registered user
-                users.get_current_user_question(visitor_code, function (question_id) {
-                    questions.get_user_question(question_id.current_question, function (quest) {
-                        users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
-                            users.get_current_user_question(visitor_code, function (question_id) {
-                                questions.cancel_existing_vote(quest, question_id, function (result) {
-                                    questions.get_user_question(question_id.current_question, function (quest) {
-                                        users.update_user_lol_state_and_vote_status(visitor_code, 1, question_id.current_question, function (result) {
-                                            users.get_current_user_question(visitor_code, function (question_id) {
-                                                questions.add_no_vote(quest._id, function (result) {
-                                                    questions.get_user_question(question_id.current_question, function (quest) {
-                                                        questions.get_no_votes(quest._id, function (no_vote) {
-                                                            questions.get_yes_votes(quest._id, function (yes_vote) {
-                                                                lols.get_lol(quest.frame, quest.impression, function (links) {
-                                                                    res.render('lol2', {
-                                                                        usercode: visitor_code,
-                                                                        top_question: quest,
-                                                                        frame: quest.frame,
-                                                                        impression: quest.impression,
-                                                                        url_text: quest.url_text,
-                                                                        yes_votes: yes_vote,
-                                                                        no_votes: no_vote,
-                                                                        link_list: links,
-                                                                        x: quest.mm_no_x,
-                                                                        y: quest.mm_no_y,
-                                                                        file: quest.mm_file_no,
-                                                                        mm_win_size: quest.mm_win_no_y,
-                                                                        user_answer: 1
-                                                                    });
-                                                                });
-                                                            });
-                                                        });
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            }
-        }
-        else if (links_res == 'no opinion') {
-            var answer = "2";
-            if (visitor_code < 10) {
-                visitor_code = +answer;
-                questions.get_default_question(function (quest) {
-                    lols.get_lol(quest.frame, quest.impression, function (links) {
-                        res.render('lol3', {
-                            usercode: visitor_code,
-                            top_question: quest,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            yes_votes: quest.yes_visitor,
-                            no_votes: quest.no_visitor,
-                            link_list: links,
-                            mm_win_size: quest.mm_win_all_y,
-                            user_answer: answer
-                        });
-                    });
-                });
-            }
-            else { //registered user
-                //write userimps
-                users.get_current_user_question(visitor_code, function (question_id) {
-                    questions.get_user_question(question_id.current_question, function (quest) {
-                        users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
-                            users.get_current_user_question(visitor_code, function (question_id) {
-                                questions.cancel_existing_vote(quest, question_id, function (result) {
-                                    questions.get_user_question(question_id.current_question, function (quest) {
-                                        users.update_user_lol_state_and_vote_status(visitor_code, 2, question_id.current_question, function (result) {
-                                            users.get_current_user_question(visitor_code, function (question_id) {
-                                                questions.get_yes_votes(quest._id, function (yes_vote) {
-                                                    questions.get_no_votes(quest._id, function (no_vote) {
-                                                        lols.get_lol(quest.frame, quest.impression, function (links) {
-                                                            res.render('lol3', {
-                                                                usercode: visitor_code,
-                                                                top_question: quest,
-                                                                frame: quest.frame,
-                                                                impression: quest.impression,
-                                                                url_text: quest.url_text,
-                                                                yes_votes: yes_vote,
-                                                                no_votes: no_vote,
-                                                                link_list: links,
-                                                                mm_win_size: quest.mm_win_all_y,
-                                                                user_answer: 2 //setting answer in template, but not used later in the program
-                                                            });
-                                                        });
-                                                    });
-                                                });
-                                            });
-                                        });
                                     });
                                 });
                             });

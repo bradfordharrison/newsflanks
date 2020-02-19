@@ -236,6 +236,12 @@
          </p>
 
       {% endfor %}
+	<script>
+        var code = window.name;
+        document.write("<input type='hidden' name='code' value='");
+        document.write(code);
+        document.writeln("'>");
+    </script>
       <input type="submit" value="Submit">
    </form>
    </font></div>

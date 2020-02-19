@@ -237,6 +237,12 @@
 
       {% endfor %}
       <input type="submit" value="Submit">
+	<script>
+        var code = window.name;
+        document.write("<input type='hidden' name='code' value='");
+        document.write(code);
+        document.writeln("'>");
+    </script>
    </form>
    </font></div>
 {% include "includes/footer.html" %}
