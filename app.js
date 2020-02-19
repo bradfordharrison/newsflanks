@@ -4135,7 +4135,6 @@ db.open(function (err, db) {
         var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor);
         var prev_answer = req.body.code;
-        console.log(prev_answer);
         var new_answer = "";
         if (typeof links_res == 'undefined') {
             var answer = "3";
