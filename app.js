@@ -6022,8 +6022,8 @@ db.open(function (err, db) {
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
-                                yes_votes: quest.yes_visitor,
-                                no_votes: quest.no_visitor,
+                                yes_votes: quest.yes,
+                                no_votes: quest.no,
                                 link_list: links,
                                 mm_win_size: quest.mm_win_all_y,
                                 user_answer: answer
