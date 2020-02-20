@@ -119,6 +119,15 @@ function QuestionDAO(database) {
             });
     };
 
+    this.get_yes_visitor_votes = function (id, callback) {
+        "use strict";
+        this.db.collection('question').find({ "_id": id })
+            .toArray(function (err, number) {
+                assert.equal(null, err);
+                callback(number[0].yes_visitor);
+            });
+    };
+
     this.add_yes_vote = function (id, callback) {
         "use strict";
         var result = true;
@@ -161,6 +170,15 @@ function QuestionDAO(database) {
             .toArray(function (err, number) {
                 assert.equal(null, err);
                 callback(number[0].no);
+            });
+    };
+
+    this.get_no_visitor_votes = function (id, callback) {
+        "use strict";
+        this.db.collection('question').find({ "_id": id })
+            .toArray(function (err, number) {
+                assert.equal(null, err);
+                callback(number[0].no_visitor);
             });
     };
 

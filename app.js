@@ -5966,7 +5966,6 @@ db.open(function (err, db) {
             var answer = "0";
             visitor_code = +answer;
             questions.get_user_question(question_code, function (quest) { // look up with ID
-                questions.add_yes_vote2(quest._id, function (quest) {
                     lols.get_lol(quest.frame, quest.impression, function (links) {
                         res.render('lol10', {
                             question: question_code,
@@ -5975,8 +5974,8 @@ db.open(function (err, db) {
                             frame: quest.frame,
                             impression: quest.impression,
                             url_text: quest.url_text,
-                            yes_votes: quest.yes_visitor,
-                            no_votes: quest.no_visitor,
+                            yes_votes: quest.yes,
+                            no_votes: quest.no,
                             link_list: links,
                             x: quest.mm_yes_x,
                             y: quest.mm_yes_y,
@@ -5985,14 +5984,12 @@ db.open(function (err, db) {
                             user_answer: answer
                         });
                     });
-                });
             });
         }
         else if (links_res == 'no') {
             var answer = "1";
             visitor_code = +answer;
             questions.get_user_question(question_code, function (quest) { //look up with ID
-                questions.add_no_vote2(quest._id, function (quest) {
                     lols.get_lol(quest.frame, quest.impression, function (links) {
                         res.render('lol11', {
                             question: question_code,
@@ -6001,8 +5998,8 @@ db.open(function (err, db) {
                             frame: quest.frame,
                             impression: quest.impression,
                             url_text: quest.url_text,
-                            yes_votes: quest.yes_visitor,
-                            no_votes: quest.no_visitor,
+                            yes_votes: quest.yes,
+                            no_votes: quest.no,
                             link_list: links,
                             x: quest.mm_no_x,
                             y: quest.mm_no_y,
@@ -6011,7 +6008,6 @@ db.open(function (err, db) {
                             user_answer: answer
                         });
                     });
-                });
             });
         }
         else if (links_res == 'no opinion') {
@@ -6069,8 +6065,8 @@ db.open(function (err, db) {
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
-                                    yes_votes: quest.yes,
-                                    no_votes: quest.no,
+                                    yes_votes: quest.yes_visitor,
+                                    no_votes: quest.no_visitor,
                                     link_list: links,
                                     x: quest.mm_yes_x,
                                     y: quest.mm_yes_y,
@@ -6089,8 +6085,8 @@ db.open(function (err, db) {
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
-                                    yes_votes: quest.yes,
-                                    no_votes: quest.no,
+                                    yes_votes: quest.yes_visitor,
+                                    no_votes: quest.no_visitor,
                                     link_list: links,
                                     x: quest.mm_no_x,
                                     y: quest.mm_no_y,
@@ -6102,8 +6098,8 @@ db.open(function (err, db) {
                     }
                     else if (visitor_code == 2) {
                         questions.get_default_question(function (quest) {
-                            questions.get_yes_votes(quest._id, function (yes_vote) {
-                                questions.get_no_votes(quest._id, function (no_vote) {
+                            questions.get_yes_visitor_votes(quest._id, function (yes_vote) {
+                                questions.get_no_visitor_votes(quest._id, function (no_vote) {
                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                         res.render('lol5', {
                                             usercode: visitor_code,
@@ -6123,8 +6119,8 @@ db.open(function (err, db) {
                     }
                     else if (visitor_code == 3) {
                         questions.get_default_question(function (quest) {
-                            questions.get_yes_votes(quest._id, function (yes_vote) {
-                                questions.get_no_votes(quest._id, function (no_vote) {
+                            questions.get_yes_visitor_votes(quest._id, function (yes_vote) {
+                                questions.get_no_visitor_votes(quest._id, function (no_vote) {
                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                         res.render('lol4', {
                                             usercode: visitor_code,
