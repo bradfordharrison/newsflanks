@@ -115,7 +115,10 @@ function QuestionDAO(database) {
         this.db.collection('question').find({ "_id": id })
             .toArray(function (err, number) {
                 assert.equal(null, err);
-                callback(number[0].yes);
+                if (number[0].yes != undefined)
+                    callback(number[0].yes);
+                else
+                    callback(2);
             });
     };
 
