@@ -115,7 +115,7 @@ function QuestionDAO(database) {
         this.db.collection('question').find({ "_id": id })
             .toArray(function (err, number) {
                 assert.equal(null, err);
-                if (number[0].yes != undefined)
+                if (number[0] != undefined)
                     callback(number[0].yes);
                 else
                     callback(2);
