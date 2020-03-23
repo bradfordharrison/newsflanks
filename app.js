@@ -6573,29 +6573,33 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/flip2/:question/:visitor', function (req, res, next) { //still need to display default if not valid question code (error)
+    app.get('/flip2/:question/:visitor', function (req, res, next) { 
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var question_code = ObjectID.createFromHexString(req.params.question);
-        questions.get_user_question(question_code, function (quest) {
-            questions.get_yes_votes(question_code, function (yes_vote) {
-                questions.get_no_votes(question_code, function (no_vote) {
-                    lols.get_lol(quest.frame, quest.impression, function (links) {
-                        res.render('lol9', {
-                            question: question_code,
-                            usercode: visitor_code,
-                            top_question: quest,
-                            frame: quest.frame,
-                            impression: quest.impression,
-                            url_text: quest.url_text,
-                            yes_votes: yes_vote,
-                            no_votes: no_vote,
-                            mm_win_size: quest.mm_win_all_y,
-                            link_list: links
+        questions.check_valid_question2(question_code, function (found) { //check for valid _id
+            if (found) {
+                questions.get_user_question(question_code, function (quest) {
+                    questions.get_yes_votes(question_code, function (yes_vote) {
+                        questions.get_no_votes(question_code, function (no_vote) {
+                            lols.get_lol(quest.frame, quest.impression, function (links) {
+                                res.render('lol9', {
+                                    question: question_code,
+                                    usercode: visitor_code,
+                                    top_question: quest,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    yes_votes: yes_vote,
+                                    no_votes: no_vote,
+                                    mm_win_size: quest.mm_win_all_y,
+                                    link_list: links
+                                });
+                            });
                         });
                     });
                 });
-            });
+            };
         });
     });
 

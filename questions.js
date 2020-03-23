@@ -233,6 +233,15 @@ function QuestionDAO(database) {
             });
     };
 
+    this.check_valid_question2 = function (id_in, callback) {
+        var found = false;
+        this.db.collection('question').find({ "_id": id_in })
+            .toArray(function (err, check_question) {
+                assert.equal(null, err);
+                if (check_question.length === 1) found = true;
+                callback(found);
+            });
+    };
 
     this.get_front_questions = function (callback) {
         "use strict";
