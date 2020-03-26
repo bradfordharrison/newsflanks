@@ -254,19 +254,9 @@ function BarGraph(ctx) {
       document.writeln("</div>");
    }
 </script>
-{% if win_name == '0' %}
-<script>
-	window.name = "0";
-</script>
-{% elif win_name == '1' %}
-<script>
-	window.name = "1";
-</script>
-{% else %}
 <script>
 	window.name = "2";
 </script>
-{% endif %}
 <div class="table-border">
 <script src="../static/js/jquery.js"></script>
 <div id="users-device-size">

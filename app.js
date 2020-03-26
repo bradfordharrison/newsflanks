@@ -4135,7 +4135,6 @@ db.open(function (err, db) {
         var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor);
         var prev_answer = req.body.code;
-        var new_answer = "";
         if (typeof links_res == 'undefined') {
             var answer = "3";
             if (visitor_code < 10) {
@@ -4476,13 +4475,11 @@ db.open(function (err, db) {
             var answer = "0";
             if (visitor_code < 10) {
                 visitor_code = +answer; //add yes_visitor code
-                new_answer = "0";
                 questions.get_default_question(function (quest) {
                     if (prev_answer === "0") {
                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol', {
                                 usercode: visitor_code,
-                                win_name: new_answer,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
@@ -4504,7 +4501,6 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol', {
                                         usercode: visitor_code,
-                                        win_name: new_answer,
                                         frame: quest.frame,
                                         impression: quest.impression,
                                         url_text: quest.url_text,
@@ -4527,7 +4523,6 @@ db.open(function (err, db) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol', {
                                     usercode: visitor_code,
-                                    win_name: new_answer,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -4597,13 +4592,11 @@ db.open(function (err, db) {
             var answer = "1";
             if (visitor_code < 10) {
                 visitor_code = +answer;
-                new_answer = "1";
                 questions.get_default_question(function (quest) {
                     if (prev_answer === "1") {
                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol2', {
                                 usercode: visitor_code,
-                                win_name: new_answer,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
@@ -4625,7 +4618,6 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol2', {
                                         usercode: visitor_code,
-                                        win_name: new_answer,
                                         frame: quest.frame,
                                         impression: quest.impression,
                                         url_text: quest.url_text,
@@ -4648,7 +4640,6 @@ db.open(function (err, db) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol2', {
                                     usercode: visitor_code,
-                                    win_name: new_answer,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -4717,13 +4708,11 @@ db.open(function (err, db) {
             var answer = "2";
             if (visitor_code < 10) {
                 visitor_code = +answer;
-                new_answer = "2";
                 questions.get_default_question(function (quest) {
                     if (prev_answer === "2") {
                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol3', {
                                 usercode: visitor_code,
-                                win_name: new_answer,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
@@ -4744,7 +4733,6 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol3', {
                                         usercode: visitor_code,
-                                        win_name: new_answer,
                                         frame: quest.frame,
                                         impression: quest.impression,
                                         url_text: quest.url_text,
@@ -4766,7 +4754,6 @@ db.open(function (err, db) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol3', {
                                     usercode: visitor_code,
-                                    win_name: new_answer,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
