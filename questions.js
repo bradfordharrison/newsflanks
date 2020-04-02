@@ -133,10 +133,16 @@ function QuestionDAO(database) {
 
     this.add_yes_vote = function (id, callback) {
         "use strict";
-        var result = true;
-        this.db.collection('question').updateOne({ "_id": id },
-            { "$inc": { "yes": 1 } });
-        callback(result);
+        this.db.collection('question').findOneAndUpdate(
+            { "_id": id },
+            { "$inc": { "yes": 1 } },
+            {
+                returnOriginal: false
+            },
+            function (err, result) {
+                assert.equal(null, err);
+                callback(result.value)
+            });
     };
 
     this.add_yes_vote2 = function (id, callback) {
@@ -189,10 +195,17 @@ function QuestionDAO(database) {
     };
 
     this.add_no_vote = function (id, callback) {
-        var result = true;
-        this.db.collection('question').updateOne({ "_id": id },
-            { "$inc": { "no": 1 } });
-        callback(result);
+        "use strict";
+        this.db.collection('question').findOneAndUpdate(
+            { "_id": id },
+            { "$inc": { "no": 1 } },
+            {
+                returnOriginal: false
+            },
+            function (err, result) {
+                assert.equal(null, err);
+                callback(result.value)
+            });
     };
 
     this.add_no_vote2 = function (id, callback) {
