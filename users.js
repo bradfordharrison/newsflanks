@@ -68,12 +68,22 @@ function UserDAO(database) {
         };
 
         if (current_answer === 0) {  // score answer
-            this.db.collection("question").updateOne({ "_id": current_quest._id },
-                { "$inc": { "yes": 1 } });
+            this.db.collection('question').findOneAndUpdate(
+                { "_id": current_quest._id },
+                { "$inc": { "yes": 1 } },
+                {
+                    returnOriginal: false
+                });
         }
+
+
         if (current_answer === 1) {  // score answer
-            this.db.collection("question").updateOne({ "_id": current_quest._id },
-                { "$inc": { "no": 1 } });
+            this.db.collection('question').findOneAndUpdate(
+                { "_id": current_quest._id },
+                { "$inc": { "no": 1 } },
+                {
+                    returnOriginal: false
+                });
         }
 
 
@@ -287,12 +297,20 @@ function UserDAO(database) {
            this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
                { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": current_response, "date": new Date(), "wayin": 0 }] } } });
            if (current_response === 0) {
-               this.db.collection("question").updateOne({ "_id": current_question._id },
-                   { "$inc": { "yes": 1 } });
+               this.db.collection('question').findOneAndUpdate(
+                   { "_id": current_question._id },
+                   { "$inc": { "yes": 1 } },
+                   {
+                       returnOriginal: false
+                   });
            }
            if (current_response === 1) {
-               this.db.collection("question").updateOne({ "_id": current_question._id },
-                   { "$inc": { "no": 1 } });
+               this.db.collection('question').findOneAndUpdate(
+                   { "_id": current_question._id },
+                   { "$inc": { "no": 1 } },
+                   {
+                       returnOriginal: false
+                   });
            }
        }
 
@@ -300,20 +318,36 @@ function UserDAO(database) {
            for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
                if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
                    if (userimps_array[0].impressions_array[i].answer === 0) {
-                       this.db.collection("question").updateOne({ "_id": current_question._id },
-                           { "$inc": { "yes": -1 } });
+                       this.db.collection('question').findOneAndUpdate(
+                           { "_id": current_question._id },
+                           { "$inc": { "yes": -1 } },
+                           {
+                               returnOriginal: false
+                           });
                    }
                    if (userimps_array[0].impressions_array[i].answer === 1) {
-                       this.db.collection("question").updateOne({ "_id": current_question._id },
-                           { "$inc": { "no": -1 } });
+                       this.db.collection('question').findOneAndUpdate(
+                           { "_id": current_question._id },
+                           { "$inc": { "no": -1 } },
+                           {
+                               returnOriginal: false
+                           });
                    }
                    if (current_response === 0) {
-                       this.db.collection("question").updateOne({ "_id": current_question._id },
-                           { "$inc": { "yes": 1 } });
+                       this.db.collection('question').findOneAndUpdate(
+                           { "_id": current_question._id },
+                           { "$inc": { "yes": 1 } },
+                           {
+                               returnOriginal: false
+                           });
                    }
                    if (current_response === 1) {
-                       this.db.collection("question").updateOne({ "_id": current_question._id },
-                           { "$inc": { "no": 1 } });
+                       this.db.collection('question').findOneAndUpdate(
+                           { "_id": current_question._id },
+                           { "$inc": { "no": 1 } },
+                           {
+                               returnOriginal: false
+                           });     
                    }
                    break;
                }

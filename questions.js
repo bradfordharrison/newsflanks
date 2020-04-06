@@ -93,14 +93,22 @@ function QuestionDAO(database) {
         var result = false;
         for (var i = 0; i < userimps_array.impressions_array.length; i++) {
             if (quest._id.equals(userimps_array.impressions_array[i].question)) { //== compares with call by reference so you have to use this
-                if ((userimps_array.impressions_array[i].answer) === 0) {
-                    this.db.collection("question").updateOne({ "_id": quest._id },
-                        { "$inc": { "yes": -1 } });
+                if ((userimps_array.impressions_array[i].answer) === 0) {                 
+                    this.db.collection('question').findOneAndUpdate(
+                        { "_id": quest._id },
+                        { "$inc": { "yes": -1 } },
+                        {
+                            returnOriginal: false
+                        });
                     result = true;
                 }
                 if ((userimps_array.impressions_array[i].answer) === 1) {
-                    this.db.collection("question").updateOne({ "_id": quest._id },
-                        { "$inc": { "no": -1 } });
+                    this.db.collection('question').findOneAndUpdate(
+                        { "_id": quest._id },
+                        { "$inc": { "no": -1 } },
+                        {
+                            returnOriginal: false
+                        });
                     result = true;
                 }
                 break;
