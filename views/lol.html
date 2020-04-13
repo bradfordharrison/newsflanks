@@ -452,8 +452,9 @@ function BarGraph(ctx) {
      <font color="#006500" size="4">Links that support &quot;Yes&quot; answer:</font><br /><br />
 
      {% for link in link_list %}
-         <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}">&nbsp{{link.content_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/0"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.content_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/0"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.content_dislikes}}&nbsp;<br></font>
+         <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}" target="_blank">&nbsp{{link.content_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/0"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.content_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/0"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.content_dislikes}}&nbsp;<br></font>
      {% endfor %}
+
 </div>
 <script language="javascript">
 function popup(mypage,myname,w,h,features) {
