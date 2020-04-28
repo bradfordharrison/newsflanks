@@ -9149,7 +9149,7 @@ app.get('/trending/:visitor', function (req, res, next) {
         };
     });
 
-    app.get('/links2/:visitor', function (req, res, next) {
+    app.get('/links2/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = 2;
         questions.get_front_questions(function (quest) {
