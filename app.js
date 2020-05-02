@@ -4353,14 +4353,6 @@ db.open(function (err, db) {
         };
     });
 
-   app.get('/track2/:visitor', function (req, res, next) {
-        "use strict";
-        var visitor_code = 3;
-        res.render('login', {
-           usercode: visitor_code
-       });
-   });
-
     app.post('/logout/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
@@ -10232,15 +10224,6 @@ app.get('/trending/:visitor', function (req, res, next) {
                 };
             });
         };
-    });
-
-
-    app.get('/search2/:visitor', function (req, res, next) {
-        "use strict";
-        var visitor_code = 3;
-        res.render('search', {
-            usercode: visitor_code
-        });
     });
 
     app.get('/search_query/:visitor', function (req, res, next) {
