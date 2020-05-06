@@ -4532,6 +4532,12 @@ db.open(function (err, db) {
         var name_res_caps = name_res.toUpperCase();
         var name_res2_caps = name_res2.toUpperCase();
         var default_answer = req.body.code;
+        var answer_code = default_answer;
+
+        if (default_answer === "4") { answer_code = "0" };
+        if (default_answer === "5") { answer_code = "1" };
+
+
         if ((name_res_caps != name_res2_caps) || (name_res.length < 1)) {
             res.render('username_no_match', {
                 usercode: visitor_code
@@ -4551,7 +4557,7 @@ db.open(function (err, db) {
                     questions.get_default_question(function (default_question) {
                         users.get_usercode_for_update(function (user_code) {
                             users.write_new_userdata(user_code, default_question, +default_answer, function (result) {
-                                users.write_new_user(name_res_caps, visitor_code, user_code, default_question, +default_answer, function (userDoc) {
+                                users.write_new_user(name_res_caps, +default_answer, user_code, default_question, +answer_code, function (userDoc) {
                                     //vote is tallied in write_new_user
                                     users.get_challenge_question(function (quest) {
                                         res.render('good_username', {
@@ -10602,6 +10608,14 @@ app.get('/trending/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var current_response = req.body.code;
+
+        if (current_response === "4") {
+            current_response = "0";
+        }
+        else if (current_response === "5") {
+            current_response = "1";
+        }
+
         var name = req.body.username_input;
         var code = req.body.usercode_input;
         var user_answer_text = "";
@@ -11107,6 +11121,14 @@ app.get('/trending/:visitor', function (req, res, next) {
         var answer = req.body.challenge_answer;
         var answer_res_caps = answer.toUpperCase();
         var current_response = req.body.code;
+
+        if (current_response === "4") {
+            current_response = "0";
+        }
+        else if (current_response === "5") {
+            current_response = "1";
+        }
+
         var user_answer_text = "";
         users.get_next_challenge(visitor_code, function (question_number) {
             questions.get_default_question(function (quest) {
