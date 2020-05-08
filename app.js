@@ -11417,15 +11417,15 @@ app.get('/trending/:visitor', function (req, res, next) {
             questions.get_user_question(question_res, function (quest) {
                 if (quest != undefined) {
                     lols.get_lol(quest.frame, quest.impression, function (links) {
-                        if (visitor_code == 0) {
+                        if (state_code === 0) {
                             res.render('lol13', {
                                 usercode: visitor_code,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
                                 link_list: links,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
@@ -11433,15 +11433,15 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 mm_win_size: quest.mm_win_yes_y,
                             });
                         }
-                        else if (visitor_code == 1) {
+                        else if (state_code === 1) {
                             res.render('lol14', {
                                 usercode: visitor_code,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
                                 link_list: links,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
@@ -11449,15 +11449,15 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 mm_win_size: quest.mm_win_yes_y,
                             });
                         }
-                        else if ((visitor_code == 2) || (visitor_code == 3)) {
+                        else if (state_code === 2) {
                             res.render('lol15', {
                                 usercode: visitor_code,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
                                 link_list: links,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
@@ -11465,38 +11465,6 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 mm_win_size: quest.mm_win_yes_y,
                             });
                         }
-                        else if (visitor_code == 4) {
-                            res.render('lol14', {
-                                usercode: visitor_code,
-                                top_question: quest,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
-                                link_list: links,
-                                x: quest.mm_yes_x,
-                                y: quest.mm_yes_y,
-                                file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
-                            });
-                        }
-                        else if (visitor_code == 5) {
-                            res.render('lol13', {
-                                usercode: visitor_code,
-                                top_question: quest,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
-                                link_list: links,
-                                x: quest.mm_yes_x,
-                                y: quest.mm_yes_y,
-                                file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
-                            });
-                        };
                     });
                 };
             });
@@ -11841,79 +11809,47 @@ app.get('/trending/:visitor', function (req, res, next) {
             questions.get_user_question(question_res, function (quest) {
                 if (quest != undefined) {
                     lols.get_lol(quest.frame, quest.impression, function (links) {
-                        if (visitor_code == 0) {
+                        if (state_code === 0) {
                             res.render('lol13', {
                                 usercode: visitor_code,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
                                 link_list: links,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
                                 file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
+                                mm_win_size: quest.mm_win_yes_y
                             });
                         }
-                        else if (visitor_code == 1) {
+                        else if (state_code === 1) {
                             res.render('lol14', {
                                 usercode: visitor_code,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
                                 link_list: links,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
                                 file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
+                                mm_win_size: quest.mm_win_yes_y
                             });
                         }
-                        else if ((visitor_code == 2) || (visitor_code == 3)) {
+                        else if (state_code === 2) {
                             res.render('lol15', {
                                 usercode: visitor_code,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
-                                link_list: links,
-                                x: quest.mm_yes_x,
-                                y: quest.mm_yes_y,
-                                file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
-                            });
-                        }
-                        else if (visitor_code == 4) {
-                            res.render('lol14', {
-                                usercode: visitor_code,
-                                top_question: quest,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
-                                link_list: links,
-                                x: quest.mm_yes_x,
-                                y: quest.mm_yes_y,
-                                file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
-                            });
-                        }
-                        else if (visitor_code == 5) {
-                            res.render('lol13', {
-                                usercode: visitor_code,
-                                top_question: quest,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                yes_votes: quest.yes,
-                                no_votes: quest.no,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
                                 link_list: links,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
