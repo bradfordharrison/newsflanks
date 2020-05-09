@@ -11430,7 +11430,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
                                 file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
+                                mm_win_size: quest.mm_win_yes_y
                             });
                         }
                         else if (state_code === 1) {
@@ -11443,13 +11443,13 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 yes_votes: quest.yes_visitor,
                                 no_votes: quest.no_visitor,
                                 link_list: links,
-                                x: quest.mm_yes_x,
-                                y: quest.mm_yes_y,
-                                file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
+                                x: quest.mm_no_x,
+                                y: quest.mm_no_y,
+                                file: quest.mm_file_no,
+                                mm_win_size: quest.mm_win_no_y
                             });
                         }
-                        else if (state_code === 2) {
+                        else if ((state_code === 2) || (state_code === 3)) {
                             res.render('lol15', {
                                 usercode: visitor_code,
                                 top_question: quest,
@@ -11459,10 +11459,69 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 yes_votes: quest.yes_visitor,
                                 no_votes: quest.no_visitor,
                                 link_list: links,
+                                mm_win_size: quest.mm_win_all_y
+                            });
+                        }
+                        else if (state_code === 4) {
+                            res.render('lol17', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_all_y
+                            });
+                        }
+                        else if (state_code === 5) {
+                            res.render('lol18', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
                                 x: quest.mm_yes_x,
                                 y: quest.mm_yes_y,
                                 file: quest.mm_file_yes,
-                                mm_win_size: quest.mm_win_yes_y,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_yes_y
+                            });
+                        }
+                        else if (state_code === 6) {
+                            res.render('lol19', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                x: quest.mm_no_x,
+                                y: quest.mm_no_y,
+                                file: quest.mm_file_no,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_no_y
+                            });
+                        }
+                        else if (state_code === 7) {
+                            res.render('lol20', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_all_y
                             });
                         }
                     });
@@ -11568,10 +11627,10 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                     yes_votes: quest.yes,
                                                     no_votes: quest.no,
                                                     link_list: links,
-                                                    x: quest.mm_yes_x,
-                                                    y: quest.mm_yes_y,
-                                                    file: quest.mm_file_yes,
-                                                    mm_win_size: quest.mm_win_yes_y,
+                                                    x: quest.mm_no_x,
+                                                    y: quest.mm_no_y,
+                                                    file: quest.mm_file_no,
+                                                    mm_win_size: quest.mm_win_no_y
                                                 });
                                             });
                                         });
@@ -11596,10 +11655,10 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                                     yes_votes: quest.yes,
                                                                     no_votes: quest.no,
                                                                     link_list: links,
-                                                                    x: quest.mm_yes_x,
-                                                                    y: quest.mm_yes_y,
-                                                                    file: quest.mm_file_yes,
-                                                                    mm_win_size: quest.mm_win_yes_y,
+                                                                    x: quest.mm_no_x,
+                                                                    y: quest.mm_no_y,
+                                                                    file: quest.mm_file_no,
+                                                                    mm_win_size: quest.mm_win_no_y
                                                                 });
                                                             });
                                                         });
@@ -11618,10 +11677,10 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                             yes_votes: quest.yes,
                                                             no_votes: quest.no,
                                                             link_list: links,
-                                                            x: quest.mm_yes_x,
-                                                            y: quest.mm_yes_y,
-                                                            file: quest.mm_file_yes,
-                                                            mm_win_size: quest.mm_win_yes_y,
+                                                            x: quest.mm_no_x,
+                                                            y: quest.mm_no_y,
+                                                            file: quest.mm_file_no,
+                                                            mm_win_size: quest.mm_win_no_y
                                                         });
                                                     });
                                                 });
@@ -11648,10 +11707,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                     yes_votes: quest.yes,
                                                     no_votes: quest.no,
                                                     link_list: links,
-                                                    x: quest.mm_yes_x,
-                                                    y: quest.mm_yes_y,
-                                                    file: quest.mm_file_yes,
-                                                    mm_win_size: quest.mm_win_yes_y,
+                                                    mm_win_size: quest.mm_win_all_y
                                                 });
                                             });
                                         });
@@ -11676,10 +11732,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                                     yes_votes: quest.yes,
                                                                     no_votes: quest.no,
                                                                     link_list: links,
-                                                                    x: quest.mm_yes_x,
-                                                                    y: quest.mm_yes_y,
-                                                                    file: quest.mm_file_yes,
-                                                                    mm_win_size: quest.mm_win_yes_y,
+                                                                    mm_win_size: quest.mm_win_all_y
                                                                 });
                                                             });
                                                         });
@@ -11698,10 +11751,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                             yes_votes: quest.yes,
                                                             no_votes: quest.no,
                                                             link_list: links,
-                                                            x: quest.mm_yes_x,
-                                                            y: quest.mm_yes_y,
-                                                            file: quest.mm_file_yes,
-                                                            mm_win_size: quest.mm_win_yes_y,
+                                                            mm_win_size: quest.mm_win_all_y
                                                         });
                                                     });
                                                 });
@@ -11728,10 +11778,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                 yes_votes: quest.yes,
                                                 no_votes: quest.no,
                                                 link_list: links,
-                                                x: quest.mm_yes_x,
-                                                y: quest.mm_yes_y,
-                                                file: quest.mm_file_yes,
-                                                mm_win_size: quest.mm_win_yes_y,
+                                                mm_win_size: quest.mm_win_all_y
                                             });
                                         });
                                     });
@@ -11756,10 +11803,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                                 yes_votes: quest.yes,
                                                                 no_votes: quest.no,
                                                                 link_list: links,
-                                                                x: quest.mm_yes_x,
-                                                                y: quest.mm_yes_y,
-                                                                file: quest.mm_file_yes,
-                                                                mm_win_size: quest.mm_win_yes_y,
+                                                                mm_win_size: quest.mm_win_all_y
                                                             });
                                                         });
                                                     });
@@ -11778,10 +11822,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                         yes_votes: quest.yes,
                                                         no_votes: quest.no,
                                                         link_list: links,
-                                                        x: quest.mm_yes_x,
-                                                        y: quest.mm_yes_y,
-                                                        file: quest.mm_file_yes,
-                                                        mm_win_size: quest.mm_win_yes_y,
+                                                        mm_win_size: quest.mm_win_all_y
                                                     });
                                                 });
                                             });
@@ -11841,7 +11882,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 mm_win_size: quest.mm_win_yes_y
                             });
                         }
-                        else if (state_code === 2) {
+                        else if ((state_code === 2) || (state_code === 3)) {
                             res.render('lol15', {
                                 usercode: visitor_code,
                                 top_question: quest,
@@ -11856,7 +11897,69 @@ app.get('/trending/:visitor', function (req, res, next) {
                                 file: quest.mm_file_yes,
                                 mm_win_size: quest.mm_win_yes_y
                             });
-                        };
+                        }
+                        else if (state_code === 4) {
+                            res.render('lol17', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_all_y
+                            });
+                        }
+                        else if (state_code === 5) {
+                            res.render('lol18', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                x: quest.mm_yes_x,
+                                y: quest.mm_yes_y,
+                                file: quest.mm_file_yes,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_yes_y
+                            });
+                        }
+                        else if (state_code === 6) {
+                            res.render('lol19', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                x: quest.mm_no_x,
+                                y: quest.mm_no_y,
+                                file: quest.mm_file_no,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_no_y
+                            });
+                        }
+                        else if (state_code === 7) {
+                            res.render('lol20', {
+                                usercode: visitor_code,
+                                question: question_res,
+                                top_question: quest,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                yes_votes: quest.yes_visitor,
+                                no_votes: quest.no_visitor,
+                                link_list: links,
+                                mm_win_size: quest.mm_win_all_y
+                            });
+                        }
                     });
                 };
             });
@@ -11883,7 +11986,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                     x: quest.mm_yes_x,
                                                     y: quest.mm_yes_y,
                                                     file: quest.mm_file_yes,
-                                                    mm_win_size: quest.mm_win_yes_y,
+                                                    mm_win_size: quest.mm_win_yes_y
                                                 });
                                             });
                                         });
@@ -11911,7 +12014,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                                     x: quest.mm_yes_x,
                                                                     y: quest.mm_yes_y,
                                                                     file: quest.mm_file_yes,
-                                                                    mm_win_size: quest.mm_win_yes_y,
+                                                                    mm_win_size: quest.mm_win_yes_y
                                                                 });
                                                             });
                                                         });
@@ -11933,7 +12036,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                             x: quest.mm_yes_x,
                                                             y: quest.mm_yes_y,
                                                             file: quest.mm_file_yes,
-                                                            mm_win_size: quest.mm_win_yes_y,
+                                                            mm_win_size: quest.mm_win_yes_y
                                                         });
                                                     });
                                                 });
@@ -11960,10 +12063,10 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                     yes_votes: quest.yes,
                                                     no_votes: quest.no,
                                                     link_list: links,
-                                                    x: quest.mm_yes_x,
-                                                    y: quest.mm_yes_y,
-                                                    file: quest.mm_file_yes,
-                                                    mm_win_size: quest.mm_win_yes_y,
+                                                    x: quest.mm_no_x,
+                                                    y: quest.mm_no_y,
+                                                    file: quest.mm_file_no,
+                                                    mm_win_size: quest.mm_win_no_y
                                                 });
                                             });
                                         });
@@ -11988,10 +12091,10 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                                     yes_votes: quest.yes,
                                                                     no_votes: quest.no,
                                                                     link_list: links,
-                                                                    x: quest.mm_yes_x,
-                                                                    y: quest.mm_yes_y,
-                                                                    file: quest.mm_file_yes,
-                                                                    mm_win_size: quest.mm_win_yes_y,
+                                                                    x: quest.mm_no_x,
+                                                                    y: quest.mm_no_y,
+                                                                    file: quest.mm_file_no,
+                                                                    mm_win_size: quest.mm_win_no_y
                                                                 });
                                                             });
                                                         });
@@ -12010,10 +12113,10 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                             yes_votes: quest.yes,
                                                             no_votes: quest.no,
                                                             link_list: links,
-                                                            x: quest.mm_yes_x,
-                                                            y: quest.mm_yes_y,
-                                                            file: quest.mm_file_yes,
-                                                            mm_win_size: quest.mm_win_yes_y,
+                                                            x: quest.mm_no_x,
+                                                            y: quest.mm_no_y,
+                                                            file: quest.mm_file_no,
+                                                            mm_win_size: quest.mm_win_no_y
                                                         });
                                                     });
                                                 });
@@ -12040,10 +12143,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                     yes_votes: quest.yes,
                                                     no_votes: quest.no,
                                                     link_list: links,
-                                                    x: quest.mm_yes_x,
-                                                    y: quest.mm_yes_y,
-                                                    file: quest.mm_file_yes,
-                                                    mm_win_size: quest.mm_win_yes_y,
+                                                    mm_win_size: quest.mm_win_all_y
                                                 });
                                             });
                                         });
@@ -12068,10 +12168,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                                     yes_votes: quest.yes,
                                                                     no_votes: quest.no,
                                                                     link_list: links,
-                                                                    x: quest.mm_yes_x,
-                                                                    y: quest.mm_yes_y,
-                                                                    file: quest.mm_file_yes,
-                                                                    mm_win_size: quest.mm_win_yes_y,
+                                                                    mm_win_size: quest.mm_win_all_y
                                                                 });
                                                             });
                                                         });
@@ -12090,10 +12187,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                             yes_votes: quest.yes,
                                                             no_votes: quest.no,
                                                             link_list: links,
-                                                            x: quest.mm_yes_x,
-                                                            y: quest.mm_yes_y,
-                                                            file: quest.mm_file_yes,
-                                                            mm_win_size: quest.mm_win_yes_y,
+                                                            mm_win_size: quest.mm_win_all_y
                                                         });
                                                     });
                                                 });
@@ -12119,10 +12213,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                     yes_votes: quest.yes,
                                                     no_votes: quest.no,
                                                     link_list: links,
-                                                    x: quest.mm_yes_x,
-                                                    y: quest.mm_yes_y,
-                                                    file: quest.mm_file_yes,
-                                                    mm_win_size: quest.mm_win_yes_y,
+                                                    mm_win_size: quest.mm_win_all_y
                                                 });
                                             });
                                         });
@@ -12147,10 +12238,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                                     yes_votes: quest.yes,
                                                                     no_votes: quest.no,
                                                                     link_list: links,
-                                                                    x: quest.mm_yes_x,
-                                                                    y: quest.mm_yes_y,
-                                                                    file: quest.mm_file_yes,
-                                                                    mm_win_size: quest.mm_win_yes_y,
+                                                                    mm_win_size: quest.mm_win_all_y
                                                                 });
                                                             });
                                                         });
@@ -12169,10 +12257,7 @@ app.get('/trending/:visitor', function (req, res, next) {
                                                             yes_votes: quest.yes,
                                                             no_votes: quest.no,
                                                             link_list: links,
-                                                            x: quest.mm_yes_x,
-                                                            y: quest.mm_yes_y,
-                                                            file: quest.mm_file_yes,
-                                                            mm_win_size: quest.mm_win_yes_y,
+                                                            mm_win_size: quest.mm_win_all_y
                                                         });
                                                     });
                                                 });

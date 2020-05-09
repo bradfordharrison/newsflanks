@@ -3,7 +3,7 @@
 
  <head>
 
- 	<!-- lol9 -->
+ 	<!-- lol17 -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -218,7 +218,7 @@ function BarGraph(ctx) {
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>Showing all links associated with the question, pro and con. FLIP doesn't apply when you answer &quot;No Opinion&quot;. Your answer to the Question of the Day is officially tallied only if you log in! Likes and Dislikes are tallied and displayed only if you are logged in! To log in, click the LOGIN menu above.</font></h4>");
+      document.writeln("<h4><font color='#FF0000'>Likes and Dislikes are tallied and displayed only if you are logged in! To log in, click the LOGIN menu above.</font></h4>");
       document.writeln("</div>");
 </script>
 <div class="table-border">
@@ -408,10 +408,10 @@ function BarGraph(ctx) {
 
 	}());</script>
      <font color="#006500" size="4">All links:</font><br /><br />
-     {% for link in link_list %}
-     	          <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}" target="_blank">&nbsp{{link.content_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.content_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.content_dislikes}}&nbsp;<br></font>
-	 	          <font size="3"><img src="{{link.flip_grfx}}" width="25" height="25"><a href="{{link.flip_href}}" target="_blank">&nbsp{{link.flip_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.flip_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.flip_dislikes}}&nbsp;<br></font>
-     {% endfor %}
+          {% for link in link_list %}
+	          <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}" target="_blank">&nbsp{{link.content_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.content_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.content_dislikes}}&nbsp;<br></font>
+	          <font size="3"><img src="{{link.flip_grfx}}" width="25" height="25"><a href="{{link.flip_href}}" target="_blank">&nbsp{{link.flip_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.flip_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.flip_dislikes}}&nbsp;<br></font>
+	      {% endfor %}
 </div>
 {% include "includes/footer.html" %}
 </div>

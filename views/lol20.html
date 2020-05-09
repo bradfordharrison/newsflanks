@@ -3,7 +3,7 @@
 
  <head>
 
- 	<!-- lol9 -->
+    <!-- lol20 -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -205,7 +205,7 @@ function BarGraph(ctx) {
       document.writeln("<a class='rollover' href='/trending/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbsp;OTHER ?&nbsp;</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/flip2/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
+      document.writeln("<a class='rollover' href='/flip5/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
       document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
@@ -218,7 +218,7 @@ function BarGraph(ctx) {
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>Showing all links associated with the question, pro and con. FLIP doesn't apply when you answer &quot;No Opinion&quot;. Your answer to the Question of the Day is officially tallied only if you log in! Likes and Dislikes are tallied and displayed only if you are logged in! To log in, click the LOGIN menu above.</font></h4>");
+      document.writeln("<h4><font color='#FF0000'>Likes and Dislikes are tallied and displayed only if you are logged in! To log in, click the LOGIN menu above.</font></h4>");
       document.writeln("</div>");
 </script>
 <div class="table-border">
@@ -376,8 +376,7 @@ function BarGraph(ctx) {
           document.write("</div>");
           };
 </script>
-{% endif %}
-    <span><font color="#006500" size="4"><b>{{top_question.question}}?</b></font></span>
+{% endif %}    <span><font color="#006500" size="4"><b>{{top_question.question}}?</b></font></span>
  	<div id="graphDiv1"></div>
 	<!--[if IE]><script src="../static/js/excanvas.js"></script><![endif]-->
 	<script src="../static/js/html5-canvas-bar-graph.js"></script>
@@ -395,7 +394,7 @@ function BarGraph(ctx) {
 			return ctx;
 		}
 
-				var ctx = createCanvas("graphDiv1");
+		var ctx = createCanvas("graphDiv1");
 
 		var graph = new BarGraph(ctx);
 		graph.maxValue = "";
@@ -409,8 +408,8 @@ function BarGraph(ctx) {
 	}());</script>
      <font color="#006500" size="4">All links:</font><br /><br />
      {% for link in link_list %}
-     	          <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}" target="_blank">&nbsp{{link.content_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.content_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.content_dislikes}}&nbsp;<br></font>
-	 	          <font size="3"><img src="{{link.flip_grfx}}" width="25" height="25"><a href="{{link.flip_href}}" target="_blank">&nbsp{{link.flip_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.flip_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/4"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.flip_dislikes}}&nbsp;<br></font>
+     	          <font size="3"><img src="{{link.content_grfx}}" width="25" height="25"><a href="{{link.content_href}}" target="_blank">&nbsp{{link.content_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/7"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.content_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/7"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.content_dislikes}}&nbsp;<br></font>
+	 	          <font size="3"><img src="{{link.flip_grfx}}" width="25" height="25"><a href="{{link.flip_href}}" target="_blank">&nbsp{{link.flip_link}}</a>&nbsp;<a href="/like/{{link._id}}/{{top_question._id}}/{{usercode}}/7"><img src="https://flanks.org/d2.gif" width="27" height="25"></a>&nbsp;{{link.flip_likes}}&nbsp;<a href="/hate/{{link._id}}/{{top_question._id}}/{{usercode}}/7"><img src="https://flanks.org/d3.gif" width="27" height="25"></a>&nbsp;{{link.flip_dislikes}}&nbsp;<br></font>
      {% endfor %}
 </div>
 {% include "includes/footer.html" %}
