@@ -16,7 +16,7 @@ function UserDAO(database) {
         var col = this.db.collection('usercode');
         this.db.collection('usercode').find({ "_id": 1 })
             .toArray(function (err, code) {
-                col.updateOne({ _id: 1 }, { $inc: { counter: 1 } });
+                col.updateOne({ _id: 1 }, { $inc: { counter: 1 } }); //odd way of doing this -- update counter for next user
                 assert.equal(null, err);
                 callback(code[0].counter);
             });
@@ -49,43 +49,98 @@ function UserDAO(database) {
             });
     };
 
-    this.write_new_user = function (name_res_caps, visitor_code, user_code, current_quest, current_answer, callback) {
+    this.write_new_user = function (name_res_caps, visitor_code, user_code, current_quest, front_quest, current_answer, front_answer, callback) {
         "use strict";
+        if (front_answer !== 6) {
+            var userRec = {
+                username: name_res_caps,
+                usercode: user_code,
+                since: new Date(),
+                active: new Date(),
+                logged_in: 1,
+                lol_state: visitor_code,
+                challenge_exists: 0,
+                next_challenge: 0,
+                challenges_since_login: 0,
+                current_question: current_quest._id,
+                impressions_array: [{ "question": current_quest._id, "frame": current_quest.frame, "impression": current_quest.impression, "answer": current_answer, "date": new Date(), "wayin": 0 },
+                { "question": front_quest._id, "frame": front_quest.frame, "impression": front_quest.impression, "answer": front_answer, "date": new Date(), "wayin": 0 }],
+                sequence: 0
+            };
 
-        var userRec = {
-            username: name_res_caps,
-            usercode: user_code,
-            since: new Date(),
-            active: new Date(),
-            logged_in: 1,
-            lol_state: visitor_code,
-            challenge_exists: 0,
-            next_challenge: 0,
-            challenges_since_login: 0,
-            current_question: current_quest._id,
-            impressions_array: [{ "question": current_quest._id, "frame": current_quest.frame, "impression": current_quest.impression, "answer": current_answer, "date": new Date(), "wayin": 0 }],
-            sequence: 0
-        };
+            if (current_answer === 0) {  // score answer
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": current_quest._id },
+                    { "$inc": { "yes": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
 
-        if (current_answer === 0) {  // score answer
-            this.db.collection('question').findOneAndUpdate(
-                { "_id": current_quest._id },
-                { "$inc": { "yes": 1 } },
-                {
-                    returnOriginal: false
-                });
+
+            if (current_answer === 1) {  // score answer
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": current_quest._id },
+                    { "$inc": { "no": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
+
+            if (front_answer === 0) {  // score answer
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": front_quest._id },
+                    { "$inc": { "yes": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
+
+
+            if (front_answer === 1) {  // score answer
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": front_quest._id },
+                    { "$inc": { "no": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
         }
+        else {
+            var userRec = {
+                username: name_res_caps,
+                usercode: user_code,
+                since: new Date(),
+                active: new Date(),
+                logged_in: 1,
+                lol_state: visitor_code,
+                challenge_exists: 0,
+                next_challenge: 0,
+                challenges_since_login: 0,
+                current_question: current_quest._id,
+                impressions_array: [{ "question": current_quest._id, "frame": current_quest.frame, "impression": current_quest.impression, "answer": current_answer, "date": new Date(), "wayin": 0 }],
+                sequence: 0
+            };
+
+            if (current_answer === 0) {  // score answer
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": current_quest._id },
+                    { "$inc": { "yes": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
 
 
-        if (current_answer === 1) {  // score answer
-            this.db.collection('question').findOneAndUpdate(
-                { "_id": current_quest._id },
-                { "$inc": { "no": 1 } },
-                {
-                    returnOriginal: false
-                });
+            if (current_answer === 1) {  // score answer
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": current_quest._id },
+                    { "$inc": { "no": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
         }
-
 
         this.db.collection("user").insertOne(userRec);
         callback(userRec);

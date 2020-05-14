@@ -57,7 +57,7 @@ db.open(function (err, db) {
         "use strict";
         var visitor_code = 6;
         questions.get_default_question(function (quest) {
-            if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+            if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                 res.render('home', {
                     usercode: visitor_code,
                     animated_gif: quest.mm,
@@ -73,7 +73,7 @@ db.open(function (err, db) {
                     choices: ['yes', 'no', 'no opinion']
                 });
             }
-            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                 res.render('home7', {
                     usercode: visitor_code,
                     animated_gif: quest.mm,
@@ -89,7 +89,7 @@ db.open(function (err, db) {
                     choices: ['yes', 'no', 'no opinion']
                 });
             }
-            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                 res.render('home13', {
                     usercode: visitor_code,
                     animated_gif: quest.mm,
@@ -105,7 +105,7 @@ db.open(function (err, db) {
                     choices: ['yes', 'no', 'no opinion']
                 });
             }
-            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                 res.render('home19', {
                     usercode: visitor_code,
                     animated_gif: quest.mm,
@@ -121,7 +121,7 @@ db.open(function (err, db) {
                     choices: ['yes', 'no', 'no opinion']
                 });
             }
-            else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+            else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                 res.render('home25', {
                     usercode: visitor_code,
                     animated_gif: quest.mm,
@@ -137,7 +137,7 @@ db.open(function (err, db) {
                     choices: ['yes', 'no', 'no opinion']
                 });
             }
-            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                 res.render('home31', {
                     usercode: visitor_code,
                     animated_gif: quest.mm,
@@ -225,6 +225,7 @@ db.open(function (err, db) {
         var visitor_code = parseInt(req.params.visitor);
         var new_question_frame = parseInt(req.params.frame);
         var new_question_impression = parseInt(req.params.impression);
+        visitor_code = 3;
         var valid_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
             valid_visitor = true;
@@ -4532,11 +4533,21 @@ db.open(function (err, db) {
         var name_res_caps = name_res.toUpperCase();
         var name_res2_caps = name_res2.toUpperCase();
         var default_answer = req.body.code;
+
+        if ((default_answer !== "0") && (default_answer !== "1") && (default_answer !== "2") && (default_answer !== "3") && (default_answer !== "4") && (default_answer !== "5")) {
+            default_answer = "3"; //Question of day was not seen so set to seen but not answered since user will see now anyway
+        };
+
         var answer_code = default_answer;
 
-        if (default_answer === "4") { answer_code = "0" };
-        if (default_answer === "5") { answer_code = "1" };
-
+        if (default_answer === "4") { answer_code = "0";}
+        if (default_answer === "5") { answer_code = "1";}
+        if (visitor_code === 4) {
+            visitor_code = 0;
+        }
+        else if (visitor_code === 5) {
+            visitor_code = 1;
+        }
 
         if ((name_res_caps != name_res2_caps) || (name_res.length < 1)) {
             res.render('username_no_match', {
@@ -4550,14 +4561,15 @@ db.open(function (err, db) {
         }
         else {
             users.check_unique_username(name_res_caps, function (result) {
-                if (name_res == " ") {//check for empty
+                if (name_res === " ") {//check for empty
                     result = true;
                 };
-                if (result == false) {
+                if (result === false) { //good to go
                     questions.get_default_question(function (default_question) {
-                        users.get_usercode_for_update(function (user_code) {
-                            users.write_new_userdata(user_code, default_question, +default_answer, function (result) {
-                                users.write_new_user(name_res_caps, +default_answer, user_code, default_question, +answer_code, function (userDoc) {
+                        questions.get_front_questions(function (front_quest) {
+                            questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                                users.get_usercode_for_update(function (user_code) {
+                                        users.write_new_user(name_res_caps, +default_answer, user_code, default_question, front_question, +answer_code, visitor_code, function (userDoc) {
                                     //vote is tallied in write_new_user
                                     users.get_challenge_question(function (quest) {
                                         res.render('good_username', {
@@ -4583,7 +4595,8 @@ db.open(function (err, db) {
                                             challenge_question_14: quest[14].question + "?"
                                         });
                                     });
-                                });
+                            });
+                        });
                             });
                         });
                     });
@@ -4634,10 +4647,10 @@ db.open(function (err, db) {
         if (chal_res_13 == undefined) chal_res_13 = "";
         if (chal_res_14 == undefined) chal_res_14 = "";
         users.check_challenge_exists(user_code, function (challenge_exists) {
-            if (challenge_exists == false) {
+            if (challenge_exists === false) {
                 users.write_user_challenge(user_code, chal_res_0, chal_res_1, chal_res_2, chal_res_3, chal_res_4, chal_res_5, chal_res_6, chal_res_7, chal_res_8, chal_res_9, chal_res_10, chal_res_11, chal_res_12, chal_res_13, chal_res_14, function (visitor_code) {
                     //registered user
-                    users.write_challenge_exists(user_code, function (challenge_exists) {
+                    users.write_challenge_exists(user_code, function (challenge_exists_written) {
                         users.get_current_user_question(user_code, function (current_quest) {
                             users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                 if (user_answer == 0) {
@@ -4829,9 +4842,9 @@ db.open(function (err, db) {
                     });
                 });
             }
-            else { //currently this code never gets executed
+            else { //this code should never get executed
                 users.get_current_user_question(user_code, function (current_quest) {
-                    users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
+                    users.get_user_answer_to_question_dont_set_current(user_code, current_quest.current_question, function (user_answer) {
                         if (user_answer == 0) {
                             user_answer_text = "Yes"
                         };
@@ -8373,13 +8386,14 @@ db.open(function (err, db) {
         };
     });
 
-app.get('/trending/:visitor', function (req, res, next) {
+    app.get('/trending/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
         };
+        if (visitor_code === 6) { visitor_code = 3; } //visitor has seen question
         if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
                 if (new_visitor) {
