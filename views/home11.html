@@ -40,7 +40,6 @@
 <div class="col-lg-2"></div>
 <div class="col-lg-8">
 <script language="javascript">
-   if ({{usercode}} < 10) {
       document.writeln("<div>");
       document.writeln("<center>");
       document.writeln("<nav>");
@@ -65,43 +64,8 @@
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>Pre-defined sequences of questions are available after you log into News Flanks, but the OTHER <b>?</b> is available to you right now along with TODAY'S <b>?</b>.</font></h4>");
+      document.writeln("<h4><font color='#FF0000'>Your current answer to this question is &quot;{{response}}.&quot; Pre-defined sequences of questions are available after you log into News Flanks, but the OTHER <b>?</b> is available to you right now along with TODAY'S <b>?</b>.</font></h4>");
       document.writeln("</div>");
-   }
-   else {
-      document.writeln("<div>");
-      document.writeln("<center>");
-      document.writeln("<nav>");
-      document.writeln("<ul class=nav-font>");
-      document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/{{frame}}/{{impression}}/{{usercode}}/{{url_text}}'><strong><font color='#006500'>&nbspCURRENT&#47;NEXT <b>?</b>&nbsp</font></strong></a>");
-      document.writeln("</li>");
-      document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/trending/{{usercode}}'><strong><font color='#006500'>&nbsp;SEQUENCES&nbsp;</font></strong></a>");
-      document.writeln("</li>");
-      document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/flip/{{usercode}}/6'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
-      document.writeln("</li>");
-	  document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/flanks/{{usercode}}'><strong><font color='#006500'>&nbspFLANKS&nbsp</font></strong></a>");
-      document.writeln("</li>");
-      document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
-      document.writeln("</li>");
-      document.writeln("<li>");
-      document.write("<a class='rollover' href='/track/{{usercode}}'><strong><font color='#006500'>&nbsp");
-      var holder = {{usercode}};
-      document.write(holder);
-      document.writeln("&nbsp</font></strong></a>");
-      document.writeln("</li>");
-      document.writeln("</ul>");
-      document.writeln("</nav>");
-      document.writeln("</center>");
-      document.writeln("</div>");
-      document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>Pre-defined sequences of questions are available after you log into News Flanks, but the OTHER <b>?</b> is available to you right now along with TODAY'S <b>?</b>.</h4>");
-      document.writeln("</div>");
-   }
 </script>
 <div class="table-border">
 

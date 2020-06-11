@@ -5691,17 +5691,17 @@ db.open(function (err, db) {
         else { //"Next Question" selected
             // if usercode < 10, pop message that you have to register to get more questions
             if (visitor_code < 10) {
-                if ((visitor_code == 0) || (visitor_code == 4)) {
-                    user_answer_text = "Yes"
+                if ((prev_answer === "0") || (prev_answer === "4")) {
+                    user_answer_text = "Yes";
                 };
-                if ((visitor_code == 1) || (visitor_code == 5)) {
-                    user_answer_text = "No"
+                if ((prev_answer === "1") || (prev_answer === "5")) {
+                    user_answer_text = "No";
                 };
-                if (visitor_code == 2) {
-                    user_answer_text = "No opinion"
+                if (prev_answer === "2") {
+                    user_answer_text = "No opinion";
                 };
-                if (visitor_code == 3) {
-                    user_answer_text = "Saw question but didn't answer"
+                if (prev_answer === "3") {
+                    user_answer_text = "Saw question but didn't answer";
                 };
                 questions.get_default_question(function (quest) {
                     if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
@@ -5885,16 +5885,16 @@ db.open(function (err, db) {
                                 if (quest.length == userimps_array[0].impressions_array.length) { //user already answered all questions
                                     users.get_current_user_question(visitor_code, function (current_quest) {
                                         users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
-                                            if (user_answer == 0) {
+                                            if (user_answer === 0) {
                                                 user_answer_text = "Yes"
                                             };
-                                            if (user_answer == 1) {
+                                            if (user_answer === 1) {
                                                 user_answer_text = "No"
                                             };
-                                            if (user_answer == 2) {
+                                            if (user_answer === 2) {
                                                 user_answer_text = "No opinion"
                                             };
-                                            if (user_answer == 3) {
+                                            if (user_answer === 3) {
                                                 user_answer_text = "Saw question but didn't answer"
                                             };
                                             questions.get_user_question(current_quest.current_question, function (user_quest) {
