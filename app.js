@@ -10681,8 +10681,15 @@ db.open(function (err, db) {
 
     app.post('/login/:visitor', function (req, res, next) {
         "use strict";
-        var visitor_code = parseInt(req.params.visitor);
+        var visitor_code_old = parseInt(req.params.visitor);
         var current_response = req.body.code;
+
+        if (visitor_code_old === 4) {
+            visitor_code_old = 0;
+        }
+        else if (visitor_code_old === 5) {
+            visitor_code_old = 1;
+        }
 
         if (current_response === "4") {
             current_response = "0";
@@ -10696,7 +10703,7 @@ db.open(function (err, db) {
         var user_answer_text = "";
         if ((name == '') && (code == '')) {
             res.render('track', {
-                usercode: visitor_code
+                usercode: visitor_code_old
             })
         }
         else if (code == '') {
@@ -10720,26 +10727,32 @@ db.open(function (err, db) {
                                                 break;
                                             }
                                         };
-                                        if (iterator == 15) { //user has no challenge questions
+                                        if (iterator === 15) { //user has no challenge questions
                                             users.update_logged_in_state(visitor_code, 1, function (result) {
                                                 users.set_challenge_questions_since_last_login(visitor_code, 0, function (result) {
                                                     users.get_userimps_array(visitor_code, function (userimps_array) {
                                                         users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                                             users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
-                                                                //update_current_question_with_actual_response also sets current question and updates tally if needed
-                                                                users.get_current_user_question(visitor_code, function (current_quest) {
+                                                                //update_current_question_with_actual_response also sets current question, lol state, and updates tally if needed
+                                                                questions.get_front_questions(function (front_quest) {
+                                                                    questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                                                                        users.get_userimps_array(visitor_code, function (userimps_array) {
+                                                                            users.check_if_other_question_already_in_impressions_array(visitor_code_old, front_question, userimps_array, function (response) {
+                                                                                users.update_other_question_with_actual_response(visitor_code, front_question, response, visitor_code_old, userimps_array, function (result) {
+                                                                                  //update_other_question_with_actual_response doesn't set current question or lol state; it does updates tally if needed
+                                                                                    users.get_current_user_question(visitor_code, function (current_quest) {
                                                                     users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
-                                                                        if (user_answer == 0) {
-                                                                            user_answer_text = "Yes"
+                                                                        if (user_answer === 0) {
+                                                                            user_answer_text = "Yes";
                                                                         };
-                                                                        if (user_answer == 1) {
-                                                                            user_answer_text = "No"
+                                                                        if (user_answer === 1) {
+                                                                            user_answer_text = "No";
                                                                         };
-                                                                        if (user_answer == 2) {
-                                                                            user_answer_text = "No opinion"
+                                                                        if (user_answer === 2) {
+                                                                            user_answer_text = "No opinion";
                                                                         };
-                                                                        if (user_answer == 3) {
-                                                                            user_answer_text = "Saw question but didn't answer"
+                                                                        if (user_answer === 3) {
+                                                                            user_answer_text = "Saw question but didn't answer";
                                                                         };
                                                                         questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                                             if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
@@ -10914,6 +10927,11 @@ db.open(function (err, db) {
                                                                             };
                                                                         });
                                                                     });
+                                                                            });
+                                                                            });
+                                                                            });
+                                                                        });
+                                                                    });
                                                                 });
                                                             });
                                                         });
@@ -10926,7 +10944,8 @@ db.open(function (err, db) {
                                                 users.set_challenge_questions_since_last_login(visitor_code, 1, function (result) {
                                                     users.get_challenge(challenge_array[iterator].question, function (question) {
                                                         res.render('challenge', {
-                                                            usercode: visitor_code,
+                                                            usercode: visitor_code_old,
+                                                            actual_usercode: visitor_code,
                                                             challenge_question: question + "?"
                                                         });
                                                     });
@@ -10941,7 +10960,7 @@ db.open(function (err, db) {
                 }
                 else {
                     res.render('bad_login_username', {
-                        usercode: visitor_code
+                        usercode: visitor_code_old
                     })
                 };
             });
@@ -11191,11 +11210,19 @@ db.open(function (err, db) {
         }
     });
 
-    app.post('/challenge_response/:visitor', function (req, res, next) {
-        var visitor_code = parseInt(req.params.visitor);
+    app.post('/challenge_response/:actual_visitor/:visitor', function (req, res, next) {
+        var visitor_code_old = parseInt(req.params.visitor);
         var answer = req.body.challenge_answer;
         var answer_res_caps = answer.toUpperCase();
         var current_response = req.body.code;
+        var visitor_code = parseInt(req.params.actual_visitor);
+
+        if (visitor_code_old === 4) {
+            visitor_code_old = 0;
+        }
+        else if (visitor_code_old === 5) {
+            visitor_code_old = 1;
+        }
 
         if (current_response === "4") {
             current_response = "0";
@@ -11224,19 +11251,25 @@ db.open(function (err, db) {
                                     users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                         users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
                                             //update_current_question_with_actual_response also sets current question and updates tally if needed
+                                            questions.get_front_questions(function (front_quest) {
+                                                questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                                                    users.get_userimps_array(visitor_code, function (userimps_array) {
+                                                        users.check_if_other_question_already_in_impressions_array(visitor_code_old, front_question, userimps_array, function (response) {
+                                                            users.update_other_question_with_actual_response(visitor_code, front_question, response, visitor_code_old, userimps_array, function (result) {
+                                                                                  //update_other_question_with_actual_response doesn't set current question or lol state; it does updates tally if needed
                                             users.get_current_user_question(visitor_code, function (current_quest) {
                                                 users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
-                                                    if (user_answer == 0) {
-                                                        user_answer_text = "Yes"
+                                                    if (user_answer === 0) {
+                                                        user_answer_text = "Yes";
                                                     };
-                                                    if (user_answer == 1) {
-                                                        user_answer_text = "No"
+                                                    if (user_answer === 1) {
+                                                        user_answer_text = "No";
                                                     };
-                                                    if (user_answer == 2) {
-                                                        user_answer_text = "No opinion"
+                                                    if (user_answer === 2) {
+                                                        user_answer_text = "No opinion";
                                                     };
-                                                    if (user_answer == 3) {
-                                                        user_answer_text = "Saw question but didn't answer"
+                                                    if (user_answer === 3) {
+                                                        user_answer_text = "Saw question but didn't answer";
                                                     };
                                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                         if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
@@ -11411,6 +11444,11 @@ db.open(function (err, db) {
                                                         };
                                                     });
                                                 });
+                                                                });
+                                                            });
+                                                        });
+                                                    });
+                                                });
                                             });
                                         });
                                     });
@@ -11448,7 +11486,8 @@ db.open(function (err, db) {
                                             users.set_next_challenge(visitor_code, challenge_array[iterator].question, function (result) {
                                                 users.get_challenge(challenge_array[iterator].question, function (question) {
                                                     res.render('challenge_failed', {
-                                                        usercode: visitor_code,
+                                                        usercode: visitor_code_old,
+                                                        actual_usercode: visitor_code,
                                                         challenge_question: question + "?"
                                                     });
                                                 });
@@ -11467,7 +11506,8 @@ db.open(function (err, db) {
                                             users.set_next_challenge(visitor_code, challenge_array[iterator].question, function (result) {
                                                 users.get_challenge(challenge_array[iterator].question, function (question) {
                                                     res.render('challenge_failed', {
-                                                        usercode: visitor_code,
+                                                        usercode: visitor_code_old,
+                                                        actual_usercode: visitor_code,
                                                         challenge_question: question + "?"
                                                     });
                                                 });

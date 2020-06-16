@@ -332,7 +332,19 @@ function UserDAO(database) {
            }
        }
        callback(result);
-   };
+    };
+
+    this.check_if_other_question_already_in_impressions_array = function (visitor_code, quest, userimps_array, callback) {
+        "use strict";
+        var result = false;
+        for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
+            if (quest._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
+                result = true;
+                break;
+            }
+        }
+        callback(result);
+    };
 
    this.update_current_question_with_actual_response = function (user_code, current_question, response, current_response, userimps_array, callback) {
        "use strict";
@@ -413,7 +425,84 @@ function UserDAO(database) {
        }
        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
        callback(done);
-   };
+    };
+
+    this.update_other_question_with_actual_response = function (user_code, current_question, response, current_response, userimps_array, callback) {
+        "use strict";
+        var done = true;
+        var userRec = {
+            usercode: user_code,
+            frame: current_question.frame,
+            impression: current_question.impression,
+            last_answered: new Date(), //night batch - consolidate multiple answers to same question by same user, don't update (search) while user online
+            response: current_response
+        };
+        if (response === false) {
+            this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
+                { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": current_response, "date": new Date(), "wayin": 0 }] } } });
+            if (current_response === 0) {
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": current_question._id },
+                    { "$inc": { "yes": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
+            if (current_response === 1) {
+                this.db.collection('question').findOneAndUpdate(
+                    { "_id": current_question._id },
+                    { "$inc": { "no": 1 } },
+                    {
+                        returnOriginal: false
+                    });
+            }
+        }
+
+        if (response === true) {
+            for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
+                if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
+                    if (userimps_array[0].impressions_array[i].answer === 0) {
+                        this.db.collection('question').findOneAndUpdate(
+                            { "_id": current_question._id },
+                            { "$inc": { "yes": -1 } },
+                            {
+                                returnOriginal: false
+                            });
+                    }
+                    if (userimps_array[0].impressions_array[i].answer === 1) {
+                        this.db.collection('question').findOneAndUpdate(
+                            { "_id": current_question._id },
+                            { "$inc": { "no": -1 } },
+                            {
+                                returnOriginal: false
+                            });
+                    }
+                    if (current_response === 0) {
+                        this.db.collection('question').findOneAndUpdate(
+                            { "_id": current_question._id },
+                            { "$inc": { "yes": 1 } },
+                            {
+                                returnOriginal: false
+                            });
+                    }
+                    if (current_response === 1) {
+                        this.db.collection('question').findOneAndUpdate(
+                            { "_id": current_question._id },
+                            { "$inc": { "no": 1 } },
+                            {
+                                returnOriginal: false
+                            });
+                    }
+                    break;
+                }
+            }
+
+            this.db.collection("user").updateOne({ "usercode": user_code, "impressions_array.question": current_question._id }, //update impressions_array as well
+                { "$set": { "impressions_array.$.answer": current_response } });
+        }
+        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
+        callback(done);
+    };
 
    this.update_current_question = function (user_code, current_question, callback) {
        "use strict";

@@ -28,9 +28,9 @@
     }
     </style>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
-    
+
     <title>Challenge</title>
-    
+
 </head>
 
 <body>
@@ -105,7 +105,7 @@
 </script>
 <div class="table-border">
    <font color="#006500" size="4">
-   <form action="/challenge_response/{{usercode}}" method="POST">
+   <form action="/challenge_response/{{actual_usercode}}/{{usercode}}" method="POST">
          <p>
             Please answer this question:<br><br>
          </p>
@@ -118,7 +118,7 @@
         document.write("<input type='hidden' name='code' value='");
         document.write(code);
         document.writeln("'>");
-    </script> 
+    </script>
       <input type="submit" value="Submit">
    </form></font>
 </div>
