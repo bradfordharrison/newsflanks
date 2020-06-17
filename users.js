@@ -437,7 +437,10 @@ function UserDAO(database) {
             last_answered: new Date(), //night batch - consolidate multiple answers to same question by same user, don't update (search) while user online
             response: current_response
         };
-        if (response === false) {
+        if (current_response === 6) {
+            //do nothing, visitor didn't see other question 
+        }
+        else if (response === false) {
             this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
                 { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": current_response, "date": new Date(), "wayin": 0 }] } } });
             if (current_response === 0) {
@@ -458,7 +461,10 @@ function UserDAO(database) {
             }
         }
 
-        if (response === true) {
+        if (current_response === 6) {
+            //do nothing, visitor didn't see other question
+        }
+        else if (response === true) {
             for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
                 if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
                     if (userimps_array[0].impressions_array[i].answer === 0) {
