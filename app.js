@@ -31,7 +31,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('192.168.1.5', 27017));
+var db = new Db('newsflanks', new Server('192.168.1.6', 27017));
 
 
 db.open(function (err, db) {
@@ -56,6 +56,7 @@ db.open(function (err, db) {
     app.get('/', function (req, res, next) {
         "use strict";
         var visitor_code = 6;
+        questions.get_front_questions(function (other_quest) {
         questions.get_default_question(function (quest) {
             if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                 res.render('home', {
@@ -217,6 +218,7 @@ db.open(function (err, db) {
                     choices: ['yes', 'no', 'no opinion']
                 });
             };
+            });
         });
     });
 
@@ -2752,6 +2754,7 @@ db.open(function (err, db) {
                             if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                                 res.render('home111', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2769,6 +2772,7 @@ db.open(function (err, db) {
                             else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
                                 res.render('home112', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2786,6 +2790,7 @@ db.open(function (err, db) {
                             else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
                                 res.render('home113', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2803,6 +2808,7 @@ db.open(function (err, db) {
                             else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                                 res.render('home114', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2820,6 +2826,7 @@ db.open(function (err, db) {
                             else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                                 res.render('home115', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2837,6 +2844,7 @@ db.open(function (err, db) {
                             else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                                 res.render('home116', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2854,6 +2862,7 @@ db.open(function (err, db) {
                             else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
                                 res.render('home117', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2871,6 +2880,7 @@ db.open(function (err, db) {
                             else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
                                 res.render('home118', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2888,6 +2898,7 @@ db.open(function (err, db) {
                             else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                                 res.render('home119', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -2905,6 +2916,7 @@ db.open(function (err, db) {
                             else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                                 res.render('home120', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     response: user_answer_text,
                                     animated_gif: quest.mm,
                                     frame: quest.frame,
@@ -3816,6 +3828,376 @@ db.open(function (err, db) {
                         };
                     });
                 }
+            });
+        }
+        else { // some other garbage
+            var visitor_code = 2;
+            var quest;
+            questions.get_default_question(function (quest) {
+                if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    res.render('home', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    res.render('home7', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home13', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home19', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home25', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    res.render('home31', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    res.render('home37', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home43', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home49', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home55', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                };
+            });
+        };
+    });
+
+    app.get('/track/:question/:visitor', function (req, res, next) {
+        "use strict";
+        var visitor_code = parseInt(req.params.visitor);
+        var quest = parseInt(req.params.question);
+        var new_visitor = false;
+        if ((visitor_code > -1) && (visitor_code < 10)) {
+            new_visitor = true;
+        };
+        if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
+            users.check_valid_usercode(visitor_code, function (valid) {
+                if (valid || new_visitor) {
+                    if (visitor_code < 10) {
+                        res.render('login', {
+                            usercode: visitor_code,
+                            question: quest
+                        });
+                    }
+                    else {
+                        users.get_username_from_usercode(visitor_code, function (visitor_name) {
+                            questions.get_question(function (quest) {
+                                users.build_userimps_list(visitor_code, quest, function (userimps_list) {
+                                    users.build_userresps_list(visitor_code, userimps_list, function (userresps_list) {
+                                        res.render('visitor_info', {
+                                            usercode: visitor_code,
+                                            username: visitor_name,
+                                            questions_list: userimps_list,
+                                            answers_list: userresps_list
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    };
+                }
+                else { // valid integer but not a visitor or user
+                    visitor_code = 2;
+                    var quest;
+                    questions.get_default_question(function (quest) {
+                        if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            res.render('home', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            res.render('home7', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home13', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home19', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home25', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            res.render('home31', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            res.render('home37', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home43', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home49', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home55', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        };
+                    });
+                };
             });
         }
         else { // some other garbage
@@ -5056,6 +5438,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5072,6 +5455,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5088,6 +5472,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5104,6 +5489,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5120,6 +5506,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5136,6 +5523,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5152,6 +5540,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5168,6 +5557,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5184,6 +5574,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5200,6 +5591,7 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
+                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -5493,6 +5885,7 @@ db.open(function (err, db) {
                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol2', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
@@ -5513,6 +5906,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol2', {
                                         usercode: visitor_code,
+                                        question: quest._id,
                                         frame: quest.frame,
                                         impression: quest.impression,
                                         url_text: quest.url_text,
@@ -5534,6 +5928,7 @@ db.open(function (err, db) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol2', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -5568,6 +5963,7 @@ db.open(function (err, db) {
                                                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                             res.render('lol2', {
                                                                                 usercode: visitor_code,
+                                                                                question: quest._id,
                                                                                 previous_answer: prev_answer,
                                                                                 top_question: quest,
                                                                                 frame: quest.frame,
@@ -5603,6 +5999,7 @@ db.open(function (err, db) {
                         lols.get_lol(quest.frame, quest.impression, function (links) {
                             res.render('lol3', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
@@ -5619,6 +6016,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol3', {
                                         usercode: visitor_code,
+                                        question: quest._id,
                                         frame: quest.frame,
                                         impression: quest.impression,
                                         url_text: quest.url_text,
@@ -5636,6 +6034,7 @@ db.open(function (err, db) {
                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                 res.render('lol3', {
                                     usercode: visitor_code,
+                                    question: quest._id,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -5666,6 +6065,7 @@ db.open(function (err, db) {
                                                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                     res.render('lol3', {
                                                                         usercode: visitor_code,
+                                                                        question: quest._id,
                                                                         top_question: quest,
                                                                         frame: quest.frame,
                                                                         impression: quest.impression,
@@ -5707,6 +6107,7 @@ db.open(function (err, db) {
                     if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                         res.render('home5', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5724,6 +6125,7 @@ db.open(function (err, db) {
                     else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
                         res.render('home11', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5741,6 +6143,7 @@ db.open(function (err, db) {
                     else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
                         res.render('home17', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5758,6 +6161,7 @@ db.open(function (err, db) {
                     else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                         res.render('home23', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5775,6 +6179,7 @@ db.open(function (err, db) {
                     else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                         res.render('home29', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5792,6 +6197,7 @@ db.open(function (err, db) {
                     else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                         res.render('home35', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5809,6 +6215,7 @@ db.open(function (err, db) {
                     else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
                         res.render('home41', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5826,6 +6233,7 @@ db.open(function (err, db) {
                     else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
                         res.render('home47', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5843,6 +6251,7 @@ db.open(function (err, db) {
                     else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                         res.render('home53', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -5860,6 +6269,7 @@ db.open(function (err, db) {
                     else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
                         res.render('home59', {
                             usercode: visitor_code,
+                            question: quest._id,
                             response: user_answer_text,
                             animated_gif: quest.mm,
                             frame: quest.frame,
@@ -7191,6 +7601,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol7', { 
                                         usercode: visitor_code,
+                                        question: quest._id,
                                         top_question: quest,
                                         frame: quest.frame,
                                         impression: quest.impression,
@@ -7211,6 +7622,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol6', { // no template
                                         usercode: visitor_code,
+                                        question: quest._id,
                                         top_question: quest,
                                         frame: quest.frame,
                                         impression: quest.impression,
@@ -7233,6 +7645,7 @@ db.open(function (err, db) {
                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                             res.render('lol5', {
                                                 usercode: visitor_code,
+                                                question: quest._id,
                                                 top_question: quest,
                                                 frame: quest.frame,
                                                 impression: quest.impression,
@@ -7254,6 +7667,7 @@ db.open(function (err, db) {
                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                             res.render('lol4', {
                                                 usercode: visitor_code,
+                                                question: quest._id,
                                                 top_question: quest,
                                                 frame: quest.frame,
                                                 impression: quest.impression,
@@ -7293,6 +7707,7 @@ db.open(function (err, db) {
                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                             res.render('lol2', {
                                                 usercode: visitor_code,
+                                                question: quest._id,
                                                 top_question: quest,
                                                 frame: quest.frame,
                                                 impression: quest.impression,
@@ -7322,6 +7737,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol7', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -7346,6 +7762,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol6', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -7371,6 +7788,7 @@ db.open(function (err, db) {
                                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                                     res.render('lol5', {
                                                         usercode: visitor_code,
+                                                        question: quest._id,
                                                         top_question: quest,
                                                         frame: quest.frame,
                                                         impression: quest.impression,
@@ -7394,6 +7812,7 @@ db.open(function (err, db) {
                                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                                     res.render('lol4', {
                                                         usercode: visitor_code,
+                                                        question: quest._id,
                                                         top_question: quest,
                                                         frame: quest.frame,
                                                         impression: quest.impression,
@@ -8386,7 +8805,7 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/trending/:visitor', function (req, res, next) {
+    app.get('/trending/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var new_visitor = false;
@@ -8915,13 +9334,14 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/trending/:question/:visitor', function (req, res, next) {
+    app.get('/trending/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
         };
+        if (visitor_code === 6) { visitor_code = 3; } //visitor has seen question
         if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
                 if (new_visitor) {
@@ -9110,8 +9530,6 @@ db.open(function (err, db) {
                     });
                 }
                 else { // valid integer but not a visitor or user
-                    visitor_code = 2;
-                    var quest;
                     questions.get_default_question(function (quest) {
                         if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
                             res.render('home', {
@@ -9444,7 +9862,6 @@ db.open(function (err, db) {
             });
         };
     });
-
 
     app.get('/trending2/:frame/:impression/:visitor/:url_text', function (req, res, next) {
         "use strict";
@@ -10679,9 +11096,10 @@ db.open(function (err, db) {
         };
     });
 
-    app.post('/login/:visitor', function (req, res, next) {
+    app.post('/login/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code_old = parseInt(req.params.visitor);
+        var quest = parseInt(req.params.question);
         var current_response = req.body.code;
 
         if (visitor_code_old === 4) {
@@ -10703,7 +11121,8 @@ db.open(function (err, db) {
         var user_answer_text = "";
         if ((name == '') && (code == '')) {
             res.render('track', {
-                usercode: visitor_code_old
+                usercode: visitor_code_old,
+                question: quest
             })
         }
         else if (code == '') {
@@ -10960,7 +11379,8 @@ db.open(function (err, db) {
                 }
                 else {
                     res.render('bad_login_username', {
-                        usercode: visitor_code_old
+                        usercode: visitor_code_old,
+                        question: quest
                     })
                 };
             });
@@ -11535,6 +11955,7 @@ db.open(function (err, db) {
                         if (state_code === 0) {
                             res.render('lol13', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
@@ -11551,6 +11972,7 @@ db.open(function (err, db) {
                         else if (state_code === 1) {
                             res.render('lol14', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
@@ -11567,6 +11989,7 @@ db.open(function (err, db) {
                         else if ((state_code === 2) || (state_code === 3)) {
                             res.render('lol15', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
@@ -11655,6 +12078,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -11683,6 +12107,7 @@ db.open(function (err, db) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol', {
                                                                     usercode: visitor_code,
+                                                                    question: quest._id,
                                                                     top_question: quest,
                                                                     frame: quest.frame,
                                                                     impression: quest.impression,
@@ -11705,6 +12130,7 @@ db.open(function (err, db) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol', {
                                                             usercode: visitor_code,
+                                                            question: quest._id,
                                                             top_question: quest,
                                                             frame: quest.frame,
                                                             impression: quest.impression,
@@ -11735,6 +12161,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol2', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -11763,6 +12190,7 @@ db.open(function (err, db) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol2', {
                                                                     usercode: visitor_code,
+                                                                    question: quest._id,
                                                                     top_question: quest,
                                                                     frame: quest.frame,
                                                                     impression: quest.impression,
@@ -11785,6 +12213,7 @@ db.open(function (err, db) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol2', {
                                                             usercode: visitor_code,
+                                                            question: quest._id,
                                                             top_question: quest,
                                                             frame: quest.frame,
                                                             impression: quest.impression,
@@ -11815,6 +12244,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol3', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -11840,6 +12270,7 @@ db.open(function (err, db) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol3', {
                                                                     usercode: visitor_code,
+                                                                    question: quest._id,
                                                                     top_question: quest,
                                                                     frame: quest.frame,
                                                                     impression: quest.impression,
@@ -11859,6 +12290,7 @@ db.open(function (err, db) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol3', {
                                                             usercode: visitor_code,
+                                                            question: quest._id,
                                                             top_question: quest,
                                                             frame: quest.frame,
                                                             impression: quest.impression,
@@ -11886,6 +12318,7 @@ db.open(function (err, db) {
                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                             res.render('lol3', {
                                                 usercode: visitor_code,
+                                                question: quest._id,
                                                 top_question: quest,
                                                 frame: quest.frame,
                                                 impression: quest.impression,
@@ -11911,6 +12344,7 @@ db.open(function (err, db) {
                                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                                             res.render('lol3', {
                                                                 usercode: visitor_code,
+                                                                question: quest._id,
                                                                 top_question: quest,
                                                                 frame: quest.frame,
                                                                 impression: quest.impression,
@@ -11930,6 +12364,7 @@ db.open(function (err, db) {
                                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                                     res.render('lol3', {
                                                         usercode: visitor_code,
+                                                        question: quest._id,
                                                         top_question: quest,
                                                         frame: quest.frame,
                                                         impression: quest.impression,
@@ -11968,6 +12403,7 @@ db.open(function (err, db) {
                         if (state_code === 0) {
                             res.render('lol13', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
@@ -11984,6 +12420,7 @@ db.open(function (err, db) {
                         else if (state_code === 1) {
                             res.render('lol14', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
@@ -12000,6 +12437,7 @@ db.open(function (err, db) {
                         else if ((state_code === 2) || (state_code === 3)) {
                             res.render('lol15', {
                                 usercode: visitor_code,
+                                question: quest._id,
                                 top_question: quest,
                                 frame: quest.frame,
                                 impression: quest.impression,
@@ -12171,6 +12609,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol2', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -12199,6 +12638,7 @@ db.open(function (err, db) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol2', {
                                                                     usercode: visitor_code,
+                                                                    question: quest._id,
                                                                     top_question: quest,
                                                                     frame: quest.frame,
                                                                     impression: quest.impression,
@@ -12221,6 +12661,7 @@ db.open(function (err, db) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol2', {
                                                             usercode: visitor_code,
+                                                            question: quest._id,
                                                             top_question: quest,
                                                             frame: quest.frame,
                                                             impression: quest.impression,
@@ -12251,6 +12692,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol3', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -12276,6 +12718,7 @@ db.open(function (err, db) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol3', {
                                                                     usercode: visitor_code,
+                                                                    question: quest._id,
                                                                     top_question: quest,
                                                                     frame: quest.frame,
                                                                     impression: quest.impression,
@@ -12295,6 +12738,7 @@ db.open(function (err, db) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol3', {
                                                             usercode: visitor_code,
+                                                            question: quest._id,
                                                             top_question: quest,
                                                             frame: quest.frame,
                                                             impression: quest.impression,
@@ -12321,6 +12765,7 @@ db.open(function (err, db) {
                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                 res.render('lol3', {
                                                     usercode: visitor_code,
+                                                    question: quest._id,
                                                     top_question: quest,
                                                     frame: quest.frame,
                                                     impression: quest.impression,
@@ -12346,6 +12791,7 @@ db.open(function (err, db) {
                                                             lols.get_lol(quest.frame, quest.impression, function (links) {
                                                                 res.render('lol3', {
                                                                     usercode: visitor_code,
+                                                                    question: quest._id,
                                                                     top_question: quest,
                                                                     frame: quest.frame,
                                                                     impression: quest.impression,
@@ -12365,6 +12811,7 @@ db.open(function (err, db) {
                                                     lols.get_lol(quest.frame, quest.impression, function (links) {
                                                         res.render('lol3', {
                                                             usercode: visitor_code,
+                                                            question: quest._id,
                                                             top_question: quest,
                                                             frame: quest.frame,
                                                             impression: quest.impression,
