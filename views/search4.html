@@ -3,7 +3,7 @@
 
  <head>
 
- 	<!-- search3 -->
+ 	<!-- search -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,9 +28,9 @@
     }
     </style>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
-    
-    <title>Search Results</title>
-    
+
+    <title>Search</title>
+
 </head>
 
 <body>
@@ -66,7 +66,7 @@
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'>Please log into the website by clicking the LOGIN menu item above! This allows newsflanks.com to capture your votes and customize your experience.</font></h4>");
+      document.writeln("<h4><font color='#FF0000'>News Flanks includes full search capabilities to help you find questions and links related to your favorite topics.</font></h4>");
       document.writeln("</div>");
    }
    else {
@@ -100,9 +100,27 @@
       document.writeln("</center>");
       document.writeln("</div>");
    }
-</script>    
+</script>
 <div class="table-border">
-	 <font color="#006500" size="4">No results</font>
+   <font color="#006500" size="4">
+   <form action="/search_query2/{{usercode}}">
+         <p>
+            Enter a search term and then click &quot;Submit.&quot; All news links cited on this website are searched. For example, if you type the word &quot;Trump&quot; (without the quotes) you will get all links relating to Trump.<br><br>
+            <input type="text" name="query" min ="1" maxlength="75">
+         </p>
+      <input type="submit" value="Submit">
+   </form></font>
+   <br><p><b>Trending searches:</b></p>
+   <a class='rollover' href='https://newsflanks.com/search_query/6?query=COVID-19'><strong><font color='#006500'>COVID-19</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/6?query=coronavirus'><strong><font color='#006500'>Coronavirus</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/3?query=impeachment'><strong><font color='#006500'>Impeach</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/3?query=mass+shootings'><strong><font color='#006500'>Mass shootings</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/3?query=Guns'><strong><font color='#006500'>Guns</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/3?query=Climate'><strong><font color='#006500'>Climate</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/3?query=Hillary'><strong><font color='#006500'>Hillary</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/3?query=healthcare'><strong><font color='#006500'>Healthcare</font></strong></a><br>
+   <a class='rollover' href='https://newsflanks.com/search_query/3?query=Roe'><strong><font color='#006500'>Roe</font></strong></a>
+
 </div>
 {% include "includes/footer.html" %}
 </div>

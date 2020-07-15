@@ -46,7 +46,7 @@
       document.writeln("<nav>");
       document.writeln("<ul class=nav-font>");
       document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/home/{{usercode}}'><strong><font color='#006500'>&nbspTODAY'S <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("<a class='rollover' href='/home/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspTODAY'S <b>?</b>&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
       document.writeln("<a class='rollover' href='/trending/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbsp;OTHER ?&nbsp;</font></strong></a>");
@@ -55,7 +55,8 @@
       document.writeln("<a class='rollover' href='/flip/{{usercode}}/3'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("<a class='rollover' href='/search2/{{question}}/{{usercode}}
+'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
       document.writeln("<a class='rollover' href='/track/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspLOGIN&nbsp</font></strong></a>");
@@ -264,7 +265,7 @@
 	&nbsp;&nbsp;&nbsp;<img src="{{animated_gif}}"><br>
 	&nbsp;&nbsp;<font color="#000000" size="3"><i><b>{{quote}}</b></i></font><br><br>
        <font color="#006500" size="4"><b><span> {{top_question}}</span></b><br>
-   <form action="/links/{{frame}}/{{impression}}/{{usercode}}/{{url_text}}" method="POST">
+   <form action="/links3/{{question}}/{{frame}}/{{impression}}/{{usercode}}/{{url_text}}" method="POST">
       {% for yes_no in choices %}
          <p>
 <div class="options">
