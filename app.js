@@ -2753,7 +2753,7 @@ db.open(function (err, db) {
     app.get('/home/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        var other_quest = parseInt(req.params.question);
+        var other_quest = ObjectID.createFromHexString(req.params.question);
         var new_visitor = false;
         var user_answer_text = "";
         if ((visitor_code > -1) && (visitor_code < 10)) {
@@ -4016,7 +4016,7 @@ db.open(function (err, db) {
     app.get('/track/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        var quest = parseInt(req.params.question);
+        var quest = ObjectID.createFromHexString(req.params.question);
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
@@ -7603,7 +7603,7 @@ db.open(function (err, db) {
         var links_res = req.body.answer;
         var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor);
-        var other_question = parseInt(req.params.question);
+        var other_question = ObjectID.createFromHexString(req.params.question);
         var prev_answer = req.body.code;
         if (typeof links_res == 'undefined') {
             var answer = "3";
@@ -9853,7 +9853,7 @@ db.open(function (err, db) {
     app.get('/flip/:question/:visitor/:flip_state', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        var other_quest = parseInt(req.params.question);
+        var other_quest = ObjectID.createFromHexString(req.params.question);
         var flip_code = parseInt(req.params.flip_state);
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
@@ -13004,7 +13004,7 @@ db.open(function (err, db) {
     app.get('/search/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        var other_question = parseInt(req.params.question);
+        var other_question = ObjectID.createFromHexString(req.params.question);
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
@@ -13720,7 +13720,7 @@ db.open(function (err, db) {
     app.get('/search_query/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        var other_question = parseInt(req.params.question);
+        var other_question = ObjectID.createFromHexString(req.params.question);
         var query_res = req.query.query ? req.query.query : "";
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
@@ -14085,7 +14085,7 @@ db.open(function (err, db) {
     app.post('/login/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code_old = parseInt(req.params.visitor);
-        var quest = parseInt(req.params.question);
+        var quest = ObjectID.createFromHexString(req.params.question);
         var current_response = req.body.code;
 
         if (visitor_code_old === 4) {
