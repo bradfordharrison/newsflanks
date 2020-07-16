@@ -12417,7 +12417,7 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/search2/:question/:visitor', function (req, res, next) {
+    app.get('/search/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var other_question = parseInt(req.params.question);
@@ -13133,7 +13133,7 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/search_query2/:question/:visitor', function (req, res, next) {
+    app.get('/search_query/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var other_question = parseInt(req.params.question);
