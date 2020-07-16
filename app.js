@@ -9850,6 +9850,590 @@ db.open(function (err, db) {
         };
     });
 
+    app.get('/flip/:question/:visitor/:flip_state', function (req, res, next) {
+        "use strict";
+        var visitor_code = parseInt(req.params.visitor);
+        var other_quest = parseInt(req.params.question);
+        var flip_code = parseInt(req.params.flip_state);
+        var new_visitor = false;
+        if ((visitor_code > -1) && (visitor_code < 10)) {
+            new_visitor = true;
+        };
+        if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
+            users.check_valid_usercode(visitor_code, function (valid) {
+                if (valid || new_visitor) {
+                    if (new_visitor) {
+                        if (flip_code === 0) {
+                            questions.get_default_question(function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol7', {
+                                        usercode: visitor_code,
+                                        question: quest._id,
+                                        top_question: quest,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        x: quest.mm_no_x,
+                                        y: quest.mm_no_y,
+                                        file: quest.mm_file_no,
+                                        mm_win_size: quest.mm_win_no_y,
+                                        link_list: links
+                                    });
+                                });
+                            });
+                        }
+                        else if (flip_code === 1) {
+                            questions.get_default_question(function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol6', { // no template
+                                        usercode: visitor_code,
+                                        question: quest._id,
+                                        top_question: quest,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        link_list: links
+                                    });
+                                });
+                            });
+                        }
+                        else if (flip_code === 2) {
+                            questions.get_default_question(function (quest) {
+                                questions.get_yes_visitor_votes(quest._id, function (yes_vote) {
+                                    questions.get_no_visitor_votes(quest._id, function (no_vote) {
+                                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                                            res.render('lol5', {
+                                                usercode: visitor_code,
+                                                question: quest._id,
+                                                top_question: quest,
+                                                frame: quest.frame,
+                                                impression: quest.impression,
+                                                url_text: quest.url_text,
+                                                yes_votes: yes_vote,
+                                                no_votes: no_vote,
+                                                mm_win_size: quest.mm_win_all_y,
+                                                link_list: links
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        }
+                        else if (flip_code === 3) {
+                            questions.get_default_question(function (quest) {
+                                questions.get_yes_visitor_votes(quest._id, function (yes_vote) {
+                                    questions.get_no_visitor_votes(quest._id, function (no_vote) {
+                                        lols.get_lol(quest.frame, quest.impression, function (links) {
+                                            res.render('lol4', {
+                                                usercode: visitor_code,
+                                                question: quest._id,
+                                                top_question: quest,
+                                                frame: quest.frame,
+                                                impression: quest.impression,
+                                                url_text: quest.url_text,
+                                                yes_votes: yes_vote,
+                                                no_votes: no_vote,
+                                                mm_win_size: quest.mm_win_all_y,
+                                                link_list: links
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        }
+                        else if (flip_code === 4) {
+                            questions.get_default_question(function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol', {
+                                        usercode: visitor_code,
+                                        top_question: quest,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        x: quest.mm_yes_x,
+                                        y: quest.mm_yes_y,
+                                        file: quest.mm_file_yes,
+                                        mm_win_size: quest.mm_win_yes_y,
+                                        link_list: links
+                                    });
+                                });
+                            });
+                        }
+                        else if (flip_code === 5) {
+                            questions.get_default_question(function (quest) {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol2', {
+                                        usercode: visitor_code,
+                                        question: quest._id,
+                                        top_question: quest,
+                                        frame: quest.frame,
+                                        impression: quest.impression,
+                                        url_text: quest.url_text,
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        x: quest.mm_no_x,
+                                        y: quest.mm_no_y,
+                                        file: quest.mm_file_no,
+                                        mm_win_size: quest.mm_win_no_y,
+                                        link_list: links
+                                    });
+                                });
+                            });
+                        }
+                        else {
+                            //error - bad flip code
+                        }
+
+                    }
+                    else {
+                        users.get_user_lol_state(visitor_code, function (state) {
+                            if (state.lol_state == 0) {
+                                users.update_user_lol_state(visitor_code, 1, function (result) {
+                                    users.get_current_user_question(visitor_code, function (question_id) {
+                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                            lols.get_lol(quest.frame, quest.impression, function (links) {
+                                                res.render('lol7', {
+                                                    usercode: visitor_code,
+                                                    question: quest._id,
+                                                    top_question: quest,
+                                                    frame: quest.frame,
+                                                    impression: quest.impression,
+                                                    url_text: quest.url_text,
+                                                    yes_votes: quest.yes,
+                                                    no_votes: quest.no,
+                                                    link_list: links,
+                                                    x: quest.mm_no_x,
+                                                    y: quest.mm_no_y,
+                                                    mm_win_size: quest.mm_win_no_y,
+                                                    file: quest.mm_file_no
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            }
+                            else if (state.lol_state == 1) {
+                                users.update_user_lol_state(visitor_code, 0, function (result) {
+                                    users.get_current_user_question(visitor_code, function (question_id) {
+                                        questions.get_user_question(question_id.current_question, function (quest) {
+                                            lols.get_lol(quest.frame, quest.impression, function (links) {
+                                                res.render('lol6', {
+                                                    usercode: visitor_code,
+                                                    question: quest._id,
+                                                    top_question: quest,
+                                                    frame: quest.frame,
+                                                    impression: quest.impression,
+                                                    url_text: quest.url_text,
+                                                    yes_votes: quest.yes,
+                                                    no_votes: quest.no,
+                                                    link_list: links,
+                                                    x: quest.mm_yes_x,
+                                                    y: quest.mm_yes_y,
+                                                    mm_win_size: quest.mm_win_yes_y,
+                                                    file: quest.mm_file_yes
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            }
+                            else if (state.lol_state == 2) {
+                                users.get_current_user_question(visitor_code, function (question_id) {
+                                    questions.get_user_question(question_id.current_question, function (quest) {
+                                        questions.get_yes_votes(quest._id, function (yes_vote) {
+                                            questions.get_no_votes(quest._id, function (no_vote) {
+                                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                                    res.render('lol5', {
+                                                        usercode: visitor_code,
+                                                        question: quest._id,
+                                                        top_question: quest,
+                                                        frame: quest.frame,
+                                                        impression: quest.impression,
+                                                        url_text: quest.url_text,
+                                                        yes_votes: yes_vote,
+                                                        no_votes: no_vote,
+                                                        mm_win_size: quest.mm_win_all_y,
+                                                        link_list: links
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            }
+                            else { //state.lol_state == 3
+                                users.get_current_user_question(visitor_code, function (question_id) {
+                                    questions.get_user_question(question_id.current_question, function (quest) {
+                                        questions.get_yes_votes(quest._id, function (yes_vote) {
+                                            questions.get_no_votes(quest._id, function (no_vote) {
+                                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                                    res.render('lol4', {
+                                                        usercode: visitor_code,
+                                                        question: quest._id,
+                                                        top_question: quest,
+                                                        frame: quest.frame,
+                                                        impression: quest.impression,
+                                                        url_text: quest.url_text,
+                                                        yes_votes: yes_vote,
+                                                        no_votes: no_vote,
+                                                        mm_win_size: quest.mm_win_all_y,
+                                                        link_list: links
+                                                    });
+                                                });
+                                            });
+                                        });
+                                    });
+                                });
+                            }
+                        });
+                    };
+                }
+                else { // valid integer but not a visitor or user
+                    visitor_code = 0;
+                    var quest;
+                    questions.get_default_question(function (quest) {
+                        if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            res.render('home', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            res.render('home7', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home13', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home19', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home25', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            res.render('home31', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            res.render('home37', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home43', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home49', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        }
+                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            res.render('home55', {
+                                usercode: visitor_code,
+                                animated_gif: quest.mm,
+                                frame: quest.frame,
+                                impression: quest.impression,
+                                url_text: quest.url_text,
+                                quote: quest.text,
+                                quote2: quest.text2,
+                                quote3: quest.text3,
+                                quote4: quest.text4,
+                                head_win_size: quest.head_win_y,
+                                top_question: quest.question + "?",
+                                choices: ['yes', 'no', 'no opinion']
+                            });
+                        };
+                    });
+                };
+            });
+        }
+        else { // some other garbage
+            var visitor_code = 2;
+            var quest;
+            questions.get_default_question(function (quest) {
+                if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    res.render('home', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    res.render('home7', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home13', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home19', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home25', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    res.render('home31', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    res.render('home37', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home43', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home49', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                }
+                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    res.render('home55', {
+                        usercode: visitor_code,
+                        animated_gif: quest.mm,
+                        frame: quest.frame,
+                        impression: quest.impression,
+                        url_text: quest.url_text,
+                        quote: quest.text,
+                        quote2: quest.text2,
+                        quote3: quest.text3,
+                        quote4: quest.text4,
+                        head_win_size: quest.head_win_y,
+                        top_question: quest.question + "?",
+                        choices: ['yes', 'no', 'no opinion']
+                    });
+                };
+            });
+        };
+    });
+
     app.get('/flip2/:question/:visitor', function (req, res, next) { 
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
