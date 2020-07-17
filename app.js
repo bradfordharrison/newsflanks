@@ -2023,7 +2023,7 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/:visitor', function (req, res, next) {
+    app.get('/home/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var new_visitor = false;
@@ -3286,7 +3286,7 @@ db.open(function (err, db) {
         };
     });
 
-    app.get('/:frame/:impression/:visitor/:url_text', function (req, res, next) { //new current-todays?
+    app.get('/question/:frame/:impression/:visitor/:url_text', function (req, res, next) { //new current-todays?
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var new_visitor = false;
