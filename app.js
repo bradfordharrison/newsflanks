@@ -57,8 +57,7 @@ db.open(function (err, db) {
         "use strict";
         var visitor_code = 6;
         questions.get_front_questions(function (other_quest) {
-            questions.get_user_question2(other_quest[0].frame, other_quest[0].impression, function (other_quest_temp) {
-                questions.get_user_question(other_quest_temp._id, function (other_quest_id) {
+            questions.get_user_question2(other_quest[0].frame, other_quest[0].impression, function (other_quest_id) {
                     questions.get_default_question(function (quest) {
                         if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                             res.render('home', {
@@ -231,7 +230,6 @@ db.open(function (err, db) {
                             });
                         };
                     });
-                });
             });
         });
     });
