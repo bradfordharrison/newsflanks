@@ -4014,7 +4014,7 @@ db.open(function (err, db) {
     app.get('/track/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        var quest = ObjectID.createFromHexString(req.params.question);
+        var incoming_quest = ObjectID.createFromHexString(req.params.question);
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
@@ -4025,7 +4025,7 @@ db.open(function (err, db) {
                     if (visitor_code < 10) {
                         res.render('login', {
                             usercode: visitor_code,
-                            question: quest
+                            question: incoming_quest
                         });
                     }
                     else {
@@ -4920,8 +4920,9 @@ db.open(function (err, db) {
         });
     });
 
-    app.post('/username/:visitor', function (req, res, next) {
+    app.post('/username/:question/:visitor', function (req, res, next) {
         var visitor_code = parseInt(req.params.visitor);
+        var other_question = ObjectID.createFromHexString(req.params.question);
         var name_res = req.body.name;
         var name_res2 = req.body.name2;
         var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
@@ -4946,12 +4947,14 @@ db.open(function (err, db) {
 
         if ((name_res_caps != name_res2_caps) || (name_res.length < 1)) {
             res.render('username_no_match', {
-                usercode: visitor_code
+                usercode: visitor_code,
+                question: other_question
             });
         }
         else if (!re.test(name_res)) { //validate email format
             res.render('username_no_match', {
-                usercode: visitor_code
+                usercode: visitor_code,
+                question: other_question
             });
         }
         else {
@@ -4999,6 +5002,7 @@ db.open(function (err, db) {
                 else {
                     res.render('bad_username', {
                         bad_name: name_res,
+                        question: other_question,
                         usercode: visitor_code
                     });
                 };
@@ -5009,7 +5013,6 @@ db.open(function (err, db) {
     app.post('/challenge/:visitor', function (req, res, next) {
         "use strict";
         var user_code = parseInt(req.params.visitor);
-        var quest;
         var user_answer_text = "";
         var chal_res_0 = req.body.challenge_0;
         var chal_res_1 = req.body.challenge_1;
@@ -9866,7 +9869,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol7', {
                                         usercode: visitor_code,
-                                        question: quest._id,
+                                        question: other_quest,
                                         top_question: quest,
                                         frame: quest.frame,
                                         impression: quest.impression,
@@ -9887,7 +9890,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol6', { // no template
                                         usercode: visitor_code,
-                                        question: quest._id,
+                                        question: other_quest,
                                         top_question: quest,
                                         frame: quest.frame,
                                         impression: quest.impression,
@@ -9910,7 +9913,7 @@ db.open(function (err, db) {
                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                             res.render('lol5', {
                                                 usercode: visitor_code,
-                                                question: quest._id,
+                                                question: other_quest,
                                                 top_question: quest,
                                                 frame: quest.frame,
                                                 impression: quest.impression,
@@ -9932,7 +9935,7 @@ db.open(function (err, db) {
                                         lols.get_lol(quest.frame, quest.impression, function (links) {
                                             res.render('lol4', {
                                                 usercode: visitor_code,
-                                                question: quest._id,
+                                                question: other_quest,
                                                 top_question: quest,
                                                 frame: quest.frame,
                                                 impression: quest.impression,
@@ -9952,6 +9955,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol', {
                                         usercode: visitor_code,
+                                        question: other_quest,
                                         top_question: quest,
                                         frame: quest.frame,
                                         impression: quest.impression,
@@ -9972,7 +9976,7 @@ db.open(function (err, db) {
                                 lols.get_lol(quest.frame, quest.impression, function (links) {
                                     res.render('lol2', {
                                         usercode: visitor_code,
-                                        question: quest._id,
+                                        question: other_quest,
                                         top_question: quest,
                                         frame: quest.frame,
                                         impression: quest.impression,
@@ -14348,6 +14352,7 @@ db.open(function (err, db) {
                                                     users.get_challenge(challenge_array[iterator].question, function (question) {
                                                         res.render('challenge', {
                                                             usercode: visitor_code_old,
+                                                            question: other_question,
                                                             actual_usercode: visitor_code,
                                                             challenge_question: question + "?"
                                                         });
@@ -14614,8 +14619,9 @@ db.open(function (err, db) {
         }
     });
 
-    app.post('/challenge_response/:actual_visitor/:visitor', function (req, res, next) {
+    app.post('/challenge_response/:question/:actual_visitor/:visitor', function (req, res, next) {
         var visitor_code_old = parseInt(req.params.visitor);
+        var other_quest = ObjectID.createFromHexString(req.params.question);
         var answer = req.body.challenge_answer;
         var answer_res_caps = answer.toUpperCase();
         var current_response = req.body.code;
@@ -14891,6 +14897,7 @@ db.open(function (err, db) {
                                                 users.get_challenge(challenge_array[iterator].question, function (question) {
                                                     res.render('challenge_failed', {
                                                         usercode: visitor_code_old,
+                                                        question: other_quest,
                                                         actual_usercode: visitor_code,
                                                         challenge_question: question + "?"
                                                     });
@@ -14911,6 +14918,7 @@ db.open(function (err, db) {
                                                 users.get_challenge(challenge_array[iterator].question, function (question) {
                                                     res.render('challenge_failed', {
                                                         usercode: visitor_code_old,
+                                                        question: other_quest,
                                                         actual_usercode: visitor_code,
                                                         challenge_question: question + "?"
                                                     });
