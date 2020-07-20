@@ -31,7 +31,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('192.168.1.6', 27017));
+var db = new Db('newsflanks', new Server('192.168.1.2', 27017));
 
 
 db.open(function (err, db) {
@@ -7623,7 +7623,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7641,7 +7640,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7659,7 +7657,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7677,7 +7674,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7695,7 +7691,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7713,7 +7708,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7731,7 +7725,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7749,7 +7742,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7767,7 +7759,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -7785,7 +7776,6 @@ db.open(function (err, db) {
                             quote3: quest.text3,
                             quote4: quest.text4,
                             head_win_size: quest.head_win_y,
-                            question: quest._id,
                             top_question: quest.question + "?",
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
@@ -11077,6 +11067,7 @@ db.open(function (err, db) {
     app.get('/trending/:question/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
+        var other_question = ObjectID.createFromHexString(req.params.question);
         var new_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
@@ -11085,8 +11076,9 @@ db.open(function (err, db) {
         if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
                 if (new_visitor) {
-                    questions.get_front_questions(function (quest) {
-                        questions.get_user_question2(quest[0].frame, quest[0].impression, function (front_quest) {
+                    questions.get_user_question(other_question, function (quest) {
+                        console.log(quest);
+                        questions.get_user_question2(quest.frame, quest.impression, function (front_quest) {
                             if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 != "")) {
                                 res.render('home81', {
                                     question: front_quest._id, //passing in question ID
