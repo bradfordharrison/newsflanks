@@ -4964,8 +4964,9 @@ db.open(function (err, db) {
                 };
                 if (result === false) { //good to go
                     questions.get_default_question(function (default_question) {
-                        questions.get_front_questions(function (front_quest) {
-                            questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                        //questions.get_front_questions(function (front_quest) {
+                        questions.get_user_question(other_question, function (front_question) {
+                            //questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
                                 users.get_usercode_for_update(function (user_code) {
                                         users.write_new_user(name_res_caps, +default_answer, user_code, default_question, front_question, +answer_code, visitor_code, function (userDoc) {
                                     //vote is tallied in write_new_user
@@ -4994,7 +4995,6 @@ db.open(function (err, db) {
                                         });
                                     });
                             });
-                        });
                             });
                         });
                     });
@@ -10525,10 +10525,12 @@ db.open(function (err, db) {
     });
 
     app.get('/links/:frame/:impression/:visitor/:url_text', function (req, res, next) {
-        var user_answer_text = "";
         var visitor_code = parseInt(req.params.visitor);
         var new_question_frame = parseInt(req.params.frame);
         var new_question_impression = parseInt(req.params.impression);
+        if ((visitor_code !== 0) && (visitor_code !== 1)) {
+            visitor_code = 2;
+        };
         var valid_visitor = false;
         if ((visitor_code > -1) && (visitor_code < 10)) {//Right now this is unnecessary
             valid_visitor = true;
@@ -10539,11 +10541,12 @@ db.open(function (err, db) {
                     var answer = "2";
                     visitor_code = +answer;
                     questions.check_valid_question(new_question_frame, new_question_impression, function (quest_valid) { //matched
-                        if (quest_valid) {  //valid question
+                        if (quest_valid) {  //valid question -- and , render lol, === 10, render lol11 else render lol12
                             if ((visitor_code > -1) && (visitor_code < 100000000)) { //matched
                                 questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
-                                        lols.get_lol(quest.frame, quest.impression, function (links) {
-                                            res.render('lol16', {
+                                    lols.get_lol(quest.frame, quest.impression, function (links) {
+                                        if (visitor_code === 0) {
+                                            res.render('lol10', {
                                                 question: quest._id,
                                                 usercode: visitor_code,
                                                 top_question: quest,
@@ -10556,6 +10559,37 @@ db.open(function (err, db) {
                                                 mm_win_size: quest.mm_win_all_y,
                                                 user_answer: answer
                                             });
+                                        }
+                                        else if (visitor_code === 1) {
+                                            res.render('lol11', {
+                                                question: quest._id,
+                                                usercode: visitor_code,
+                                                top_question: quest,
+                                                frame: quest.frame,
+                                                impression: quest.impression,
+                                                url_text: quest.url_text,
+                                                yes_votes: quest.yes,
+                                                no_votes: quest.no,
+                                                link_list: links,
+                                                mm_win_size: quest.mm_win_all_y,
+                                                user_answer: answer
+                                            });
+                                        }
+                                        else {
+                                            res.render('lol12', {
+                                                question: quest._id,
+                                                usercode: visitor_code,
+                                                top_question: quest,
+                                                frame: quest.frame,
+                                                impression: quest.impression,
+                                                url_text: quest.url_text,
+                                                yes_votes: quest.yes,
+                                                no_votes: quest.no,
+                                                link_list: links,
+                                                mm_win_size: quest.mm_win_all_y,
+                                                user_answer: answer
+                                            });
+                                        }
                                         });
                                     });
                             }
@@ -11077,7 +11111,6 @@ db.open(function (err, db) {
             users.check_valid_usercode(visitor_code, function (valid) {
                 if (new_visitor) {
                     questions.get_user_question(other_question, function (quest) {
-                        console.log(quest);
                         questions.get_user_question2(quest.frame, quest.impression, function (front_quest) {
                             if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 != "")) {
                                 res.render('home81', {
@@ -13614,8 +13647,9 @@ db.open(function (err, db) {
                                                         users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                                             users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
                                                                 //update_current_question_with_actual_response also sets current question, lol state, and updates tally if needed
-                                                                questions.get_front_questions(function (front_quest) {
-                                                                    questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                                                                //questions.get_front_questions(function (front_quest) {
+                                                                questions.get_user_question(quest, function (front_question) {
+                                                                    //questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
                                                                         users.get_userimps_array(visitor_code, function (userimps_array) {
                                                                             users.check_if_other_question_already_in_impressions_array(visitor_code_old, front_question, userimps_array, function (response) {
                                                                                 users.update_other_question_with_actual_response(visitor_code, front_question, response, visitor_code_old, userimps_array, function (result) {
@@ -13805,7 +13839,6 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             };
-                                                                        });
                                                                     });
                                                                             });
                                                                             });
@@ -14134,8 +14167,9 @@ db.open(function (err, db) {
                                     users.check_if_question_of_day_already_in_impressions_array(visitor_code, quest, userimps_array, function (response) {
                                         users.update_current_question_with_actual_response(visitor_code, quest, response, +current_response, userimps_array, function (result) {
                                             //update_current_question_with_actual_response also sets current question and updates tally if needed
-                                            questions.get_front_questions(function (front_quest) {
-                                                questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                                            //questions.get_front_questions(function (front_quest) {
+                                                questions.get_user_question(other_question, function (front_question) {
+                                                //questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
                                                     users.get_userimps_array(visitor_code, function (userimps_array) {
                                                         users.check_if_other_question_already_in_impressions_array(visitor_code_old, front_question, userimps_array, function (response) {
                                                             users.update_other_question_with_actual_response(visitor_code, front_question, response, visitor_code_old, userimps_array, function (result) {
@@ -14325,7 +14359,6 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         };
-                                                    });
                                                 });
                                                                 });
                                                             });
