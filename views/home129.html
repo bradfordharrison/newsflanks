@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- home51 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link href="/static/css/ui.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    a:link {
+	  color: #3366FF;
+	}
+	a:visited {
+	  color: #000000;
+	}
+	a:hover {
+	  color: #00A500;
+	}
+	a:active {
+	  color: #00A500;
+    }
+    </style>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+
+    <title>News Flanks</title>
+
+</head>
+
+<body>
+<font face="Verdana, Arial, Helvetica, sans-serif">
+<div class=container-fluid>
+<div class=row>
+<div class="col-lg-2"></div>
+<div class="col-lg-8">
+<script language="javascript">
+   if ({{usercode}} < 10) {
+      document.writeln("<div>");
+      document.writeln("<center>");
+      document.writeln("<nav>");
+      document.writeln("<ul class=nav-font>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/home/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspTODAY'S <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/trending/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbsp;OTHER ?&nbsp;</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/flip/{{question}}/{{usercode}}/3'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/search/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/track/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspLOGIN&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("</ul>");
+      document.writeln("</nav>");
+      document.writeln("</center>");
+      document.writeln("</div>");
+      document.writeln("<div>");
+      document.writeln("<h4><font color='#FF0000'>Please select an option below.</font></h4>");
+      document.writeln("</div>");
+   }
+   else {
+      document.writeln("<div>");
+      document.writeln("<center>");
+      document.writeln("<nav>");
+      document.writeln("<ul class=nav-font>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/question/{{frame}}/{{impression}}/{{usercode}}/{{url_text}}'><strong><font color='#006500'>&nbspCURRENT&#47;NEXT <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/trending/{{usercode}}'><strong><font color='#006500'>&nbsp;SEQUENCES&nbsp;</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/flip/{{usercode}}/6'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
+      document.writeln("</li>");
+	  document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/flanks/{{usercode}}'><strong><font color='#006500'>&nbspFLANKS&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.write("<a class='rollover' href='/track/{{usercode}}'><strong><font color='#006500'>&nbsp");
+      var holder = {{usercode}};
+      document.write(holder);
+      document.writeln("&nbsp</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("</ul>");
+      document.writeln("</nav>");
+      document.writeln("</center>");
+      document.writeln("</div>");
+      document.writeln("<div>");
+      document.writeln("<h4><font color='#FF0000'>Please select an option below.</font></h4>");
+      document.writeln("</div>");
+   }
+</script>
+<script>
+    window.name = "3";
+</script>
+
+<div class="table-border">
+		<script src="../static/js/jquery.js"></script>
+		<div id="users-device-size">
+		  <div id="xs" class="visible-xs"></div>
+		  <div id="sm" class="visible-sm"></div>
+		  <div id="md" class="visible-md"></div>
+		  <div id="lg" class="visible-lg"></div>
+		</div>
+
+	<script>
+		function getBootstrapDeviceSize() {
+			return  $('#users-device-size').find('div:visible').first().attr('id');
+		}
+	</script>
+			{% if head_win_size == 0 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=65 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 1 %}
+		<script language="javascript">
+
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav1'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=130 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 2 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav2'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=195 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 3 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav3'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=260 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 4 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav4'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=325 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 5 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav5'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=390 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 6 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav6'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=455 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 7 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav7'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=520 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 8 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav8'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=585 allowfullscreen></iframe></div>");
+				  document.write("</div>");
+				  };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 9 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav9'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=650 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 10 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav10'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=715 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 11 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav11'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=780 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+
+		{% if head_win_size == 12 %}
+		<script language="javascript">
+				  var temp = getBootstrapDeviceSize();
+				  if (temp === 'lg') {
+				  document.write("<div id='nav12'>");
+				  document.write("<div><iframe src='https://flanks.org/d4.html' frameborder='0' width=100% height=845 allowfullscreen></iframe></div>");
+		          document.write("</div>");
+		          };
+		</script>
+		{% endif %}
+   &nbsp;&nbsp;<font color="#000000" size="3"><i><b>{{quote}}</b></i></font><br><br>
+   <font color="#006500" size="4"><b><span> {{top_question}}</span></b><br>
+   <form action="/links3/{{question}}/{{frame}}/{{impression}}/{{usercode}}/{{url_text}}" method="POST">
+      {% for yes_no in choices %}
+         <p>
+<div class="options">
+  <input id="option" type="radio" name="answer" value="{{yes_no}}"><label for="option"><span><span></span></span>{{yes_no}}</label>
+</div>
+         </p>
+
+      {% endfor %}
+      <script>
+        var code = window.name;
+        document.write("<input type='hidden' name='code' value='");
+        document.write(code);
+        document.writeln("'>");
+    </script>
+      <input type="submit" value="Submit">
+   </form>
+</font></div>
+{% include "includes/footer.html" %}
+</div>
+<div class="col-lg-2"></div>
+</div>
+</div>
+</font>
+</body>
+
+</html>
