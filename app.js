@@ -8087,7 +8087,6 @@ db.open(function (err, db) {
                             res.render('lol2', {
                                 usercode: visitor_code,
                                 question: other_question,
-                                question: quest._id,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
@@ -8109,7 +8108,6 @@ db.open(function (err, db) {
                                     res.render('lol2', {
                                         usercode: visitor_code,
                                         question: other_question,
-                                        question: quest._id,
                                         frame: quest.frame,
                                         impression: quest.impression,
                                         url_text: quest.url_text,
@@ -8132,7 +8130,6 @@ db.open(function (err, db) {
                                 res.render('lol2', {
                                     usercode: visitor_code,
                                     question: other_question,
-                                    question: quest._id,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -8204,7 +8201,6 @@ db.open(function (err, db) {
                             res.render('lol3', {
                                 usercode: visitor_code,
                                 question: other_question,
-                                question: quest._id,
                                 frame: quest.frame,
                                 impression: quest.impression,
                                 url_text: quest.url_text,
@@ -8222,7 +8218,6 @@ db.open(function (err, db) {
                                 res.render('lol3', {
                                     usercode: visitor_code,
                                     question: other_question,
-                                    question: quest._id,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -8241,7 +8236,6 @@ db.open(function (err, db) {
                                 res.render('lol3', {
                                     usercode: visitor_code,
                                     question: other_question,
-                                    question: quest._id,
                                     frame: quest.frame,
                                     impression: quest.impression,
                                     url_text: quest.url_text,
@@ -13623,6 +13617,10 @@ db.open(function (err, db) {
         else if (current_response === "5") {
             current_response = "1";
         }
+
+        if ((current_response !== "0") && (current_response !== "1") && (current_response !== "2") && (current_response !== "3")) {
+            current_response = "3"; //Question of day was not seen so set to seen but not answered since user will see now anyway
+        };
 
         var name = req.body.username_input;
         var code = req.body.usercode_input;
