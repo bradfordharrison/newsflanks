@@ -31,7 +31,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('192.168.1.2', 27017));
+var db = new Db('newsflanks', new Server('192.168.1.10', 27017));
 
 
 db.open(function (err, db) {
@@ -14130,7 +14130,7 @@ db.open(function (err, db) {
                 }
                 else { //not valid usercode
                     res.render('bad_login_usercode', {
-                        usercode: visitor_code
+                        usercode: 6 //temporary hack to prevent crash
                     });
                 }
             });
