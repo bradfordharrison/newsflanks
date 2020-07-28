@@ -4944,20 +4944,19 @@ db.open(function (err, db) {
         var name_res2_caps = name_res2.toUpperCase();
         var default_answer = req.body.code;
 
-        if ((default_answer !== "0") && (default_answer !== "1") && (default_answer !== "2") && (default_answer !== "3") && (default_answer !== "4") && (default_answer !== "5")) {
-            default_answer = "3"; //Question of day was not seen so set to seen but not answered since user will see now anyway
-        };
-
-        var answer_code = default_answer;
-
-        if (default_answer === "4") { answer_code = "0";}
-        if (default_answer === "5") { answer_code = "1";}
+        if (default_answer === "4") { answer_code = "0"; }
+        if (default_answer === "5") { answer_code = "1"; }
         if (visitor_code === 4) {
             visitor_code = 0;
         }
         else if (visitor_code === 5) {
             visitor_code = 1;
         }
+        if ((default_answer !== "0") && (default_answer !== "1") && (default_answer !== "2") && (default_answer !== "3")) {
+            default_answer = "3"; //Question of day was not seen so set to 3 becasue he will see it now
+        };
+
+        var answer_code = default_answer;
 
         if ((name_res_caps != name_res2_caps) || (name_res.length < 1)) {
             res.render('username_no_match', {
@@ -13619,7 +13618,7 @@ db.open(function (err, db) {
         }
 
         if ((current_response !== "0") && (current_response !== "1") && (current_response !== "2") && (current_response !== "3")) {
-            current_response = "3"; //Question of day was not seen so set to seen but not answered since user will see now anyway
+            current_response = "6"; //Question of day was not seen so set to 6, which means it might or might not have been answered before
         };
 
         var name = req.body.username_input;
@@ -14158,6 +14157,10 @@ db.open(function (err, db) {
         else if (current_response === "5") {
             current_response = "1";
         }
+
+        if ((current_response !== "0") && (current_response !== "1") && (current_response !== "2") && (current_response !== "3")) {
+            current_response = "6"; //Question of day was not seen so set to 6, which means it might or might not have been answered before
+        };
 
         var user_answer_text = "";
         users.get_next_challenge(visitor_code, function (question_number) {

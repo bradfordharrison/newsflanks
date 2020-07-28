@@ -356,32 +356,11 @@ function UserDAO(database) {
            last_answered: new Date(), //night batch - consolidate multiple answers to same question by same user, don't update (search) while user online
            response: current_response
        };
-       this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
-           { "$set": { "current_question": current_question._id } });
-       this.db.collection('user').updateOne({ "usercode": user_code }, //update lol_state
-           { "$set": { "lol_state": current_response } }); //if user flipped will not show flipped, will show original answer state
-       if (response === false) {
-           this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
-               { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": current_response, "date": new Date(), "wayin": 0 }] } } });
-           if (current_response === 0) {
-               this.db.collection('question').findOneAndUpdate(
-                   { "_id": current_question._id },
-                   { "$inc": { "yes": 1 } },
-                   {
-                       returnOriginal: false
-                   });
-           }
-           if (current_response === 1) {
-               this.db.collection('question').findOneAndUpdate(
-                   { "_id": current_question._id },
-                   { "$inc": { "no": 1 } },
-                   {
-                       returnOriginal: false
-                   });
-           }
-       }
 
-       if (response === true) {
+       if ((current_response === 6) && (response === true)) {
+           //do nothing, visitor already answered question at one time
+       }
+       else if (response === true) {
            for (var i = 0; i < userimps_array[0].impressions_array.length; i++) {
                if (current_question._id.equals(userimps_array[0].impressions_array[i].question)) { //== compares with call by reference so you have to use this
                    if (userimps_array[0].impressions_array[i].answer === 0) {
@@ -414,7 +393,7 @@ function UserDAO(database) {
                            { "$inc": { "no": 1 } },
                            {
                                returnOriginal: false
-                           });     
+                           });
                    }
                    break;
                }
@@ -423,6 +402,36 @@ function UserDAO(database) {
            this.db.collection("user").updateOne({ "usercode": user_code, "impressions_array.question": current_question._id }, //update impressions_array as well
                { "$set": { "impressions_array.$.answer": current_response } });
        }
+
+       if ((current_response === 6) && (response === false)) {
+           current_response = 3; //user never swaw this question, but now he will
+       }
+
+       this.db.collection('user').updateOne({ "usercode": user_code }, //update current_question
+           { "$set": { "current_question": current_question._id } });
+       this.db.collection('user').updateOne({ "usercode": user_code }, //update lol_state
+           { "$set": { "lol_state": current_response } }); //if user flipped will not show flipped, will show original answer state
+       if (response === false) {
+           this.db.collection("user").updateOne({ "usercode": user_code }, //update impressions_array as well
+               { "$push": { "impressions_array": { "$each": [{ "question": current_question._id, "frame": current_question.frame, "impression": current_question.impression, "answer": current_response, "date": new Date(), "wayin": 0 }] } } });
+           if (current_response === 0) {
+               this.db.collection('question').findOneAndUpdate(
+                   { "_id": current_question._id },
+                   { "$inc": { "yes": 1 } },
+                   {
+                       returnOriginal: false
+                   });
+           }
+           if (current_response === 1) {
+               this.db.collection('question').findOneAndUpdate(
+                   { "_id": current_question._id },
+                   { "$inc": { "no": 1 } },
+                   {
+                       returnOriginal: false
+                   });
+           }
+       }
+
        this.db.collection("user_data").insertOne(userRec); //add new user_rec as well
        callback(done);
     };
