@@ -10535,574 +10535,254 @@ db.open(function (err, db) {
         var visitor_code = parseInt(req.params.visitor);
         var new_question_frame = parseInt(req.params.frame);
         var new_question_impression = parseInt(req.params.impression);
-        if ((visitor_code !== 0) && (visitor_code !== 1)) {
-            visitor_code = 2;
+
+        if ((visitor_code !== 0) && (visitor_code !== 1) && (visitor_code !== 2) && (visitor_code !== 3)) {
+            visitor_code = 3;
         };
-        var valid_visitor = false;
-        if ((visitor_code > -1) && (visitor_code < 10)) {//Right now this is unnecessary
-            valid_visitor = true;
-        };
-        if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
-            users.check_valid_usercode(visitor_code, function (valid) {
-                if (valid || valid_visitor) { //valid visitor,user
-                    var answer = "2";
-                    visitor_code = +answer;
-                    questions.check_valid_question(new_question_frame, new_question_impression, function (quest_valid) { //matched
-                        if (quest_valid) {  //valid question -- and , render lol, === 10, render lol11 else render lol12
-                            if ((visitor_code > -1) && (visitor_code < 100000000)) { //matched
-                                questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
+
+        questions.check_valid_question(new_question_frame, new_question_impression, function (quest_valid) { //matched
+            if (quest_valid) {  //valid question
+                questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
+                    if (visitor_code === 0) {
+                                questions.add_yes_vote2(quest._id, function (quest) {
                                     lols.get_lol(quest.frame, quest.impression, function (links) {
-                                        if (visitor_code === 0) {
-                                            res.render('lol10', {
-                                                question: quest._id,
-                                                usercode: visitor_code,
-                                                top_question: quest,
-                                                frame: quest.frame,
-                                                impression: quest.impression,
-                                                url_text: quest.url_text,
-                                                yes_votes: quest.yes,
-                                                no_votes: quest.no,
-                                                link_list: links,
-                                                mm_win_size: quest.mm_win_all_y,
-                                                user_answer: answer
-                                            });
-                                        }
-                                        else if (visitor_code === 1) {
-                                            res.render('lol11', {
-                                                question: quest._id,
-                                                usercode: visitor_code,
-                                                top_question: quest,
-                                                frame: quest.frame,
-                                                impression: quest.impression,
-                                                url_text: quest.url_text,
-                                                yes_votes: quest.yes,
-                                                no_votes: quest.no,
-                                                link_list: links,
-                                                mm_win_size: quest.mm_win_all_y,
-                                                user_answer: answer
-                                            });
-                                        }
-                                        else {
-                                            res.render('lol12', {
-                                                question: quest._id,
-                                                usercode: visitor_code,
-                                                top_question: quest,
-                                                frame: quest.frame,
-                                                impression: quest.impression,
-                                                url_text: quest.url_text,
-                                                yes_votes: quest.yes,
-                                                no_votes: quest.no,
-                                                link_list: links,
-                                                mm_win_size: quest.mm_win_all_y,
-                                                user_answer: answer
-                                            });
-                                        }
+                                        res.render('lol10', {
+                                            question: quest._id,
+                                            usercode: visitor_code,
+                                            top_question: quest,
+                                            frame: quest.frame,
+                                            impression: quest.impression,
+                                            url_text: quest.url_text,
+                                            yes_votes: quest.yes_visitor,
+                                            no_votes: quest.no_visitor,
+                                            link_list: links,
+                                            x: quest.mm_yes_x,
+                                            y: quest.mm_yes_y,
+                                            file: quest.mm_file_yes,
+                                            mm_win_size: quest.mm_win_all_y
                                         });
                                     });
+                                });
                             }
-                        }
-                        else { //render default
-                            visitor_code = 0;
-                            var quest;
-                            questions.get_default_question(function (quest) {
-                                if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                                    res.render('home', {
+                            else if (visitor_code === 1) {
+                                questions.add_no_vote2(quest._id, function (quest) {
+                                    lols.get_lol(quest.frame, quest.impression, function (links) {
+                                        res.render('lol11', {
+                                            question: quest._id,
+                                            usercode: visitor_code,
+                                            top_question: quest,
+                                            frame: quest.frame,
+                                            impression: quest.impression,
+                                            url_text: quest.url_text,
+                                            yes_votes: quest.yes_visitor,
+                                            no_votes: quest.no_visitor,
+                                            link_list: links,
+                                            x: quest.mm_no_x,
+                                            y: quest.mm_no_y,
+                                            file: quest.mm_file_no,
+                                            mm_win_size: quest.mm_win_all_y
+                                        });
+                                    });
+                                });
+                            }
+                            else {
+                                lols.get_lol(quest.frame, quest.impression, function (links) {
+                                    res.render('lol12', {
+                                        question: quest._id,
                                         usercode: visitor_code,
-                                        animated_gif: quest.mm,
+                                        top_question: quest,
                                         frame: quest.frame,
                                         impression: quest.impression,
                                         url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
+                                        yes_votes: quest.yes_visitor,
+                                        no_votes: quest.no_visitor,
+                                        link_list: links,
+                                        mm_win_size: quest.mm_win_all_y
                                     });
-                                }
-                                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                                    res.render('home7', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                                    res.render('home13', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                                    res.render('home19', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                                    res.render('home25', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                                    res.render('home31', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                                    res.render('home37', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                                    res.render('home43', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                                    res.render('home49', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                                    res.render('home55', {
-                                        usercode: visitor_code,
-                                        animated_gif: quest.mm,
-                                        frame: quest.frame,
-                                        impression: quest.impression,
-                                        url_text: quest.url_text,
-                                        quote: quest.text,
-                                        quote2: quest.text2,
-                                        quote3: quest.text3,
-                                        quote4: quest.text4,
-                                        head_win_size: quest.head_win_y,
-                                        top_question: quest.question + "?",
-                                        choices: ['yes', 'no', 'no opinion']
-                                    });
-                                };
-                            });
-                        };
-                    })
-                }
-                else { // valid integer but not a visitor or user
-                    visitor_code = 0;
-                    var quest;
-                    questions.get_default_question(function (quest) {
-                        if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                            res.render('home', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                            res.render('home7', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home13', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home19', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home25', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                            res.render('home31', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                            res.render('home37', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home43', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home49', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                            res.render('home55', {
-                                usercode: visitor_code,
-                                animated_gif: quest.mm,
-                                frame: quest.frame,
-                                impression: quest.impression,
-                                url_text: quest.url_text,
-                                quote: quest.text,
-                                quote2: quest.text2,
-                                quote3: quest.text3,
-                                quote4: quest.text4,
-                                head_win_size: quest.head_win_y,
-                                top_question: quest.question + "?",
-                                choices: ['yes', 'no', 'no opinion']
-                            });
-                        };
+                                });
+                            }
                     });
-                }
-            });
-        }
-        else {//some other garbage
-            var visitor_code = 2;
-            var quest;
-            questions.get_default_question(function (quest) {
-                if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                    res.render('home', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
+            }
+            else { //render home
+                visitor_code = 6;
+                questions.get_front_questions(function (other_quest) {
+                    questions.get_user_question2(other_quest[0].frame, other_quest[0].impression, function (other_quest_id) {
+                        questions.get_default_question(function (quest) {
+                            if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
+                                res.render('home', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
+                                res.render('home7', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
+                                res.render('home13', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
+                                res.render('home19', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
+                                res.render('home25', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
+                                res.render('home31', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                res.render('home37', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                res.render('home43', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                res.render('home49', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            }
+                            else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                res.render('home55', {
+                                    usercode: visitor_code,
+                                    question: other_quest_id._id,
+                                    animated_gif: quest.mm,
+                                    frame: quest.frame,
+                                    impression: quest.impression,
+                                    url_text: quest.url_text,
+                                    quote: quest.text,
+                                    quote2: quest.text2,
+                                    quote3: quest.text3,
+                                    quote4: quest.text4,
+                                    head_win_size: quest.head_win_y,
+                                    top_question: quest.question + "?",
+                                    choices: ['yes', 'no', 'no opinion']
+                                });
+                            };
+                        });
                     });
-                }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                    res.render('home7', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home13', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home19', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home25', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
-                    res.render('home31', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
-                    res.render('home37', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home43', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home49', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                }
-                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
-                    res.render('home55', {
-                        usercode: visitor_code,
-                        animated_gif: quest.mm,
-                        frame: quest.frame,
-                        impression: quest.impression,
-                        url_text: quest.url_text,
-                        quote: quest.text,
-                        quote2: quest.text2,
-                        quote3: quest.text3,
-                        quote4: quest.text4,
-                        head_win_size: quest.head_win_y,
-                        top_question: quest.question + "?",
-                        choices: ['yes', 'no', 'no opinion']
-                    });
-                };
-            });
-        };
+                });
+            }
+        });
     });
 
     app.get('/trending/:question/:visitor', function (req, res, next) {
