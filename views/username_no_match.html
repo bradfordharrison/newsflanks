@@ -28,7 +28,7 @@
     }
     </style>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
-    
+
     <title>Email Addresses Don't Match!</title>
 
 </head>
@@ -55,10 +55,10 @@
       document.writeln("<a class='rollover' href='/flip/{{question}}/{{usercode}}/6'><strong><font color='#006500'>&nbspFLIP&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/search/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
+      document.writeln("<a class='rollover' href='/search/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspSEARCH&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/track/{{usercode}}'><strong><font color='#006500'>&nbspLOGIN&nbsp</font></strong></a>");
+      document.writeln("<a class='rollover' href='/track/{{question}}/{{usercode}}'><strong><font color='#006500'>&nbspLOGIN&nbsp</font></strong></a>");
       document.writeln("</li>");
       document.writeln("</ul>");
       document.writeln("</nav>");
@@ -107,13 +107,13 @@
             Email address: <input type="text" name="name" min ="1" maxlength="75"><br><br>
             Type email address again: <input type="text" name="name2" min ="1" maxlength="75">
          </p>
-         
+
    <script>
     var code = window.name;
     document.write("<input type='hidden' name='code' value='");
     document.write(code);
     document.writeln("'>");
-    </script>     
+    </script>
       <input type="submit" value="Submit">
    </form></font>
 </div>
