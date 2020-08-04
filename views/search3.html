@@ -28,9 +28,9 @@
     }
     </style>
     <script type="text/javascript" src="/static/js/jquery.js"></script>
-    
+
     <title>Search Results</title>
-    
+
 </head>
 
 <body>
@@ -74,7 +74,10 @@
       document.writeln("<nav>");
       document.writeln("<ul class=nav-font>");
       document.writeln("<li>");
-      document.writeln("<a class='rollover' href='/home/{{usercode}}'><strong><font color='#006500'>&nbspCURRENT&#47;NEXT <b>?</b>&nbsp</font></strong></a>");
+      document.writeln("<a class='rollover' href='/question/{{frame}}/{{impression}}/{{usercode}}/{{url_text}}'><strong><font color='#006500'>&nbsp;CURRENT <b>?</b>&nbsp;</font></strong></a>");
+      document.writeln("</li>");
+      document.writeln("<li>");
+      document.writeln("<a class='rollover' href='/next_question/{{usercode}}'><strong><font color='#006500'>&nbsp;NEXT <b>?</b>&nbsp;</font></strong></a>");
       document.writeln("</li>");
       document.writeln("<li>");
       document.writeln("<a class='rollover' href='/trending/{{usercode}}'><strong><font color='#006500'>&nbsp;SEQUENCES&nbsp;</font></strong></a>");
@@ -99,7 +102,7 @@
       document.writeln("</center>");
       document.writeln("</div>");
    }
-</script>    
+</script>
 <div class="table-border">
 	 <font color="#006500" size="4">No results</font>
 </div>
