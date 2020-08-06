@@ -22,8 +22,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var env = nunjucks.configure('views', {
     autoescape: true,
-
-
     express: app
 });
 
@@ -31,7 +29,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('192.168.1.3', 27017));
+var db = new Db('newsflanks', new Server('192.168.1.11', 27017));
 
 
 db.open(function (err, db) {
@@ -161,7 +159,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                         res.render('home37', {
                             usercode: visitor_code,
                             question: other_quest_id._id,
@@ -178,7 +176,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home43', {
                             usercode: visitor_code,
                             question: other_quest_id._id,
@@ -195,7 +193,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home49', {
                             usercode: visitor_code,
                             question: other_quest_id._id,
@@ -212,7 +210,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home55', {
                             usercode: visitor_code,
                             question: other_quest_id._id,
@@ -251,7 +249,7 @@ db.open(function (err, db) {
                         if (quest_valid) {  //valid question
                             if ((visitor_code > -1) && (visitor_code < 10)) { //matched
                                 questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
-                                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                                    if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                         res.render('home81', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -268,7 +266,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                         res.render('home82', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -285,7 +283,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home83', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -302,7 +300,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home84', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -319,7 +317,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home85', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -336,7 +334,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                         res.render('home86', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -353,7 +351,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                         res.render('home87', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -370,7 +368,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home88', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -387,7 +385,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home89', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -404,7 +402,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home90', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -441,7 +439,7 @@ db.open(function (err, db) {
                                         if (user_answer == -1) {
                                             user_answer_text = "You haven't provided an answer to this question in any past visits to the site";
                                         };
-                                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                        if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                             res.render('home61', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -459,7 +457,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                             res.render('home62', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -477,7 +475,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home63', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -495,7 +493,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home64', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -513,7 +511,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home65', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -531,7 +529,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                             res.render('home66', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -549,7 +547,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                             res.render('home67', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -567,7 +565,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home68', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -585,7 +583,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home69', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -603,7 +601,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home70', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -732,7 +730,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                             res.render('home37', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -749,7 +747,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                             res.render('home43', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -766,7 +764,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                             res.render('home49', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -783,7 +781,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                             res.render('home55', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -913,7 +911,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -930,7 +928,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -947,7 +945,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -964,7 +962,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -1094,7 +1092,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -1111,7 +1109,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -1128,7 +1126,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -1145,7 +1143,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -1194,7 +1192,7 @@ db.open(function (err, db) {
                                                     user_answer_text = "Saw question but didn't answer"
                                                 };
                                                 questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                    if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                    if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                         res.render('home4', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1211,7 +1209,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                         res.render('home10', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1228,7 +1226,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                         res.render('home16', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1245,7 +1243,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                         res.render('home22', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1262,7 +1260,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                         res.render('home28', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1279,7 +1277,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                         res.render('home34', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1296,7 +1294,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                         res.render('home40', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1313,7 +1311,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                         res.render('home46', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1330,7 +1328,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                         res.render('home52', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1347,7 +1345,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                    else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                         res.render('home58', {
                                                             usercode: visitor_code,
                                                             response: user_answer_text,
@@ -1392,7 +1390,7 @@ db.open(function (err, db) {
                                         users.update_user_lol_state(visitor_code, 3, function (result) {
                                             users.update_current_question(visitor_code, quest[question_index], function (result) {
                                                 if (result = true) {
-                                                    if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
+                                                    if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
                                                         res.render('home71', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1408,7 +1406,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
                                                         res.render('home72', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1424,7 +1422,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                         res.render('home73', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1440,7 +1438,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                         res.render('home74', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1456,7 +1454,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm != "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm !== "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                         res.render('home75', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1472,7 +1470,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
+                                                    else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
                                                         res.render('home76', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1488,7 +1486,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
                                                         res.render('home77', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1504,7 +1502,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                         res.render('home78', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1520,7 +1518,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                         res.render('home79', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1536,7 +1534,7 @@ db.open(function (err, db) {
                                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                                         });
                                                     }
-                                                    else if ((quest[question_index].mm == "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                    else if ((quest[question_index].mm === "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                         res.render('home80', {
                                                             usercode: visitor_code,
                                                             animated_gif: quest[question_index].mm,
@@ -1595,7 +1593,7 @@ db.open(function (err, db) {
                                                             user_answer_text = "Saw question but didn't answer"
                                                         };
                                                         questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                            if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                            if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                                 res.render('home91', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1612,7 +1610,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                                 res.render('home92', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1629,7 +1627,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                 res.render('home93', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1646,7 +1644,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                 res.render('home94', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1663,7 +1661,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                 res.render('home95', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1680,7 +1678,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                                 res.render('home96', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1697,7 +1695,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                                 res.render('home97', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1714,7 +1712,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                 res.render('home98', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1731,7 +1729,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                 res.render('home99', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1748,7 +1746,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                            else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                 res.render('home100', {
                                                                     usercode: visitor_code,
                                                                     response: user_answer_text,
@@ -1776,7 +1774,7 @@ db.open(function (err, db) {
                                                     questions.get_user_question(seq_quests[question_index], function (user_seq_quest) {
                                                         users.update_current_question(visitor_code, user_seq_quest, function (result) {
                                                             if (result = true) {
-                                                                if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                                                if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                                     res.render('home71', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1792,7 +1790,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home72', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1808,7 +1806,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home73', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1824,7 +1822,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home74', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1840,7 +1838,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm != "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home75', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1856,7 +1854,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                                                else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                                     res.render('home76', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1872,7 +1870,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home77', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1888,7 +1886,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home78', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1904,7 +1902,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home79', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -1920,7 +1918,7 @@ db.open(function (err, db) {
                                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                                     });
                                                                 }
-                                                                else if ((user_seq_quest.mm == "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                                else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                     res.render('home80', {
                                                                         usercode: visitor_code,
                                                                         animated_gif: user_seq_quest.mm,
@@ -2055,7 +2053,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -2072,7 +2070,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -2089,7 +2087,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -2106,7 +2104,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -2236,7 +2234,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -2253,7 +2251,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -2270,7 +2268,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -2287,7 +2285,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -2326,7 +2324,7 @@ db.open(function (err, db) {
                         if (quest_valid) {  //valid question
                             if ((visitor_code > -1) && (visitor_code < 10)) { //matched
                                 questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
-                                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                                    if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                         res.render('home81', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2343,7 +2341,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                         res.render('home82', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2360,7 +2358,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home83', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2377,7 +2375,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home84', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2394,7 +2392,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home85', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2411,7 +2409,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                         res.render('home86', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2428,7 +2426,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                         res.render('home87', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2445,7 +2443,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home88', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2462,7 +2460,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home89', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2479,7 +2477,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home90', {
                                             question: quest._id, //passing in question ID
                                             usercode: visitor_code,
@@ -2516,7 +2514,7 @@ db.open(function (err, db) {
                                         if (user_answer == -1) {
                                             user_answer_text = "You haven't provided an answer to this question in any past visits to the site";
                                         };
-                                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                        if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                             res.render('home61', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2534,7 +2532,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                             res.render('home62', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2552,7 +2550,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home63', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2570,7 +2568,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home64', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2588,7 +2586,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home65', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2606,7 +2604,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                             res.render('home66', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2624,7 +2622,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                             res.render('home67', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2642,7 +2640,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home68', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2660,7 +2658,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home69', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2678,7 +2676,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home70', {
                                                 question: user_quest._id, //passing in question ID
                                                 usercode: visitor_code,
@@ -2807,7 +2805,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                             res.render('home37', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -2824,7 +2822,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                             res.render('home43', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -2841,7 +2839,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                             res.render('home49', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -2858,7 +2856,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
-                                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                             res.render('home55', {
                                                 usercode: visitor_code,
                                                 question: other_quest_id._id,
@@ -2988,7 +2986,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3005,7 +3003,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3022,7 +3020,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3039,7 +3037,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3169,7 +3167,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3186,7 +3184,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3203,7 +3201,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3220,7 +3218,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3259,7 +3257,7 @@ db.open(function (err, db) {
                     var quest;
                     if (visitor_code < 10) {
                          questions.get_default_question(function (quest) {
-                            if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                 res.render('home111', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3277,7 +3275,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                 res.render('home112', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3295,7 +3293,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home113', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3313,7 +3311,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home114', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3331,7 +3329,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home115', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3349,7 +3347,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                 res.render('home116', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3367,7 +3365,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                 res.render('home117', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3385,7 +3383,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home118', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3403,7 +3401,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home119', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3421,7 +3419,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home120', {
                                     usercode: visitor_code,
                                     question: other_quest,
@@ -3552,7 +3550,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3569,7 +3567,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3586,7 +3584,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3603,7 +3601,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -3733,7 +3731,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3750,7 +3748,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3767,7 +3765,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3784,7 +3782,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -3833,7 +3831,7 @@ db.open(function (err, db) {
                             user_answer_text = "Saw question but didn't answer"
                         };
                         questions.get_default_question(function (quest) {
-                            if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                 res.render('home2', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3850,7 +3848,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                 res.render('home8', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3867,7 +3865,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home14', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3884,7 +3882,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home20', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3901,7 +3899,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home26', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3918,7 +3916,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                 res.render('home32', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3935,7 +3933,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                 res.render('home38', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3952,7 +3950,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home44', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3969,7 +3967,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home50', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -3986,7 +3984,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home56', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -4021,7 +4019,7 @@ db.open(function (err, db) {
                                     user_answer_text = "Saw question but didn't answer"
                                 };
                                 questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                    if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                    if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                         res.render('home2', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4038,7 +4036,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                         res.render('home8', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4055,7 +4053,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                         res.render('home14', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4072,7 +4070,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                         res.render('home20', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4089,7 +4087,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                         res.render('home26', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4106,7 +4104,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                         res.render('home32', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4123,7 +4121,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                         res.render('home38', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4140,7 +4138,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                         res.render('home44', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4157,7 +4155,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                         res.render('home50', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4174,7 +4172,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                    else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                         res.render('home56', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -4303,7 +4301,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4320,7 +4318,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4337,7 +4335,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4354,7 +4352,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4484,7 +4482,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -4501,7 +4499,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -4518,7 +4516,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -4535,7 +4533,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -4706,7 +4704,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4723,7 +4721,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4740,7 +4738,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4757,7 +4755,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -4887,7 +4885,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -4904,7 +4902,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -4921,7 +4919,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -4938,7 +4936,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -5107,7 +5105,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -5124,7 +5122,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -5141,7 +5139,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -5158,7 +5156,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -5288,7 +5286,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -5305,7 +5303,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -5322,7 +5320,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -5339,7 +5337,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -5370,7 +5368,7 @@ db.open(function (err, db) {
             questions.get_front_questions(function (other_quest) {
                 questions.get_user_question2(other_quest[0].frame, other_quest[0].impression, function (other_quest_id) {
             questions.get_default_question(function (quest) {
-                if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                     res.render('home', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5387,7 +5385,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                     res.render('home7', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5404,7 +5402,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home13', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5421,7 +5419,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home19', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5438,7 +5436,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home25', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5455,7 +5453,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                     res.render('home31', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5472,7 +5470,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                     res.render('home37', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5489,7 +5487,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home43', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5506,7 +5504,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home49', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5523,7 +5521,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home55', {
                         usercode: visitor_code,
                         question: other_quest_id._id,
@@ -5689,7 +5687,7 @@ db.open(function (err, db) {
                                     user_answer_text = "Saw question but didn't answer"
                                 };
                                 questions.get_user_question(current_quest.current_question, function (quest) {
-                                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                                    if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                         res.render('home6', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5706,7 +5704,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                         res.render('home12', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5723,7 +5721,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home18', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5740,7 +5738,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home24', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5757,7 +5755,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home30', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5774,7 +5772,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                         res.render('home36', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5791,7 +5789,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                         res.render('home42', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5808,7 +5806,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home48', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5825,7 +5823,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home54', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5842,7 +5840,7 @@ db.open(function (err, db) {
                                             choices: ['yes', 'no', 'no opinion', 'next question']
                                         });
                                     }
-                                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                         res.render('home60', {
                                             usercode: visitor_code,
                                             response: user_answer_text,
@@ -5881,7 +5879,7 @@ db.open(function (err, db) {
                             user_answer_text = "Saw question but didn't answer"
                         };
                         questions.get_user_question(current_quest.current_question, function (quest) {
-                            if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                 res.render('home6', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -5898,7 +5896,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                 res.render('home12', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -5915,7 +5913,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home18', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -5932,7 +5930,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home24', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -5949,7 +5947,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home30', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -5966,7 +5964,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                                 res.render('home36', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -5983,7 +5981,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                 res.render('home42', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -6000,7 +5998,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home48', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -6017,7 +6015,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home54', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -6034,7 +6032,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home60', {
                                     usercode: visitor_code,
                                     response: user_answer_text,
@@ -6067,7 +6065,7 @@ db.open(function (err, db) {
             var answer = "3";
             if (visitor_code < 10) {
                 questions.get_default_question(function (quest) {
-                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                         res.render('home3', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6084,7 +6082,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                         res.render('home9', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6101,7 +6099,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home15', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6118,7 +6116,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home21', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6135,7 +6133,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home27', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6152,7 +6150,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                         res.render('home33', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6169,7 +6167,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                         res.render('home39', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6186,7 +6184,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home45', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6203,7 +6201,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home51', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6220,7 +6218,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home57', {
                             usercode: visitor_code,
                             animated_gif: quest.mm,
@@ -6243,7 +6241,7 @@ db.open(function (err, db) {
                 users.update_user_lol_state(visitor_code, 3, function (result) {
                     users.get_current_user_question(visitor_code, function (current_quest) {
                         questions.get_user_question(current_quest.current_question, function (user_quest) {
-                            if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                            if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                 res.render('home3', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6259,7 +6257,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                 res.render('home9', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6275,7 +6273,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home15', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6291,7 +6289,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home21', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6307,7 +6305,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home27', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6323,7 +6321,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                 res.render('home33', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6339,7 +6337,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                 res.render('home39', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6355,7 +6353,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home45', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6371,7 +6369,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home51', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6387,7 +6385,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home57', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -6745,7 +6743,7 @@ db.open(function (err, db) {
                     user_answer_text = "Saw question but didn't answer";
                 };
                 questions.get_default_question(function (quest) {
-                    if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                         res.render('home5', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6763,7 +6761,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                         res.render('home11', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6781,7 +6779,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home17', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6799,7 +6797,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home23', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6817,7 +6815,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home29', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6835,7 +6833,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                         res.render('home35', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6853,7 +6851,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                         res.render('home41', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6871,7 +6869,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home47', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6889,7 +6887,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home53', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6907,7 +6905,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home59', {
                             usercode: visitor_code,
                             question: quest._id,
@@ -6949,7 +6947,7 @@ db.open(function (err, db) {
                                                 user_answer_text = "Saw question but didn't answer"
                                             };
                                             questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                     res.render('home4', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -6966,7 +6964,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                     res.render('home10', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -6983,7 +6981,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home16', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7000,7 +6998,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home22', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7017,7 +7015,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home28', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7034,7 +7032,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                     res.render('home34', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7051,7 +7049,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                     res.render('home40', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7068,7 +7066,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home46', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7085,7 +7083,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home52', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7102,7 +7100,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home58', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -7147,7 +7145,7 @@ db.open(function (err, db) {
                                     users.update_user_lol_state(visitor_code, 3, function (result) {
                                         users.update_current_question(visitor_code, quest[question_index], function (result) {
                                             if (result = true) {
-                                                if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
+                                                if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
                                                     res.render('home71', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7163,7 +7161,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
                                                     res.render('home72', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7179,7 +7177,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home73', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7195,7 +7193,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home74', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7211,7 +7209,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home75', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7227,7 +7225,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
                                                     res.render('home76', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7243,7 +7241,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
                                                     res.render('home77', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7259,7 +7257,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home78', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7275,7 +7273,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home79', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7291,7 +7289,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home80', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -7350,7 +7348,7 @@ db.open(function (err, db) {
                                                         user_answer_text = "Saw question but didn't answer"
                                                     };
                                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                        if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                             res.render('home91', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7367,7 +7365,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                             res.render('home92', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7384,7 +7382,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home93', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7401,7 +7399,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home94', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7418,7 +7416,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home95', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7435,7 +7433,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                             res.render('home96', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7452,7 +7450,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                             res.render('home97', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7469,7 +7467,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home98', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7486,7 +7484,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home99', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7503,7 +7501,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home100', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -7531,7 +7529,7 @@ db.open(function (err, db) {
                                                 questions.get_user_question(seq_quests[question_index], function (user_seq_quest) {
                                                     users.update_current_question(visitor_code, user_seq_quest, function (result) {
                                                         if (result = true) {
-                                                            if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                                            if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                                 res.render('home71', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7547,7 +7545,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home72', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7563,7 +7561,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home73', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7579,7 +7577,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home74', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7595,7 +7593,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home75', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7611,7 +7609,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                                 res.render('home76', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7627,7 +7625,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home77', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7643,7 +7641,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home78', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7659,7 +7657,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home79', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7675,7 +7673,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home80', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -7715,7 +7713,7 @@ db.open(function (err, db) {
             var answer = "3";
             visitor_code = +answer;
             questions.get_user_question(question_code, function (quest) { //look up question with ID
-                if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                     res.render('home101', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7732,7 +7730,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                     res.render('home102', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7749,7 +7747,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home103', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7766,7 +7764,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home104', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7783,7 +7781,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home105', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7800,7 +7798,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                     res.render('home106', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7817,7 +7815,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                     res.render('home107', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7834,7 +7832,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home108', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7851,7 +7849,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home109', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -7868,7 +7866,7 @@ db.open(function (err, db) {
                         choices: ['yes', 'no', 'no opinion']
                     });
                 }
-                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                     res.render('home110', {
                         question: quest._id,
                         usercode: visitor_code,
@@ -8252,7 +8250,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm !=="") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 !=="") && (quest.text4 == "")) {
+                    else if ((quest.mm !=="") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 !=="") && (quest.text4 === "")) {
                         res.render('home122', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8269,7 +8267,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm !=="") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !=="") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home123', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8286,7 +8284,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm !=="") && (quest.text !=="") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !=="") && (quest.text !=="") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home124', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8303,7 +8301,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm !=="") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !=="") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home125', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8320,7 +8318,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 !=="") && (quest.text4 !=="")) {
+                    else if ((quest.mm === "") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 !=="") && (quest.text4 !=="")) {
                         res.render('home126', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8337,7 +8335,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 !=="") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 !=="") && (quest.text4 === "")) {
                         res.render('home127', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8354,7 +8352,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !=="") && (quest.text2 !=="") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home128', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8371,7 +8369,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text !=="") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !=="") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home129', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8388,7 +8386,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home130', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8427,7 +8425,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 === "")) {
                                 res.render('home9', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8443,7 +8441,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home15', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8459,7 +8457,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home21', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8475,7 +8473,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm !=="") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm !=="") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home27', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8491,7 +8489,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 !=="")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 !=="")) {
                                 res.render('home33', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8507,7 +8505,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 === "")) {
                                 res.render('home39', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8523,7 +8521,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home45', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8539,7 +8537,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text !=="") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home51', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8555,7 +8553,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                 });
                             }
-                            else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                            else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                 res.render('home57', {
                                     usercode: visitor_code,
                                     animated_gif: user_quest.mm,
@@ -8934,7 +8932,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                         res.render('home11', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8952,7 +8950,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home17', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8970,7 +8968,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home23', {
                             usercode: visitor_code,
                             question: other_question,
@@ -8988,7 +8986,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm != "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home29', {
                             usercode: visitor_code,
                             question: other_question,
@@ -9006,7 +9004,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 != "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
                         res.render('home35', {
                             usercode: visitor_code,
                             question: other_question,
@@ -9024,7 +9022,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                         res.render('home41', {
                             usercode: visitor_code,
                             question: other_question,
@@ -9042,7 +9040,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home47', {
                             usercode: visitor_code,
                             question: other_question,
@@ -9060,7 +9058,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home53', {
                             usercode: visitor_code,
                             question: other_question,
@@ -9078,7 +9076,7 @@ db.open(function (err, db) {
                             choices: ['yes', 'no', 'no opinion', 'next question']
                         });
                     }
-                    else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                    else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                         res.render('home59', {
                             usercode: visitor_code,
                             question: other_question,
@@ -9120,7 +9118,7 @@ db.open(function (err, db) {
                                                 user_answer_text = "Saw question but didn't answer"
                                             };
                                             questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                     res.render('home4', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9137,7 +9135,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                     res.render('home10', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9154,7 +9152,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home16', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9171,7 +9169,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home22', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9188,7 +9186,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home28', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9205,7 +9203,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                     res.render('home34', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9222,7 +9220,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                     res.render('home40', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9239,7 +9237,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home46', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9256,7 +9254,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home52', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9273,7 +9271,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                     res.render('home58', {
                                                         usercode: visitor_code,
                                                         response: user_answer_text,
@@ -9318,7 +9316,7 @@ db.open(function (err, db) {
                                     users.update_user_lol_state(visitor_code, 3, function (result) {
                                         users.update_current_question(visitor_code, quest[question_index], function (result) {
                                             if (result = true) {
-                                                if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
+                                                if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
                                                     res.render('home71', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9334,7 +9332,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
                                                     res.render('home72', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9350,7 +9348,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home73', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9366,7 +9364,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home74', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9382,7 +9380,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm != "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm !== "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home75', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9398,7 +9396,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 != "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
                                                     res.render('home76', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9414,7 +9412,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 != "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
                                                     res.render('home77', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9430,7 +9428,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 != "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home78', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9446,7 +9444,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text != "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home79', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9462,7 +9460,7 @@ db.open(function (err, db) {
                                                         choices: ['yes', 'no', 'no opinion', 'next question']
                                                     });
                                                 }
-                                                else if ((quest[question_index].mm == "") && (quest[question_index].text == "") && (quest[question_index].text2 == "") && (quest[question_index].text3 == "") && (quest[question_index].text4 == "")) {
+                                                else if ((quest[question_index].mm === "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
                                                     res.render('home80', {
                                                         usercode: visitor_code,
                                                         animated_gif: quest[question_index].mm,
@@ -9521,7 +9519,7 @@ db.open(function (err, db) {
                                                         user_answer_text = "Saw question but didn't answer"
                                                     };
                                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                        if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                             res.render('home91', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9538,7 +9536,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                             res.render('home92', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9555,7 +9553,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home93', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9572,7 +9570,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home94', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9589,7 +9587,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home95', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9606,7 +9604,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                             res.render('home96', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9623,7 +9621,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                             res.render('home97', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9640,7 +9638,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home98', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9657,7 +9655,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home99', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9674,7 +9672,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home100', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -9702,7 +9700,7 @@ db.open(function (err, db) {
                                                 questions.get_user_question(seq_quests[question_index], function (user_seq_quest) {
                                                     users.update_current_question(visitor_code, user_seq_quest, function (result) {
                                                         if (result = true) {
-                                                            if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                                            if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                                 res.render('home71', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9718,7 +9716,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home72', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9734,7 +9732,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home73', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9750,7 +9748,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home74', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9766,7 +9764,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home75', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9782,7 +9780,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                                 res.render('home76', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9798,7 +9796,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home77', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9814,7 +9812,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home78', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9830,7 +9828,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home79', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -9846,7 +9844,7 @@ db.open(function (err, db) {
                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                 });
                                                             }
-                                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                                 res.render('home80', {
                                                                     usercode: visitor_code,
                                                                     animated_gif: user_seq_quest.mm,
@@ -10233,7 +10231,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -10250,7 +10248,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -10267,7 +10265,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -10284,7 +10282,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -10414,7 +10412,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -10431,7 +10429,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -10448,7 +10446,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -10465,7 +10463,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -10842,7 +10840,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -10859,7 +10857,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -10876,7 +10874,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -10893,7 +10891,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -11023,7 +11021,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -11040,7 +11038,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -11057,7 +11055,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -11074,7 +11072,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -11374,7 +11372,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                 res.render('home37', {
                                     usercode: visitor_code,
                                     question: other_quest_id._id,
@@ -11391,7 +11389,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home43', {
                                     usercode: visitor_code,
                                     question: other_quest_id._id,
@@ -11408,7 +11406,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home49', {
                                     usercode: visitor_code,
                                     question: other_quest_id._id,
@@ -11425,7 +11423,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                            else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                 res.render('home55', {
                                     usercode: visitor_code,
                                     question: other_quest_id._id,
@@ -11463,7 +11461,7 @@ db.open(function (err, db) {
                 if (new_visitor) {
                     questions.get_user_question(other_question, function (quest) {
                         questions.get_user_question2(quest.frame, quest.impression, function (front_quest) {
-                            if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 != "")) {
+                            if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 !== "")) {
                                 res.render('home81', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11480,7 +11478,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 === "")) {
                                 res.render('home82', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11497,7 +11495,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home83', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11514,7 +11512,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home84', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11531,7 +11529,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text == "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text === "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home85', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11548,7 +11546,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 != "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 !== "")) {
                                 res.render('home86', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11565,7 +11563,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 === "")) {
                                 res.render('home87', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11582,7 +11580,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home88', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11599,7 +11597,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home89', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11616,7 +11614,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text == "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text === "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home90', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -11759,7 +11757,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -11776,7 +11774,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -11793,7 +11791,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -11810,7 +11808,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -11940,7 +11938,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -11957,7 +11955,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -11974,7 +11972,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -11991,7 +11989,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12027,7 +12025,7 @@ db.open(function (err, db) {
                 if (new_visitor) {
                     questions.get_front_questions(function (quest) {
                         questions.get_user_question2(quest[0].frame, quest[0].impression, function (front_quest) {
-                            if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 != "")) {
+                            if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 !== "")) {
                                 res.render('home81', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12044,7 +12042,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 === "")) {
                                 res.render('home82', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12061,7 +12059,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home83', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12078,7 +12076,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text != "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text !== "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home84', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12095,7 +12093,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm != "") && (front_quest.text == "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm !== "") && (front_quest.text === "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home85', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12112,7 +12110,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 != "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 !== "")) {
                                 res.render('home86', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12129,7 +12127,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 != "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 !== "") && (front_quest.text4 === "")) {
                                 res.render('home87', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12146,7 +12144,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 != "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 !== "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home88', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12163,7 +12161,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text != "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text !== "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home89', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12180,7 +12178,7 @@ db.open(function (err, db) {
                                     choices: ['yes', 'no', 'no opinion']
                                 });
                             }
-                            else if ((front_quest.mm == "") && (front_quest.text == "") && (front_quest.text2 == "") && (front_quest.text3 == "") && (front_quest.text4 == "")) {
+                            else if ((front_quest.mm === "") && (front_quest.text === "") && (front_quest.text2 === "") && (front_quest.text3 === "") && (front_quest.text4 === "")) {
                                 res.render('home90', {
                                     question: front_quest._id, //passing in question ID
                                     usercode: visitor_code,
@@ -12323,7 +12321,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12340,7 +12338,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12357,7 +12355,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12374,7 +12372,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12504,7 +12502,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12521,7 +12519,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12538,7 +12536,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12555,7 +12553,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12706,7 +12704,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12723,7 +12721,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12740,7 +12738,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12757,7 +12755,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -12887,7 +12885,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12904,7 +12902,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12921,7 +12919,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -12938,7 +12936,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13086,7 +13084,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13103,7 +13101,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13120,7 +13118,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13137,7 +13135,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13267,7 +13265,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13284,7 +13282,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13301,7 +13299,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13318,7 +13316,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13488,7 +13486,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13505,7 +13503,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13522,7 +13520,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13539,7 +13537,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13669,7 +13667,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13686,7 +13684,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13703,7 +13701,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13720,7 +13718,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -13879,7 +13877,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                                     res.render('home37', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13896,7 +13894,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home43', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13913,7 +13911,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home49', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -13930,7 +13928,7 @@ db.open(function (err, db) {
                                         choices: ['yes', 'no', 'no opinion']
                                     });
                                 }
-                                else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                                else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                                     res.render('home55', {
                                         usercode: visitor_code,
                                         question: other_quest_id._id,
@@ -14060,7 +14058,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 != "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
                             res.render('home37', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -14077,7 +14075,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 != "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home43', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -14094,7 +14092,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text != "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home49', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -14111,7 +14109,7 @@ db.open(function (err, db) {
                                 choices: ['yes', 'no', 'no opinion']
                             });
                         }
-                        else if ((quest.mm == "") && (quest.text == "") && (quest.text2 == "") && (quest.text3 == "") && (quest.text4 == "")) {
+                        else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
                             res.render('home55', {
                                 usercode: visitor_code,
                                 question: other_quest_id._id,
@@ -14180,7 +14178,7 @@ db.open(function (err, db) {
                                         };
                                         var iterator = 0;
                                         while (iterator <= 14) {
-                                            if (challenge_array[iterator].answer == "") {
+                                            if (challenge_array[iterator].answer === "") {
                                                 iterator++;
                                             }
                                             else {
@@ -14216,7 +14214,7 @@ db.open(function (err, db) {
                                                                             user_answer_text = "Saw question but didn't answer";
                                                                         };
                                                                         questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                                            if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                                            if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                                                 res.render('home6', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14233,7 +14231,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                                                 res.render('home12', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14250,7 +14248,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                                 res.render('home18', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14267,7 +14265,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                                 res.render('home24', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14284,7 +14282,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                                 res.render('home30', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14301,7 +14299,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                                                 res.render('home36', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14318,7 +14316,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                                                 res.render('home42', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14335,7 +14333,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                                 res.render('home48', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14352,7 +14350,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                                 res.render('home54', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14369,7 +14367,7 @@ db.open(function (err, db) {
                                                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                                                 });
                                                                             }
-                                                                            else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                                            else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                                                 res.render('home60', {
                                                                                     usercode: visitor_code,
                                                                                     response: user_answer_text,
@@ -14497,7 +14495,7 @@ db.open(function (err, db) {
                                                         user_answer_text = "Saw question but didn't answer";
                                                     };
                                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                        if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                             res.render('home6', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14514,7 +14512,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                             res.render('home12', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14531,7 +14529,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home18', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14548,7 +14546,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home24', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14565,7 +14563,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home30', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14582,7 +14580,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                                             res.render('home36', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14599,7 +14597,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                                             res.render('home42', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14616,7 +14614,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home48', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14633,7 +14631,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home54', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14650,7 +14648,7 @@ db.open(function (err, db) {
                                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                                             });
                                                         }
-                                                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                                        else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                                             res.render('home60', {
                                                                 usercode: visitor_code,
                                                                 response: user_answer_text,
@@ -14698,7 +14696,7 @@ db.open(function (err, db) {
                                         var found = false;
                                         ++iterator;
                                         while (iterator <= 14) {
-                                            if (challenge_array[iterator].answer == "") {
+                                            if (challenge_array[iterator].answer === "") {
                                                 iterator++;
                                             }
                                             else {
@@ -14721,7 +14719,7 @@ db.open(function (err, db) {
                                         else { //not found
                                             var iterator = 0;
                                             while (iterator < iterator_stop) {
-                                                if (challenge_array[iterator].answer == "") {
+                                                if (challenge_array[iterator].answer === "") {
                                                     ++iterator;
                                                 }
                                                 else {
@@ -15714,7 +15712,7 @@ db.open(function (err, db) {
                                         user_answer_text = "Saw question but didn't answer"
                                     };
                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                        if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                        if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                             res.render('home91', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15731,7 +15729,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                             res.render('home92', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15748,7 +15746,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home93', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15765,7 +15763,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home94', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15782,7 +15780,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm != "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home95', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15799,7 +15797,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 != "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
                                             res.render('home96', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15816,7 +15814,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 != "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
                                             res.render('home97', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15833,7 +15831,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 != "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home98', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15850,7 +15848,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text != "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home99', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15867,7 +15865,7 @@ db.open(function (err, db) {
                                                 choices: ['yes', 'no', 'no opinion', 'next question']
                                             });
                                         }
-                                        else if ((user_quest.mm == "") && (user_quest.text == "") && (user_quest.text2 == "") && (user_quest.text3 == "") && (user_quest.text4 == "")) {
+                                        else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
                                             res.render('home100', {
                                                 usercode: visitor_code,
                                                 response: user_answer_text,
@@ -15895,7 +15893,7 @@ db.open(function (err, db) {
                                 questions.get_user_question(seq_quests[question_index], function (user_seq_quest) {
                                  users.update_current_question(visitor_code, user_seq_quest, function (result) {
                                         if (result = true) {
-                                            if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                            if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                 res.render('home71', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -15911,7 +15909,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home72', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -15927,7 +15925,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home73', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -15943,7 +15941,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home74', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -15959,7 +15957,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm != "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home75', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -15975,7 +15973,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 != "")) {
+                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
                                                 res.render('home76', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -15991,7 +15989,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 != "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home77', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -16007,7 +16005,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 != "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home78', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -16023,7 +16021,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text != "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home79', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
@@ -16039,7 +16037,7 @@ db.open(function (err, db) {
                                                     choices: ['yes', 'no', 'no opinion', 'next question']
                                                 });
                                             }
-                                            else if ((user_seq_quest.mm == "") && (user_seq_quest.text == "") && (user_seq_quest.text2 == "") && (user_seq_quest.text3 == "") && (user_seq_quest.text4 == "")) {
+                                            else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
                                                 res.render('home80', {
                                                     usercode: visitor_code,
                                                     animated_gif: user_seq_quest.mm,
