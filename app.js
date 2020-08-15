@@ -12579,13 +12579,9 @@ db.open(function (err, db) {
     app.get('/search/:visitor', function (req, res, next) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
-        var new_visitor = false;
-        if ((visitor_code > -1) && (visitor_code < 10)) {
-            new_visitor = true;
-        };
-        if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
+        if ((visitor_code > 10) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
-                if (valid || new_visitor) {
+                if (valid) {
                     users.get_current_user_question(visitor_code, function (current_quest) {
                         questions.get_user_question(current_quest.current_question, function (quest) {
                             res.render('search', {
