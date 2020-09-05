@@ -29,7 +29,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('192.168.1.4', 27017));
+var db = new Db('newsflanks', new Server('10.0.0.7', 27017));
 
 
 db.open(function (err, db) {
@@ -13339,13 +13339,9 @@ db.open(function (err, db) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var query_res = req.query.query ? req.query.query : "";
-        var new_visitor = false;
-        if ((visitor_code > -1) && (visitor_code < 10)) {
-            new_visitor = true;
-        };
-        if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
+        if ((visitor_code > 9) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
-                if (valid || new_visitor) {
+                if (valid) {
                     lols.search_links(query_res, function (lols_found) {
                         if (lols_found.length == 0) {
                             users.get_current_user_question(visitor_code, function (current_quest) {
