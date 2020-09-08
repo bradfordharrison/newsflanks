@@ -242,11 +242,20 @@ db.open(function (err, db) {
         if ((visitor_code > -1) && (visitor_code < 10)) {
             valid_visitor = true;
         };
+        var not_same_as_daily = true;
+        
+        questions.get_default_question(function (todays_quest) {
+            if ((todays_quest.frame === new_question_frame) && (todays_quest.impression === new_question_impression))
+                not_same_as_daily = false;
+        });
+
+        //get question of the day and save _id into variable
+        //get incoming question and compare to question of day -- return boolean for checking below
         if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
                 if (valid || valid_visitor) { //valid visitor,user
                     questions.check_valid_question(new_question_frame, new_question_impression, function (quest_valid) { //matched
-                        if (quest_valid) {  //valid question
+                        if (quest_valid && not_same_as_daily) {  //valid question and not same as question of day
                             if ((visitor_code > -1) && (visitor_code < 10)) { //matched
                                 questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
                                     if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
@@ -11197,13 +11206,19 @@ db.open(function (err, db) {
         var visitor_code = parseInt(req.params.visitor);
         var new_question_frame = parseInt(req.params.frame);
         var new_question_impression = parseInt(req.params.impression);
+        var not_same_as_daily = true;
+
+        questions.get_default_question(function (todays_quest) {
+            if ((todays_quest.frame === new_question_frame) && (todays_quest.impression === new_question_impression))
+                not_same_as_daily = false;
+        });
 
         if ((visitor_code !== 0) && (visitor_code !== 1) && (visitor_code !== 2) && (visitor_code !== 3)) {
             visitor_code = 3;
         };
 
         questions.check_valid_question(new_question_frame, new_question_impression, function (quest_valid) { //matched
-            if (quest_valid) {  //valid question
+            if (quest_valid && not_same_as_daily) { //valid question and incoming question is not same as question of day
                 questions.get_user_question2(new_question_frame, new_question_impression, function (quest) {
                     if (visitor_code === 0) {
                                 questions.add_yes_vote2(quest._id, function (quest) {
