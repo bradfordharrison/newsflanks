@@ -29,7 +29,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('10.0.0.4', 27017));
+var db = new Db('newsflanks', new Server('10.0.0.16', 27017));
 
 
 db.open(function (err, db) {
@@ -1215,7 +1215,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -1232,7 +1232,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1249,7 +1249,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1266,7 +1266,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1283,7 +1283,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -1300,7 +1300,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -1317,7 +1317,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1334,7 +1334,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1351,7 +1351,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1368,7 +1368,7 @@ db.open(function (err, db) {
                                                             quote4: user_quest.text4,
                                                             head_win_size: user_quest.head_win_y,
                                                             top_question: user_quest.question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     };
                                                 });
@@ -1412,7 +1412,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
@@ -1428,7 +1428,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -1444,7 +1444,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -1460,7 +1460,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm !== "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -1476,7 +1476,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
@@ -1492,7 +1492,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
@@ -1508,7 +1508,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -1524,7 +1524,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -1540,7 +1540,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     }
                                                     else if ((quest[question_index].mm === "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -1556,7 +1556,7 @@ db.open(function (err, db) {
                                                             quote4: quest[question_index].text4,
                                                             head_win_size: quest[question_index].head_win_y,
                                                             top_question: quest[question_index].question + "?",
-                                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                                            choices: ['yes', 'no', 'no opinion']
                                                         });
                                                     };
                                                 }
@@ -1616,7 +1616,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -1633,7 +1633,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1650,7 +1650,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1667,7 +1667,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1684,7 +1684,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -1701,7 +1701,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -1718,7 +1718,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1735,7 +1735,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1752,7 +1752,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -1769,7 +1769,7 @@ db.open(function (err, db) {
                                                                     quote4: user_quest.text4,
                                                                     head_win_size: user_quest.head_win_y,
                                                                     top_question: user_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             };
                                                         });
@@ -1796,7 +1796,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -1812,7 +1812,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -1828,7 +1828,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -1844,7 +1844,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -1860,7 +1860,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
@@ -1876,7 +1876,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -1892,7 +1892,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -1908,7 +1908,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -1924,7 +1924,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 }
                                                                 else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -1940,7 +1940,7 @@ db.open(function (err, db) {
                                                                         quote4: user_seq_quest.text4,
                                                                         head_win_size: user_seq_quest.head_win_y,
                                                                         top_question: user_seq_quest.question + "?",
-                                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                        choices: ['yes', 'no', 'no opinion']
                                                                     });
                                                                 };
                                                             }
@@ -2538,7 +2538,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -2556,7 +2556,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -2574,7 +2574,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -2592,7 +2592,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -2610,7 +2610,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -2628,7 +2628,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -2646,7 +2646,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -2664,7 +2664,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -2682,7 +2682,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -2700,7 +2700,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         };
                                     });
@@ -3854,7 +3854,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -3871,7 +3871,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -3888,7 +3888,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -3905,7 +3905,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -3922,7 +3922,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
@@ -3939,7 +3939,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -3956,7 +3956,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -3973,7 +3973,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -3990,7 +3990,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -4007,7 +4007,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             };
                         });
@@ -4042,7 +4042,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -4059,7 +4059,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -4076,7 +4076,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -4093,7 +4093,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -4110,7 +4110,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -4127,7 +4127,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -4144,7 +4144,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -4161,7 +4161,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -4178,7 +4178,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -4195,7 +4195,7 @@ db.open(function (err, db) {
                                             quote4: user_quest.text4,
                                             head_win_size: user_quest.head_win_y,
                                             top_question: user_quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     };
                                 });
@@ -5710,7 +5710,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -5727,7 +5727,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5744,7 +5744,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5761,7 +5761,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5778,7 +5778,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
@@ -5795,7 +5795,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -5812,7 +5812,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5829,7 +5829,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5846,7 +5846,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     }
                                     else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5863,7 +5863,7 @@ db.open(function (err, db) {
                                             quote4: quest.text4,
                                             head_win_size: quest.head_win_y,
                                             top_question: quest.question + "?",
-                                            choices: ['yes', 'no', 'no opinion', 'next question']
+                                            choices: ['yes', 'no', 'no opinion']
                                         });
                                     };
                                 });
@@ -5902,7 +5902,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -5919,7 +5919,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5936,7 +5936,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5953,7 +5953,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -5970,7 +5970,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
@@ -5987,7 +5987,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -6004,7 +6004,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6021,7 +6021,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6038,7 +6038,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6055,7 +6055,7 @@ db.open(function (err, db) {
                                     quote4: quest.text4,
                                     head_win_size: quest.head_win_y,
                                     top_question: quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             };
                         });
@@ -6088,7 +6088,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -6105,7 +6105,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6122,7 +6122,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6139,7 +6139,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm !== "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6156,7 +6156,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
@@ -6173,7 +6173,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 === "")) {
@@ -6190,7 +6190,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6207,7 +6207,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm === "") && (quest.text !== "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6224,7 +6224,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     }
                     else if ((quest.mm === "") && (quest.text === "") && (quest.text2 === "") && (quest.text3 === "") && (quest.text4 === "")) {
@@ -6241,7 +6241,7 @@ db.open(function (err, db) {
                             head_win_size: quest.head_win_y,
                             question: quest._id,
                             top_question: quest.question + "?",
-                            choices: ['yes', 'no', 'no opinion', 'next question']
+                            choices: ['yes', 'no', 'no opinion']
                         });
                     };
                 });
@@ -6263,7 +6263,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -6279,7 +6279,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -6295,7 +6295,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -6311,7 +6311,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -6327,7 +6327,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -6343,7 +6343,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -6359,7 +6359,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -6375,7 +6375,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -6391,7 +6391,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -6407,7 +6407,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             };
                         });
@@ -6970,7 +6970,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -6987,7 +6987,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7004,7 +7004,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7021,7 +7021,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7038,7 +7038,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -7055,7 +7055,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -7072,7 +7072,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7089,7 +7089,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7106,7 +7106,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7123,7 +7123,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 };
                                             });
@@ -7167,7 +7167,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
@@ -7183,7 +7183,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -7199,7 +7199,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -7215,7 +7215,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -7231,7 +7231,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
@@ -7247,7 +7247,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
@@ -7263,7 +7263,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -7279,7 +7279,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -7295,7 +7295,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -7311,7 +7311,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 };
                                             }
@@ -7371,7 +7371,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -7388,7 +7388,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7405,7 +7405,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7422,7 +7422,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7439,7 +7439,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -7456,7 +7456,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -7473,7 +7473,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7490,7 +7490,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7507,7 +7507,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -7524,7 +7524,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         };
                                                     });
@@ -7551,7 +7551,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -7567,7 +7567,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -7583,7 +7583,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -7599,7 +7599,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -7615,7 +7615,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
@@ -7631,7 +7631,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -7647,7 +7647,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -7663,7 +7663,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -7679,7 +7679,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -7695,7 +7695,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             };
                                                         }
@@ -8431,7 +8431,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 === "")) {
@@ -8447,7 +8447,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -8463,7 +8463,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !=="") && (user_quest.text !=="") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -8479,7 +8479,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm !=="") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -8495,7 +8495,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 !=="")) {
@@ -8511,7 +8511,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 !=="") && (user_quest.text4 === "")) {
@@ -8527,7 +8527,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 !=="") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -8543,7 +8543,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text !=="") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -8559,7 +8559,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             }
                             else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -8575,7 +8575,7 @@ db.open(function (err, db) {
                                     quote4: user_quest.text4,
                                     head_win_size: user_quest.head_win_y,
                                     top_question: user_quest.question + "?",
-                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                    choices: ['yes', 'no', 'no opinion']
                                 });
                             };
                         });
@@ -9141,7 +9141,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -9158,7 +9158,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9175,7 +9175,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9192,7 +9192,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9209,7 +9209,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -9226,7 +9226,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -9243,7 +9243,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9260,7 +9260,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9277,7 +9277,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9294,7 +9294,7 @@ db.open(function (err, db) {
                                                         quote4: user_quest.text4,
                                                         head_win_size: user_quest.head_win_y,
                                                         top_question: user_quest.question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 };
                                             });
@@ -9338,7 +9338,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
@@ -9354,7 +9354,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -9370,7 +9370,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -9386,7 +9386,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm !== "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -9402,7 +9402,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 !== "")) {
@@ -9418,7 +9418,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 !== "") && (quest[question_index].text4 === "")) {
@@ -9434,7 +9434,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 !== "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -9450,7 +9450,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text !== "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -9466,7 +9466,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 }
                                                 else if ((quest[question_index].mm === "") && (quest[question_index].text === "") && (quest[question_index].text2 === "") && (quest[question_index].text3 === "") && (quest[question_index].text4 === "")) {
@@ -9482,7 +9482,7 @@ db.open(function (err, db) {
                                                         quote4: quest[question_index].text4,
                                                         head_win_size: quest[question_index].head_win_y,
                                                         top_question: quest[question_index].question + "?",
-                                                        choices: ['yes', 'no', 'no opinion', 'next question']
+                                                        choices: ['yes', 'no', 'no opinion']
                                                     });
                                                 };
                                             }
@@ -9542,7 +9542,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -9559,7 +9559,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9576,7 +9576,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9593,7 +9593,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9610,7 +9610,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -9627,7 +9627,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -9644,7 +9644,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9661,7 +9661,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9678,7 +9678,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -9695,7 +9695,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         };
                                                     });
@@ -9722,7 +9722,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -9738,7 +9738,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -9754,7 +9754,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -9770,7 +9770,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -9786,7 +9786,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
@@ -9802,7 +9802,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -9818,7 +9818,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -9834,7 +9834,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -9850,7 +9850,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             }
                                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -9866,7 +9866,7 @@ db.open(function (err, db) {
                                                                     quote4: user_seq_quest.text4,
                                                                     head_win_size: user_seq_quest.head_win_y,
                                                                     top_question: user_seq_quest.question + "?",
-                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                    choices: ['yes', 'no', 'no opinion']
                                                                 });
                                                             };
                                                         }
@@ -14235,7 +14235,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -14252,7 +14252,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14269,7 +14269,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14286,7 +14286,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14303,7 +14303,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -14320,7 +14320,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -14337,7 +14337,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14354,7 +14354,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14371,7 +14371,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             }
                                                                             else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14388,7 +14388,7 @@ db.open(function (err, db) {
                                                                                     quote4: user_quest.text4,
                                                                                     head_win_size: user_quest.head_win_y,
                                                                                     top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                                    choices: ['yes', 'no', 'no opinion']
                                                                                 });
                                                                             };
                                                                     });
@@ -14516,7 +14516,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -14533,7 +14533,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14550,7 +14550,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14567,7 +14567,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14584,7 +14584,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -14601,7 +14601,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -14618,7 +14618,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14635,7 +14635,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14652,7 +14652,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         }
                                                         else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -14669,7 +14669,7 @@ db.open(function (err, db) {
                                                                 quote4: user_quest.text4,
                                                                 head_win_size: user_quest.head_win_y,
                                                                 top_question: user_quest.question + "?",
-                                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                                choices: ['yes', 'no', 'no opinion']
                                                             });
                                                         };
                                                 });
@@ -16629,7 +16629,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -16646,7 +16646,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -16663,7 +16663,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -16680,7 +16680,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -16697,7 +16697,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -16714,7 +16714,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
@@ -16731,7 +16731,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -16748,7 +16748,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -16765,7 +16765,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         }
                                         else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
@@ -16782,7 +16782,7 @@ db.open(function (err, db) {
                                                 quote4: user_quest.text4,
                                                 head_win_size: user_quest.head_win_y,
                                                 top_question: user_quest.question + "?",
-                                                choices: ['yes', 'no', 'no opinion', 'next question']
+                                                choices: ['yes', 'no', 'no opinion']
                                             });
                                         };
                                     });
@@ -16809,7 +16809,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -16825,7 +16825,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -16841,7 +16841,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -16857,7 +16857,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm !== "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -16873,7 +16873,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 !== "")) {
@@ -16889,7 +16889,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 !== "") && (user_seq_quest.text4 === "")) {
@@ -16905,7 +16905,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 !== "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -16921,7 +16921,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text !== "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -16937,7 +16937,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             }
                                             else if ((user_seq_quest.mm === "") && (user_seq_quest.text === "") && (user_seq_quest.text2 === "") && (user_seq_quest.text3 === "") && (user_seq_quest.text4 === "")) {
@@ -16953,7 +16953,7 @@ db.open(function (err, db) {
                                                     quote4: user_seq_quest.text4,
                                                     head_win_size: user_seq_quest.head_win_y,
                                                     top_question: user_seq_quest.question + "?",
-                                                    choices: ['yes', 'no', 'no opinion', 'next question']
+                                                    choices: ['yes', 'no', 'no opinion']
                                                 });
                                             };
                                         }
