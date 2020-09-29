@@ -64,9 +64,6 @@
       document.writeln("</nav>");
       document.writeln("</center>");
       document.writeln("</div>");
-      document.writeln("<div>");
-      document.writeln("<h4><font color='#FF0000'> That is not a registered email address so you need to select &quot;Continue&quot; to create a new user account.</font></h4>");
-      document.writeln("</div>");
    }
    else {
       document.writeln("<div>");
@@ -107,10 +104,10 @@
    <font color="#006500" size="4">
    <form action="/login/{{question}}/{{usercode}}" method="POST">
          <p>
-             If you already registered your email address, please enter it below. Otherwise simply select "Continue" to register an email address:<br><br>
+             This is a new user email address. Or maybe you made a typo. Please visually confirm or fix the address below and then press &quot;Continue.&quot; If you make no changes a new account will be created for you and your votes will be tallied.<br><br>
          </p>
          <p>
-         <span>Email address&nbsp<input type="text" name="username_input" value=""></span>
+         <span>Email address&nbsp<input type="text" name="username_input" value="{{email_address}}"></span>
          </p>
     <script>
         var code = window.name;
@@ -118,6 +115,11 @@
         document.write(code);
         document.writeln("'>");
     </script>
+    <script>
+		    document.write("<input type='hidden' name='first_try' value='");
+		    document.write('no');
+		    document.writeln("'>");
+	</script>
       <input type="submit" value="Continue">
    </form></font>
 </div>

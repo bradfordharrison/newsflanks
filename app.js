@@ -5562,6 +5562,7 @@ db.open(function (err, db) {
         var name_res_caps = name_res.toUpperCase();
         var name_res2_caps = name_res2.toUpperCase();
         var default_answer = req.body.code;
+        var answer_code = default_answer;
 
         if (default_answer === "4") { answer_code = "0"; }
         if (default_answer === "5") { answer_code = "1"; }
@@ -5573,9 +5574,8 @@ db.open(function (err, db) {
         }
         if ((default_answer !== "0") && (default_answer !== "1") && (default_answer !== "2") && (default_answer !== "3")) {
             default_answer = "3"; //Question of day was not seen so set to 3 because he will see it now
+            answer_code = default_answer;
         };
-
-        var answer_code = default_answer;
 
         if ((name_res_caps != name_res2_caps) || (name_res.length < 1)) {
             res.render('username_no_match', {
@@ -14144,6 +14144,8 @@ db.open(function (err, db) {
         var visitor_code_old = parseInt(req.params.visitor);
         var other_quest = ObjectID.createFromHexString(req.params.question);
         var current_response = req.body.code;
+        var try1 = req.body.first_try;
+        var result_empty = false;
 
         if (visitor_code_old === 4) {
             visitor_code_old = 0;
@@ -14203,197 +14205,197 @@ db.open(function (err, db) {
                                                                 questions.get_user_question(other_quest, function (front_question) {
                                                                     //questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
                                                                     users.get_userimps_array(visitor_code, function (userimps_array) {
-                                                                            users.check_if_other_question_already_in_impressions_array(visitor_code_old, front_question, userimps_array, function (response) {
-                                                                                users.update_other_question_with_actual_response(visitor_code, front_question, response, visitor_code_old, userimps_array, function (result) {
-                                                                                  //update_other_question_with_actual_response doesn't set current question or lol state; it does updates tally if needed
-                                                                                    users.get_current_user_question(visitor_code, function (current_quest) {
-                                                                    users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
-                                                                        if (user_answer === 0) {
-                                                                            user_answer_text = "Yes";
-                                                                        };
-                                                                        if (user_answer === 1) {
-                                                                            user_answer_text = "No";
-                                                                        };
-                                                                        if (user_answer === 2) {
-                                                                            user_answer_text = "No opinion";
-                                                                        };
-                                                                        if (user_answer === 3) {
-                                                                            user_answer_text = "Saw question but didn't answer";
-                                                                        };
-                                                                        questions.get_user_question(current_quest.current_question, function (user_quest) {
-                                                                            if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
-                                                                                res.render('home6', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                        users.check_if_other_question_already_in_impressions_array(visitor_code_old, front_question, userimps_array, function (response) {
+                                                                            users.update_other_question_with_actual_response(visitor_code, front_question, response, visitor_code_old, userimps_array, function (result) {
+                                                                                //update_other_question_with_actual_response doesn't set current question or lol state; it does updates tally if needed
+                                                                                users.get_current_user_question(visitor_code, function (current_quest) {
+                                                                                    users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
+                                                                                        if (user_answer === 0) {
+                                                                                            user_answer_text = "Yes";
+                                                                                        };
+                                                                                        if (user_answer === 1) {
+                                                                                            user_answer_text = "No";
+                                                                                        };
+                                                                                        if (user_answer === 2) {
+                                                                                            user_answer_text = "No opinion";
+                                                                                        };
+                                                                                        if (user_answer === 3) {
+                                                                                            user_answer_text = "Saw question but didn't answer";
+                                                                                        };
+                                                                                        questions.get_user_question(current_quest.current_question, function (user_quest) {
+                                                                                            if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
+                                                                                                res.render('home6', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home12', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home18', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home24', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home30', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
+                                                                                                res.render('home36', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home42', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home48', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home54', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            }
+                                                                                            else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
+                                                                                                res.render('home60', {
+                                                                                                    usercode: visitor_code,
+                                                                                                    response: user_answer_text,
+                                                                                                    animated_gif: user_quest.mm,
+                                                                                                    frame: user_quest.frame,
+                                                                                                    impression: user_quest.impression,
+                                                                                                    url_text: user_quest.url_text,
+                                                                                                    quote: user_quest.text,
+                                                                                                    quote2: user_quest.text2,
+                                                                                                    quote3: user_quest.text3,
+                                                                                                    quote4: user_quest.text4,
+                                                                                                    head_win_size: user_quest.head_win_y,
+                                                                                                    top_question: user_quest.question + "?",
+                                                                                                    choices: ['yes', 'no', 'no opinion']
+                                                                                                });
+                                                                                            };
+                                                                                        });
+                                                                                    });
                                                                                 });
-                                                                            }
-                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
-                                                                                res.render('home12', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
-                                                                                res.render('home18', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
-                                                                                res.render('home24', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm !== "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
-                                                                                res.render('home30', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
-                                                                                res.render('home36', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 === "")) {
-                                                                                res.render('home42', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
-                                                                                res.render('home48', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm === "") && (user_quest.text !== "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
-                                                                                res.render('home54', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            }
-                                                                            else if ((user_quest.mm === "") && (user_quest.text === "") && (user_quest.text2 === "") && (user_quest.text3 === "") && (user_quest.text4 === "")) {
-                                                                                res.render('home60', {
-                                                                                    usercode: visitor_code,
-                                                                                    response: user_answer_text,
-                                                                                    animated_gif: user_quest.mm,
-                                                                                    frame: user_quest.frame,
-                                                                                    impression: user_quest.impression,
-                                                                                    url_text: user_quest.url_text,
-                                                                                    quote: user_quest.text,
-                                                                                    quote2: user_quest.text2,
-                                                                                    quote3: user_quest.text3,
-                                                                                    quote4: user_quest.text4,
-                                                                                    head_win_size: user_quest.head_win_y,
-                                                                                    top_question: user_quest.question + "?",
-                                                                                    choices: ['yes', 'no', 'no opinion']
-                                                                                });
-                                                                            };
-                                                                    });
-                                                                            });
-                                                                            });
                                                                             });
                                                                         });
                                                                     });
@@ -14424,13 +14426,236 @@ db.open(function (err, db) {
                         });
                     });
                 }
-                else {
+                else if (try1 === 'yes') {
                     res.render('bad_login_username', {
                         usercode: visitor_code_old,
+                        email_address: name,
                         question: other_quest
-                    })
-                };
-            });
+                    });
+                }
+                else { //try1 = no
+                    var other_question = ObjectID.createFromHexString(req.params.question);
+                    var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+                    var name_res_caps = name.toUpperCase();
+
+                    if (name_res_caps.length < 1) {
+                        res.render('username_no_match', {
+                            usercode: visitor_code_old,
+                            question: other_question
+                        });
+                    }
+                    else if (!re.test(name_res_caps)) { //validate email format
+                        res.render('username_no_match', {
+                            usercode: visitor_code_old,
+                            question: other_question
+                        });
+                    }
+                    else {
+                        if (name_res_caps === " ") {//check for empty
+                            result_empty = true;
+                            res.render('username_no_match', {
+                                usercode: visitor_code_old,
+                                question: other_question
+                            });
+                        };
+                        if (result_empty === false) { //good to go
+                            users.get_usercode_for_update(function (user_code) {
+                            questions.get_default_question(function (default_question) {
+                                //questions.get_front_questions(function (front_quest) {
+                                questions.get_user_question(other_question, function (front_question) {
+                                    //questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                                        users.write_new_user(name_res_caps, +current_response, user_code, default_question, front_question, +current_response, visitor_code_old, function (userDoc) {
+                                            //vote is tallied in write_new_user
+                                        });
+                                        if (current_response === "0") {
+                                            user_answer_text = "Yes";
+                                        };
+                                        if (current_response === "1") {
+                                            user_answer_text = "No";
+                                        };
+                                        if (current_response === "2") {
+                                            user_answer_text = "No opinion";
+                                        };
+                                        if (current_response === "3") {
+                                            user_answer_text = "Saw question but didn't answer";
+                                        };
+                                            if ((default_question.mm !== "") && (default_question.text !== "") && (default_question.text2 !== "") && (default_question.text3 !== "") && (default_question.text4 !== "")) {
+                                                res.render('home6', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm !== "") && (default_question.text !== "") && (default_question.text2 !== "") && (default_question.text3 !== "") && (default_question.text4 === "")) {
+                                                res.render('home12', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm !== "") && (default_question.text !== "") && (default_question.text2 !== "") && (default_question.text3 === "") && (default_question.text4 === "")) {
+                                                res.render('home18', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm !== "") && (default_question.text !== "") && (default_question.text2 === "") && (default_question.text3 === "") && (default_question.text4 === "")) {
+                                                res.render('home24', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm !== "") && (default_question.text === "") && (default_question.text2 === "") && (default_question.text3 === "") && (default_question.text4 === "")) {
+                                                res.render('home30', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm === "") && (default_question.text !== "") && (default_question.text2 !== "") && (default_question.text3 !== "") && (default_question.text4 !== "")) {
+                                                res.render('home36', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm === "") && (default_question.text !== "") && (default_question.text2 !== "") && (default_question.text3 !== "") && (default_question.text4 === "")) {
+                                                res.render('home42', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm === "") && (default_question.text !== "") && (default_question.text2 !== "") && (default_question.text3 === "") && (default_question.text4 === "")) {
+                                                res.render('home48', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm === "") && (default_question.text !== "") && (default_question.text2 === "") && (default_question.text3 === "") && (default_question.text4 === "")) {
+                                                res.render('home54', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            }
+                                            else if ((default_question.mm === "") && (default_question.text === "") && (default_question.text2 === "") && (default_question.text3 === "") && (default_question.text4 === "")) {
+                                                res.render('home60', {
+                                                    usercode: user_code,
+                                                    response: user_answer_text,
+                                                    animated_gif: default_question.mm,
+                                                    frame: default_question.frame,
+                                                    impression: default_question.impression,
+                                                    url_text: default_question.url_text,
+                                                    quote: default_question.text,
+                                                    quote2: default_question.text2,
+                                                    quote3: default_question.text3,
+                                                    quote4: default_question.text4,
+                                                    head_win_size: default_question.head_win_y,
+                                                    top_question: default_question.question + "?",
+                                                    choices: ['yes', 'no', 'no opinion']
+                                                });
+                                            };
+                                });
+                            });
+                            });
+                        }
+                    }
+                }
+           });
         }
     });
 
