@@ -30,6 +30,34 @@
     <script type="text/javascript" src="/static/js/jquery.js"></script>
 
     <title>Visitor Information</title>
+        <link href="../../assets/styles.css" rel="stylesheet" />
+
+	    <style>
+
+	        #chart {
+	      max-width: 650px;
+	      margin: 35px auto;
+	    }
+
+	    </style>
+
+	    <script>
+	      window.Promise ||
+	        document.write(
+	          '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+	        )
+	      window.Promise ||
+	        document.write(
+	          '<script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20171210/classList.min.js"><\/script>'
+	        )
+	      window.Promise ||
+	        document.write(
+	          '<script src="https://cdn.jsdelivr.net/npm/findindex_polyfill_mdn"><\/script>'
+	        )
+	    </script>
+
+
+	    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 </head>
 
@@ -104,7 +132,7 @@
    }
 </script>
 <div class="table-border">
-   <font color="#006500" size="4">Here are all the sequences you have completed, along with the percentage of users (including you) who provided the same Yes/No answers to the same questions in the sequences (questions answered &quot;No Opinion&quot; or &quot;Seen but no answer given&quot; are marked as answered but are excluded from analysis).
+   <font color="#006500" size="4">Here is a summary of your responses to the sequences from the SEQUENCES menu. Included are the percentage of users (including you) who provided the same Yes/No answers to the same questions (i.e., flanks) in the sequences. Counterflanks will be added soon.<br /><br /><i>Note:</i>Questions answered &quot;No Opinion&quot; or &quot;Seen but no answer given&quot; are marked as answered but are excluded from analysis.
   </font><br /><br />
         {% set counter = 0 %}
         {% for sequence in sequences %}
@@ -112,6 +140,91 @@
         % of users with same answers as you:</b>&nbsp;&nbsp;{{percent[counter]}}<br /><br />
         {% set counter = counter + 1 %}
         {% endfor %}
+
+             <div id="chart"></div>
+    <script>
+
+        var options = {
+          series: [{
+          name: 'Flanks',
+          data: [{{data1}}, {{data2}}, {{data3}}, {{data4}}, {{data5}}, {{data6}}
+          ]
+        },
+        {
+          name: 'Counterflanks',
+          data: [0, 0, 0, 0, 0, 0
+          ]
+        }
+        ],
+          chart: {
+          type: 'bar',
+          height: 440,
+          stacked: true
+        },
+        colors: ['#006500', '#000000'],
+        plotOptions: {
+          bar: {
+            horizontal: true,
+            barHeight: '80%',
+
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          width: 1,
+          colors: ["#fff"]
+        },
+
+        grid: {
+          xaxis: {
+            lines: {
+              show: false
+            }
+          }
+        },
+        yaxis: {
+          min: -100,
+          max: 100,
+          title: {
+            // text: 'Age',
+          },
+        },
+        tooltip: {
+          shared: false,
+          x: {
+            formatter: function (val) {
+              return val
+            }
+          },
+          y: {
+            formatter: function (val) {
+              return Math.abs(val) + "%"
+            }
+          }
+        },
+        title: {
+          text: '{{title}}'
+        },
+        xaxis: {
+          categories: ['{{sequence1}}', '{{sequence2}}', '{{sequence3}}', '{{sequence4}}', '{{sequence5}}', '{{sequence6}}'],
+          title: {
+            text: 'Percent'
+          },
+          labels: {
+            formatter: function (val) {
+              return Math.abs(Math.round(val)) + "%"
+            }
+          }
+        },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+
+    </script>
 
 </div>
 

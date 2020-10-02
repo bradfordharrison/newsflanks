@@ -16799,7 +16799,20 @@ db.open(function (err, db) {
                                                     url_text: quest.url_text,
                                                     number_users: user_responses_codes.length + 2,
                                                     sequences: cats_in_flank,
-                                                    percent: percent_users_same_answers
+                                                    percent: percent_users_same_answers,
+                                                    title: 'Flanks and Counterflanks by Sequence (includes all respondents)',
+                                                    sequence1: '2020 Presidential Election',
+                                                    sequence2: 'America Under Trump',
+                                                    sequence3: 'President Trumps Policies',
+                                                    sequence4: 'President Trumps Behavior',
+                                                    sequence5: '2016 Presidential Election',
+                                                    sequence6: 'Abortion, Guns and Other Hang-ups',
+                                                    data1: percent_users_same_answers[0],
+                                                    data2: percent_users_same_answers[1],
+                                                    data3: percent_users_same_answers[2],
+                                                    data4: percent_users_same_answers[3],
+                                                    data5: percent_users_same_answers[4],
+                                                    data6: percent_users_same_answers[5]
                                                 });
                                             });
                                     });
