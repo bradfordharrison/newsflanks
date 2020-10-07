@@ -14465,11 +14465,10 @@ db.open(function (err, db) {
                             });
                         };
                         if (result_empty === false) { //good to go
-                            users.get_usercode_for_update(function (user_code) {
                             questions.get_default_question(function (default_question) {
                                 //questions.get_front_questions(function (front_quest) {
                                 questions.get_user_question(other_question, function (front_question) {
-                                    //questions.get_user_question2(front_quest[0].frame, front_quest[0].impression, function (front_question) {
+                                    users.get_usercode_for_update(function (user_code) {
                                         users.write_new_user(name_res_caps, +current_response, user_code, default_question, front_question, +current_response, visitor_code_old, function (userDoc) {
                                             //vote is tallied in write_new_user
                                         });
