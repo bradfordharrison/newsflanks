@@ -154,11 +154,15 @@ function FlanksDAO(database) {
         var answers_given = 0;
         visitor_code = visitor_code - 10000;
         for (var o = 0; o < completed_user_cats.length; o++) {
-            seq_index_holder = completed_user_cats[o];
-            --seq_index_holder;
-            cats_in_flank.push(sequences[seq_index_holder].name);
-            total_users.push(0);
-            total_same.push(0);
+            for (var p = 0; p < sequences.length; p++) {
+                if (sequences[p].metacode === completed_user_cats[o]) {
+                    cats_in_flank.push(sequences[p].name);
+                }
+                //seq_index_holder = completed_user_cats[o];
+                //--seq_index_holder;
+                total_users.push(0);
+                total_same.push(0);
+            };
         };
         this.db.collection('question').find()
             .toArray(function (err, quests) {
@@ -167,8 +171,11 @@ function FlanksDAO(database) {
                         for (var k = 0; k < users_with_overlapping[j].length; k++) {
                                 if (users_with_overlapping[j][k] === completed_user_cats[i]) {
                                     total_users[i] = total_users[i] + 1;
-                                    index_holder = completed_user_cats[i];
-                                    --index_holder; //sequences begin at 1, not 0
+                                    for (var z = 0; z < sequences.length; z++) {
+                                        if (sequences[z].metacode === completed_user_cats[i]) {
+                                            index_holder = z;
+                                        }
+                                    }
                                     answers_given = sequences[index_holder].metaframes_array.length;
                                     for (var p = 0; p < sequences[index_holder].metaframes_array.length; p++) {
                                         for (var q = 0; q < quests.length; q++) {

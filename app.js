@@ -16786,7 +16786,7 @@ db.open(function (err, db) {
                 flanks.get_categories(function (metaframes) {
                     flanks.get_completed_user_categories(visitor_code, user_responses, metaframes, function (completed_user_cats) {
                         flanks.get_users_with_categories(user_responses, user_responses_codes, metaframes, function (users_with_cats) {
-                            flanks.get_users_with_same_categories(completed_user_cats, users_with_cats, user_responses_codes, function (users_with_same_cats) {
+                            flanks.get_users_with_same_categories(completed_user_cats, users_with_cats, user_responses_codes, function (users_with_same_cats) { //not used, returns overlapping categories?
                                 flanks.get_users_with_overlapping_categories(completed_user_cats, users_with_cats, function (users_with_overlapping_categories) {
                                     flanks.get_flanks(visitor_code, metaframes, completed_user_cats, users_with_overlapping_categories, user_responses, function (cats_in_flank, percent_users_same_answers) {
                                         users.get_current_user_question(visitor_code, function (current_quest) {
@@ -16800,12 +16800,12 @@ db.open(function (err, db) {
                                                     sequences: cats_in_flank,
                                                     percent: percent_users_same_answers,
                                                     title: 'Flanks and Counterflanks by Sequence (includes all respondents)',
-                                                    sequence1: '2020 Presidential Election',
-                                                    sequence2: 'America Under Trump',
-                                                    sequence3: 'President Trumps Policies',
-                                                    sequence4: 'President Trumps Behavior',
-                                                    sequence5: '2016 Presidential Election',
-                                                    sequence6: 'Abortion, Guns and Other Hang-ups',
+                                                    sequence1: cats_in_flank[0],
+                                                    sequence2: cats_in_flank[1],
+                                                    sequence3: cats_in_flank[2],
+                                                    sequence4: cats_in_flank[3],
+                                                    sequence5: cats_in_flank[4],
+                                                    sequence6: cats_in_flank[5],
                                                     data1: percent_users_same_answers[0],
                                                     data2: percent_users_same_answers[1],
                                                     data3: percent_users_same_answers[2],
