@@ -178,8 +178,12 @@ function FlanksDAO(database) {
                                     }
                                     answers_given = sequences[index_holder].metaframes_array.length;
                                     for (var p = 0; p < sequences[index_holder].metaframes_array.length; p++) {
-                                        for (var q = 0; q < quests.length; q++) {
-                                            if ((quests[q].frame === sequences[index_holder].metaframes_array[p].frame) && (quests[q].impression === sequences[index_holder].metaframes_array[p].impression)) {
+                                            for (var q = 0; q < quests.length; q++) {
+                                                if ((quests[q].frame === sequences[index_holder].metaframes_array[p].frame) && (quests[q].impression === sequences[index_holder].metaframes_array[p].impression)) {
+                                                    for (var y = 0; y < user_responses[visitor_code].length; y++) {
+                                                        if ((quests[q]._id.equals(user_responses[visitor_code][y].question)) && ((user_responses[visitor_code][y].answer === 2) || (user_responses[visitor_code][y].answer === 3))) 
+                                                            answers_given = answers_given - 1;
+                                                    }                           
                                                 for (var r = 0; r < user_responses[visitor_code].length; r++) {
                                                     if ((quests[q]._id.equals(user_responses[visitor_code][r].question)) && ((user_responses[visitor_code][r].answer === 0) || (user_responses[visitor_code][r].answer === 1))) {                           
                                                         for (var s = 0; s < user_responses[j].length; s++) {
@@ -191,10 +195,13 @@ function FlanksDAO(database) {
                                                 }
                                             }
                                         }
-                                        if (answers_given === match) {
+                                        if (answers_given === 0) {
+                                            total_same[i] = 0;
+                                        }
+                                        else if (answers_given === match) {
                                             total_same[i] = total_same[i] + 1;
                                         };
-                                    };
+                                    }
                                     match = 0;
                                 }
                         }
