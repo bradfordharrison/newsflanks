@@ -49,6 +49,7 @@ function QuestionDAO(database) {
         var sequences_questions_array = [];
         var next_available = 0;
         this.db.collection("metaframe").find({})
+            .sort({ "date": -1 }) //newest first
             .toArray(function (err, sequences) {
                 assert.equal(null, err);
                 for (var i = 0; i < sequences.length; i++) {

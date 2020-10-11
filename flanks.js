@@ -13,11 +13,11 @@ function FlanksDAO(database) {
 
     this.db = database;
 
-
     this.get_categories = function (callback) { //gets number of questions in questions collections
         "use strict";
         //update this callback to get just the questions actually referenced in the user responses -- pass in user responses
         this.db.collection("metaframe").find({})
+            .sort({ "date": -1 }) //newest first
             .toArray(function (err, metaframes) {
                 assert.equal(null, err);
                 callback(metaframes);
