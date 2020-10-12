@@ -6489,7 +6489,7 @@ db.open(function (err, db) {
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                            users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
+                            users.add_to_imps_if_not_present(visitor_code, question_id, quest.frame, quest.impression, function (result) {
                                 users.get_current_user_question(visitor_code, function (question_id) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
                                         questions.get_user_question(question_id.current_question, function (quest) {
@@ -6602,7 +6602,7 @@ db.open(function (err, db) {
             else { //registered user
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                        users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
+                        users.add_to_imps_if_not_present(visitor_code, question_id, quest.frame, quest.impression, function (result) {
                                 users.get_current_user_question(visitor_code, function (question_id) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
                                         questions.get_user_question(question_id.current_question, function (quest) {
@@ -6706,7 +6706,7 @@ db.open(function (err, db) {
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                            users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
+                            users.add_to_imps_if_not_present(visitor_code, question_id, quest.frame, quest.impression, function (result) {
                                 users.get_current_user_question(visitor_code, function (question_id) {
                                     questions.cancel_existing_vote(quest, question_id, function (result) {
                                         questions.get_user_question(question_id.current_question, function (quest) {
@@ -8660,7 +8660,7 @@ db.open(function (err, db) {
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                        users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
+                        users.add_to_imps_if_not_present(visitor_code, question_id, quest.frame, quest.impression, function (result) {
                             users.get_current_user_question(visitor_code, function (question_id) {
                                 questions.cancel_existing_vote(quest, question_id, function (result) {
                                     questions.get_user_question(question_id.current_question, function (quest) {
@@ -8773,7 +8773,7 @@ db.open(function (err, db) {
             else { //registered user
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                        users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
+                        users.add_to_imps_if_not_present(visitor_code, question_id, quest.frame, quest.impression, function (result) {
                             users.get_current_user_question(visitor_code, function (question_id) {
                                 questions.cancel_existing_vote(quest, question_id, function (result) {
                                     questions.get_user_question(question_id.current_question, function (quest) {
@@ -8877,7 +8877,7 @@ db.open(function (err, db) {
                 //write userimps
                 users.get_current_user_question(visitor_code, function (question_id) {
                     questions.get_user_question(question_id.current_question, function (quest) {
-                        users.add_to_imps_if_not_present(visitor_code, question_id, function (result) {
+                        users.add_to_imps_if_not_present(visitor_code, question_id, quest.frame, quest.impression, function (result) {
                             users.get_current_user_question(visitor_code, function (question_id) {
                                 questions.cancel_existing_vote(quest, question_id, function (result) {
                                     questions.get_user_question(question_id.current_question, function (quest) {

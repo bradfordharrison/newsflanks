@@ -683,7 +683,7 @@ function UserDAO(database) {
         callback(done);
     };
 
-    this.add_to_imps_if_not_present = function (visitor_code, userimps_array, callback) {
+    this.add_to_imps_if_not_present = function (visitor_code, userimps_array, frame, impression, callback) {
         var found = false;
         for (var i = 0; i < userimps_array.impressions_array.length; i++) {
             if (userimps_array.current_question.equals(userimps_array.impressions_array[i].question)) { //== compares with call by reference so you have to use this
@@ -693,7 +693,7 @@ function UserDAO(database) {
         }
         if (found === false) {
             this.db.collection("user").updateOne({ "usercode": visitor_code }, //update impressions array
-                { "$push": { "impressions_array": { "$each": [{ "question": userimps_array.current_question, "frame": userimps_array.frame, "impression": userimps_array.impression, "answer": 3, "date": new Date(), "wayin": 0 }] } } });
+                { "$push": { "impressions_array": { "$each": [{ "question": userimps_array.current_question, "frame": frame, "impression": impression, "answer": 3, "date": new Date(), "wayin": 0 }] } } });
 
             found = true;
         }
