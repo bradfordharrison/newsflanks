@@ -137,7 +137,8 @@
         {% set counter = 0 %}
         {% for sequence in sequences %}
                 <b>{{sequence}}<br />
-        % of users with same answers as you:</b>&nbsp;&nbsp;{{percent[counter]}}<br /><br />
+        <b>% of users with same yes/no answers as you:</b>&nbsp;&nbsp;{{percent[counter]}}<br />
+        <b>% of users with opposite yes/no answers as you:</b>&nbsp;&nbsp;{{opposite_percent[counter]}}<br /><br />
         {% set counter = counter + 1 %}
         {% endfor %}
 
@@ -152,7 +153,7 @@
         },
         {
           name: 'Counterflanks',
-          data: [0, 0, 0, 0, 0, 0
+          data: [{{data7}}, {{data8}}, {{data9}}, {{data10}}, {{data11}}, {{data12}}
           ]
         }
         ],

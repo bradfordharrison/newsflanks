@@ -146,11 +146,14 @@ function FlanksDAO(database) {
         "use strict";
         var cats_in_flank = [];
         var percent_users_same_answers = [];
+        var percent_users_opposite_answers = [];
+        var percent_users_opposite_answers_noneg = [];
         var total_users = [];
         var total_same = [];
+        var total_opposite = [];
         var index_holder = 0;
-        var seq_index_holder = 0;
         var match = 0;
+        var opposite_match = 0;
         var answers_given = 0;
         visitor_code = visitor_code - 10000;
         for (var o = 0; o < completed_user_cats.length; o++) {
@@ -162,6 +165,7 @@ function FlanksDAO(database) {
                 //--seq_index_holder;
                 total_users.push(0);
                 total_same.push(0);
+                total_opposite.push(0);
             };
         };
         this.db.collection('question').find()
@@ -181,14 +185,22 @@ function FlanksDAO(database) {
                                             for (var q = 0; q < quests.length; q++) {
                                                 if ((quests[q].frame === sequences[index_holder].metaframes_array[p].frame) && (quests[q].impression === sequences[index_holder].metaframes_array[p].impression)) {
                                                     for (var y = 0; y < user_responses[visitor_code].length; y++) {
-                                                        if ((quests[q]._id.equals(user_responses[visitor_code][y].question)) && ((user_responses[visitor_code][y].answer === 2) || (user_responses[visitor_code][y].answer === 3))) 
+                                                        if ((quests[q]._id.equals(user_responses[visitor_code][y].question)) && ((user_responses[visitor_code][y].answer === 2) || (user_responses[visitor_code][y].answer === 3)))
                                                             answers_given = answers_given - 1;
-                                                    }                           
-                                                for (var r = 0; r < user_responses[visitor_code].length; r++) {
-                                                    if ((quests[q]._id.equals(user_responses[visitor_code][r].question)) && ((user_responses[visitor_code][r].answer === 0) || (user_responses[visitor_code][r].answer === 1))) {                           
-                                                        for (var s = 0; s < user_responses[j].length; s++) {
-                                                            if ((quests[q]._id.equals(user_responses[j][s].question)) && (user_responses[j][s].answer === user_responses[visitor_code][r].answer)) {
+                                                    };                          
+                                                    for (var r = 0; r < user_responses[visitor_code].length; r++) {
+                                                        if ((quests[q]._id.equals(user_responses[visitor_code][r].question)) && ((user_responses[visitor_code][r].answer === 0) || (user_responses[visitor_code][r].answer === 1))) {                           
+                                                            for (var s = 0; s < user_responses[j].length; s++) {
+                                                                if ((quests[q]._id.equals(user_responses[j][s].question)) && (user_responses[j][s].answer === user_responses[visitor_code][r].answer)) {
                                                                 match = match + 1;
+                                                            }
+                                                            for (var s = 0; s < user_responses[j].length; s++) {
+                                                                if ((quests[q]._id.equals(user_responses[j][s].question)) && (user_responses[j][s].answer === 0) && (user_responses[visitor_code][r].answer === 1)) {
+                                                                    opposite_match = opposite_match + 1;
+                                                                }
+                                                                if ((quests[q]._id.equals(user_responses[j][s].question)) && (user_responses[j][s].answer === 1) && (user_responses[visitor_code][r].answer === 0)) {
+                                                                    opposite_match = opposite_match + 1;
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -197,12 +209,17 @@ function FlanksDAO(database) {
                                         }
                                         if (answers_given === 0) {
                                             total_same[i] = 0;
+                                            total_opposite[i] = 0;
                                         }
-                                        else if (answers_given === match) {
+                                        if (answers_given === match) {
                                             total_same[i] = total_same[i] + 1;
-                                        };
+                                        }
+                                        else if (answers_given === opposite_match) {
+                                            total_opposite[i] = total_opposite[i] + 1;
+                                        }
                                     }
                                     match = 0;
+                                    opposite_match = 0;
                                 }
                         }
                     }
@@ -210,12 +227,17 @@ function FlanksDAO(database) {
                 for (var m = 0; m < completed_user_cats.length; m++) {
                     if (total_users[m] !== 0) {
                         percent_users_same_answers.push((total_same[m]) / (total_users[m]));
+                        percent_users_opposite_answers.push((total_opposite[m]) / (total_users[m]));
+                        percent_users_opposite_answers_noneg.push((total_opposite[m]) / (total_users[m]));
                     }
                 };
                 for (var n = 0; n < completed_user_cats.length; n++) {
                     percent_users_same_answers[n] = percent_users_same_answers[n] * 100;
+                    percent_users_opposite_answers[n] = percent_users_opposite_answers[n] * 100;
+                    percent_users_opposite_answers_noneg[n] = percent_users_opposite_answers[n];
+                    percent_users_opposite_answers[n] = percent_users_opposite_answers[n] * -1;
                 };
-            callback(cats_in_flank, percent_users_same_answers);
+                callback(cats_in_flank, percent_users_same_answers, percent_users_opposite_answers, percent_users_opposite_answers_noneg);
             });
     };
 }

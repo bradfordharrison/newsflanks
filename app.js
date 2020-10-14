@@ -16788,7 +16788,7 @@ db.open(function (err, db) {
                         flanks.get_users_with_categories(user_responses, user_responses_codes, metaframes, function (users_with_cats) {
                             flanks.get_users_with_same_categories(completed_user_cats, users_with_cats, user_responses_codes, function (users_with_same_cats) { //not used, returns overlapping categories?
                                 flanks.get_users_with_overlapping_categories(completed_user_cats, users_with_cats, function (users_with_overlapping_categories) {
-                                    flanks.get_flanks(visitor_code, metaframes, completed_user_cats, users_with_overlapping_categories, user_responses, function (cats_in_flank, percent_users_same_answers) {
+                                    flanks.get_flanks(visitor_code, metaframes, completed_user_cats, users_with_overlapping_categories, user_responses, function (cats_in_flank, percent_users_same_answers, percent_users_opposite_answers, percent_users_opposite_answers_noneg) {
                                         users.get_current_user_question(visitor_code, function (current_quest) {
                                             questions.get_user_question(current_quest.current_question, function (quest) {
                                                 res.render('flanks', {
@@ -16799,6 +16799,7 @@ db.open(function (err, db) {
                                                     number_users: user_responses_codes.length + 2,
                                                     sequences: cats_in_flank,
                                                     percent: percent_users_same_answers,
+                                                    opposite_percent: percent_users_opposite_answers_noneg,
                                                     title: 'Flanks and Counterflanks by Sequence (includes all respondents)',
                                                     sequence1: cats_in_flank[0],
                                                     sequence2: cats_in_flank[1],
@@ -16811,7 +16812,14 @@ db.open(function (err, db) {
                                                     data3: percent_users_same_answers[2],
                                                     data4: percent_users_same_answers[3],
                                                     data5: percent_users_same_answers[4],
-                                                    data6: percent_users_same_answers[5]
+                                                    data6: percent_users_same_answers[5],
+                                                    data7: percent_users_opposite_answers[0],
+                                                    data8: percent_users_opposite_answers[1],
+                                                    data9: percent_users_opposite_answers[2],
+                                                    data10: percent_users_opposite_answers[3],
+                                                    data11: percent_users_opposite_answers[4],
+                                                    data12: percent_users_opposite_answers[5]
+
                                                 });
                                             });
                                     });
