@@ -190,9 +190,13 @@ function FlanksDAO(database) {
                                                     };                          
                                                     for (var r = 0; r < user_responses[visitor_code].length; r++) {
                                                         if ((quests[q]._id.equals(user_responses[visitor_code][r].question)) && ((user_responses[visitor_code][r].answer === 0) || (user_responses[visitor_code][r].answer === 1))) {                           
-                                                            for (var s = 0; s < user_responses[j].length; s++) {
-                                                                if ((quests[q]._id.equals(user_responses[j][s].question)) && (user_responses[j][s].answer === user_responses[visitor_code][r].answer)) {
-                                                                match = match + 1;
+                                                            for (var v = 0; v < user_responses[j].length; v++) {                                           
+                                                                if ((quests[q]._id.equals(user_responses[j][v].question)) && (user_responses[j][v].answer === 0) && (user_responses[visitor_code][r].answer === 0)) {
+                                                                    match = match + 1;
+                                                                }
+                                                                if ((quests[q]._id.equals(user_responses[j][v].question)) && (user_responses[j][v].answer === 1) && (user_responses[visitor_code][r].answer === 1)) {
+                                                                    match = match + 1;
+                                                                }
                                                             }
                                                             for (var s = 0; s < user_responses[j].length; s++) {
                                                                 if ((quests[q]._id.equals(user_responses[j][s].question)) && (user_responses[j][s].answer === 0) && (user_responses[visitor_code][r].answer === 1)) {
@@ -223,7 +227,6 @@ function FlanksDAO(database) {
                                 }
                         }
                     }
-                }
                 for (var m = 0; m < completed_user_cats.length; m++) {
                     if (total_users[m] !== 0) {
                         percent_users_same_answers.push((total_same[m]) / (total_users[m]));
