@@ -23,7 +23,7 @@ ul{
    border-color: #006500
 }
 
-div.options > input[type=radio   ]:not(old){
+/* div.options > input[type=radio   ]:not(old){
   width     : 2em;
   margin    : 0;
   padding   : 0;
@@ -74,7 +74,35 @@ div.options > input[type=radio]:not(old):checked +  label > span > span{
   background-image :      -o-linear-gradient(rgb(179,217,140),rgb(153,204,102));
   background-image : -webkit-linear-gradient(rgb(179,217,140),rgb(153,204,102));
   background-image :         linear-gradient(rgb(179,217,140),rgb(153,204,102));
-}
+} */
+
+input[type='radio']:after {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #00DE3B;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 3px solid black;
+    }
+
+    input[type='radio']:checked:after {
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #000000;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 3px solid black;
+    }
 
  /* .holds-the-iframe {
   background:url(http://flanks.org/c6.jpg) center left no-repeat;

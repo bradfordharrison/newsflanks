@@ -230,8 +230,8 @@
    <form action="/links3/{{question}}/{{frame}}/{{impression}}/{{usercode}}/{{url_text}}" method="POST">
       {% for yes_no in choices %}
          <p>
-<div class="options">
-  <input id="option" type="radio" name="answer" value="{{yes_no}}"><label for="option"><span><span></span></span>{{yes_no}}</label>
+<div>
+  <label>&nbsp;&nbsp;&nbsp;<input type="radio" name="answer" value="{{yes_no}}">&nbsp;&nbsp;&nbsp;{{yes_no}}</label>
 </div>
          </p>
 
