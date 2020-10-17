@@ -215,10 +215,10 @@ function FlanksDAO(database) {
                                             total_same[i] = 0;
                                             total_opposite[i] = 0;
                                         }
-                                        if (answers_given === match) {
+                                        if ((answers_given !== 0) && (answers_given === match)) {
                                             total_same[i] = total_same[i] + 1;
                                         }
-                                        else if (answers_given === opposite_match) {
+                                        else if ((answers_given !== 0) && (answers_given === opposite_match)) {
                                             total_opposite[i] = total_opposite[i] + 1;
                                         }
                                     }
