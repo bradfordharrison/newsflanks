@@ -233,7 +233,7 @@ db.open(function (err, db) {
     });
 
     app.get('/new_question/:frame/:impression/:visitor/:url_text', function (req, res, next) {
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         var visitor_code = parseInt(req.params.visitor);
         var new_question_frame = parseInt(req.params.frame);
         var new_question_impression = parseInt(req.params.impression);
@@ -434,16 +434,16 @@ db.open(function (err, db) {
                                 questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
                                     users.get_user_answer_to_question(visitor_code, user_quest._id, function (user_answer) { // handle case where user might not have answered
                                         if (user_answer == 0) {
-                                            user_answer_text = "Yes"
+                                            user_answer_text = "Yes";
                                         };
                                         if (user_answer == 1) {
-                                            user_answer_text = "No"
+                                            user_answer_text = "No";
                                         };
                                         if (user_answer == 2) {
-                                            user_answer_text = "No opinion"
+                                            user_answer_text = "No opinion";
                                         };
                                         if (user_answer == 3) {
-                                            user_answer_text = "Saw question but didn't answer"
+                                            user_answer_text = "Saw question but didn't answer";
                                         };
                                         if (user_answer == -1) {
                                             user_answer_text = "You haven't provided an answer to this question in any past visits to the site";
@@ -1176,7 +1176,7 @@ db.open(function (err, db) {
     });
 
     app.get('/next_question/:visitor', function (req, res, next) {
-        //var user_answer_text = "";
+        //var user_answer_text = "Saw question but didn't answer yet";
         var visitor_code = parseInt(req.params.visitor);
         if ((visitor_code > -1) && (visitor_code < 100000000)) {         //max 100,000,000 visitors
             users.check_valid_usercode(visitor_code, function (valid) {
@@ -1189,16 +1189,16 @@ db.open(function (err, db) {
                                         users.get_current_user_question(visitor_code, function (current_quest) {
                                             users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                 if (user_answer === 0) {
-                                                    user_answer_text = "Yes"
+                                                    user_answer_text = "Yes";
                                                 };
                                                 if (user_answer === 1) {
-                                                    user_answer_text = "No"
+                                                    user_answer_text = "No";
                                                 };
                                                 if (user_answer === 2) {
-                                                    user_answer_text = "No opinion"
+                                                    user_answer_text = "No opinion";
                                                 };
                                                 if (user_answer === 3) {
-                                                    user_answer_text = "Saw question but didn't answer"
+                                                    user_answer_text = "Saw question but didn't answer";
                                                 };
                                                 questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                     if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -1568,7 +1568,7 @@ db.open(function (err, db) {
                         }
                         else {
                             //metaframe_id > 0
-                            var user_answer_text = ""
+                            var user_answer_text = "Saw question but didn't answer yet";
                             var question_index = -1;
                             questions.get_question(function (quest) {
                                 questions.get_sequence_questions(quest, metaframe_id, function (seq_quests) {
@@ -1590,16 +1590,16 @@ db.open(function (err, db) {
                                                 users.get_current_user_question(visitor_code, function (current_quest) {
                                                     users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                         if (user_answer == 0) {
-                                                            user_answer_text = "Yes"
+                                                            user_answer_text = "Yes";
                                                         };
                                                         if (user_answer == 1) {
-                                                            user_answer_text = "No"
+                                                            user_answer_text = "No";
                                                         };
                                                         if (user_answer == 2) {
-                                                            user_answer_text = "No opinion"
+                                                            user_answer_text = "No opinion";
                                                         };
                                                         if (user_answer == 3) {
-                                                            user_answer_text = "Saw question but didn't answer"
+                                                            user_answer_text = "Saw question but didn't answer";
                                                         };
                                                         questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                             if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -2318,7 +2318,7 @@ db.open(function (err, db) {
     });
 
     app.get('/next_question2/:frame/:impression/:visitor/:url_text', function (req, res, next) {
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         var visitor_code = parseInt(req.params.visitor);
         var new_question_frame = parseInt(req.params.frame);
         var new_question_impression = parseInt(req.params.impression);
@@ -2509,16 +2509,16 @@ db.open(function (err, db) {
                                 questions.get_user_question2(new_question_frame, new_question_impression, function (user_quest) {
                                     users.get_user_answer_to_question(visitor_code, user_quest._id, function (user_answer) { // handle case where user might not have answered
                                         if (user_answer == 0) {
-                                            user_answer_text = "Yes"
+                                            user_answer_text = "Yes";
                                         };
                                         if (user_answer == 1) {
-                                            user_answer_text = "No"
+                                            user_answer_text = "No";
                                         };
                                         if (user_answer == 2) {
-                                            user_answer_text = "No opinion"
+                                            user_answer_text = "No opinion";
                                         };
                                         if (user_answer == 3) {
-                                            user_answer_text = "Saw question but didn't answer"
+                                            user_answer_text = "Saw question but didn't answer";
                                         };
                                         if (user_answer == -1) {
                                             user_answer_text = "You haven't provided an answer to this question in any past visits to the site";
@@ -3255,7 +3255,7 @@ db.open(function (err, db) {
         var visitor_code = parseInt(req.params.visitor);
         var other_quest = ObjectID.createFromHexString(req.params.question);
         var new_visitor = false;
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
         };
@@ -3818,7 +3818,7 @@ db.open(function (err, db) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var new_visitor = false;
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         if ((visitor_code > -1) && (visitor_code < 10)) {
             new_visitor = true;
         };
@@ -3828,16 +3828,16 @@ db.open(function (err, db) {
                     var quest;
                     if (visitor_code < 10) { //currently this path is not used
                         if ((visitor_code == 0) || (visitor_code == 4)) {
-                            user_answer_text = "Yes"
+                            user_answer_text = "Yes";
                         };
                         if ((visitor_code == 1) || (visitor_code == 5)) {
-                            user_answer_text = "No"
+                            user_answer_text = "No";
                         };
                         if (visitor_code == 2) {
-                            user_answer_text = "No opinion"
+                            user_answer_text = "No opinion";
                         };
                         if (visitor_code == 3) {
-                            user_answer_text = "Saw question but didn't answer"
+                            user_answer_text = "Saw question but didn't answer";
                         };
                         questions.get_default_question(function (quest) {
                             if ((quest.mm !== "") && (quest.text !== "") && (quest.text2 !== "") && (quest.text3 !== "") && (quest.text4 !== "")) {
@@ -4016,16 +4016,16 @@ db.open(function (err, db) {
                         users.get_current_user_question(visitor_code, function (current_quest) {
                             users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                 if (user_answer == 0) {
-                                    user_answer_text = "Yes"
+                                    user_answer_text = "Yes";
                                 };
                                 if (user_answer == 1) {
-                                    user_answer_text = "No"
+                                    user_answer_text = "No";
                                 };
                                 if (user_answer == 2) {
-                                    user_answer_text = "No opinion"
+                                    user_answer_text = "No opinion";
                                 };
                                 if (user_answer == 3) {
-                                    user_answer_text = "Saw question but didn't answer"
+                                    user_answer_text = "Saw question but didn't answer";
                                 };
                                 questions.get_user_question(current_quest.current_question, function (user_quest) {
                                     if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -5645,7 +5645,7 @@ db.open(function (err, db) {
     app.post('/challenge/:visitor', function (req, res, next) {
         "use strict";
         var user_code = parseInt(req.params.visitor);
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         var chal_res_0 = req.body.challenge_0;
         var chal_res_1 = req.body.challenge_1;
         var chal_res_2 = req.body.challenge_2;
@@ -5684,16 +5684,16 @@ db.open(function (err, db) {
                         users.get_current_user_question(user_code, function (current_quest) {
                             users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                 if (user_answer == 0) {
-                                    user_answer_text = "Yes"
+                                    user_answer_text = "Yes";
                                 };
                                 if (user_answer == 1) {
-                                    user_answer_text = "No"
+                                    user_answer_text = "No";
                                 };
                                 if (user_answer == 2) {
-                                    user_answer_text = "No opinion"
+                                    user_answer_text = "No opinion";
                                 };
                                 if (user_answer == 3) {
-                                    user_answer_text = "Saw question but didn't answer"
+                                    user_answer_text = "Saw question but didn't answer";
                                 };
                                 users.update_sequence_number(user_code, 6, function (sequence_set_result) {
                                     questions.get_user_question(current_quest.current_question, function (quest) {
@@ -5878,16 +5878,16 @@ db.open(function (err, db) {
                 users.get_current_user_question(user_code, function (current_quest) {
                     users.get_user_answer_to_question_dont_set_current(user_code, current_quest.current_question, function (user_answer) {
                         if (user_answer == 0) {
-                            user_answer_text = "Yes"
+                            user_answer_text = "Yes";
                         };
                         if (user_answer == 1) {
-                            user_answer_text = "No"
+                            user_answer_text = "No";
                         };
                         if (user_answer == 2) {
-                            user_answer_text = "No opinion"
+                            user_answer_text = "No opinion";
                         };
                         if (user_answer == 3) {
-                            user_answer_text = "Saw question but didn't answer"
+                            user_answer_text = "Saw question but didn't answer";
                         };
                         users.update_sequence_number(user_code, 6, function (sequence_set_result) {
                             questions.get_user_question(current_quest.current_question, function (quest) {
@@ -6071,7 +6071,7 @@ db.open(function (err, db) {
 
     app.post('/links/:frame/:impression/:visitor/:url_text', function (req, res, next) {
         var links_res = req.body.answer;
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         var visitor_code = parseInt(req.params.visitor);
         var prev_answer = req.body.code;
         if (typeof links_res == 'undefined') {
@@ -6948,16 +6948,16 @@ db.open(function (err, db) {
                                     users.get_current_user_question(visitor_code, function (current_quest) {
                                         users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                             if (user_answer === 0) {
-                                                user_answer_text = "Yes"
+                                                user_answer_text = "Yes";
                                             };
                                             if (user_answer === 1) {
-                                                user_answer_text = "No"
+                                                user_answer_text = "No";
                                             };
                                             if (user_answer === 2) {
-                                                user_answer_text = "No opinion"
+                                                user_answer_text = "No opinion";
                                             };
                                             if (user_answer === 3) {
-                                                user_answer_text = "Saw question but didn't answer"
+                                                user_answer_text = "Saw question but didn't answer";
                                             };
                                             questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                 if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -7327,7 +7327,7 @@ db.open(function (err, db) {
                     }
                     else {
                         //metaframe_id > 0
-                        var user_answer_text = ""
+                        var user_answer_text = "Saw question but didn't answer yet";
                         var question_index = -1;
                         questions.get_question(function (quest) {
                             questions.get_sequence_questions(quest, metaframe_id, function (seq_quests) {
@@ -7349,16 +7349,16 @@ db.open(function (err, db) {
                                             users.get_current_user_question(visitor_code, function (current_quest) {
                                                 users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                     if (user_answer == 0) {
-                                                        user_answer_text = "Yes"
+                                                        user_answer_text = "Yes";
                                                     };
                                                     if (user_answer == 1) {
-                                                        user_answer_text = "No"
+                                                        user_answer_text = "No";
                                                     };
                                                     if (user_answer == 2) {
-                                                        user_answer_text = "No opinion"
+                                                        user_answer_text = "No opinion";
                                                     };
                                                     if (user_answer == 3) {
-                                                        user_answer_text = "Saw question but didn't answer"
+                                                        user_answer_text = "Saw question but didn't answer";
                                                     };
                                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                         if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -8238,7 +8238,7 @@ db.open(function (err, db) {
 
     app.post('/links3/:question/:frame/:impression/:visitor/:url_text', function (req, res, next) {
         var links_res = req.body.answer;
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         var visitor_code = parseInt(req.params.visitor);
         var other_question = ObjectID.createFromHexString(req.params.question);
         var prev_answer = req.body.code;
@@ -9119,16 +9119,16 @@ db.open(function (err, db) {
                                     users.get_current_user_question(visitor_code, function (current_quest) {
                                         users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                             if (user_answer === 0) {
-                                                user_answer_text = "Yes"
+                                                user_answer_text = "Yes";
                                             };
                                             if (user_answer === 1) {
-                                                user_answer_text = "No"
+                                                user_answer_text = "No";
                                             };
                                             if (user_answer === 2) {
-                                                user_answer_text = "No opinion"
+                                                user_answer_text = "No opinion";
                                             };
                                             if (user_answer === 3) {
-                                                user_answer_text = "Saw question but didn't answer"
+                                                user_answer_text = "Saw question but didn't answer";
                                             };
                                             questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                 if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -9498,7 +9498,7 @@ db.open(function (err, db) {
                     }
                     else {
                         //metaframe_id > 0
-                        var user_answer_text = ""
+                        var user_answer_text = "Saw question but didn't answer yet";
                         var question_index = -1;
                         questions.get_question(function (quest) {
                             questions.get_sequence_questions(quest, metaframe_id, function (seq_quests) {
@@ -9520,16 +9520,16 @@ db.open(function (err, db) {
                                             users.get_current_user_question(visitor_code, function (current_quest) {
                                                 users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                                     if (user_answer == 0) {
-                                                        user_answer_text = "Yes"
+                                                        user_answer_text = "Yes";
                                                     };
                                                     if (user_answer == 1) {
-                                                        user_answer_text = "No"
+                                                        user_answer_text = "No";
                                                     };
                                                     if (user_answer == 2) {
-                                                        user_answer_text = "No opinion"
+                                                        user_answer_text = "No opinion";
                                                     };
                                                     if (user_answer == 3) {
-                                                        user_answer_text = "Saw question but didn't answer"
+                                                        user_answer_text = "Saw question but didn't answer";
                                                     };
                                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
                                                         if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {
@@ -14170,7 +14170,7 @@ db.open(function (err, db) {
         };
 
         var name = req.body.username_input;
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         if (name === '') {
             res.render('track', {
                 usercode: visitor_code_old,
@@ -14692,7 +14692,7 @@ db.open(function (err, db) {
             current_response = "6"; //Question of day was not seen so set to 6, which means it might or might not have been answered before
         };
 
-        var user_answer_text = "";
+        var user_answer_text = "Saw question but didn't answer yet";
         users.get_next_challenge(visitor_code, function (question_number) {
             questions.get_default_question(function (quest) {
                 users.check_challenge(visitor_code, function (challenge_array) {
@@ -16836,7 +16836,7 @@ db.open(function (err, db) {
         "use strict";
         var visitor_code = parseInt(req.params.visitor);
         var metaframe_id = parseInt(req.params.metaframe);
-        var user_answer_text = ""
+        var user_answer_text = "Saw question but didn't answer yet";
         var question_index = -1;
         questions.get_question(function (quest) {
             questions.get_sequence_questions(quest, metaframe_id, function (seq_quests) {
@@ -16858,16 +16858,16 @@ db.open(function (err, db) {
                             users.get_current_user_question(visitor_code, function (current_quest) {
                                 users.get_user_answer_to_question_dont_set_current(visitor_code, current_quest.current_question, function (user_answer) {
                                     if (user_answer == 0) {
-                                        user_answer_text = "Yes"
+                                        user_answer_text = "Yes";
                                     };
                                     if (user_answer == 1) {
-                                        user_answer_text = "No"
+                                        user_answer_text = "No";
                                     };
                                     if (user_answer == 2) {
-                                        user_answer_text = "No opinion"
+                                        user_answer_text = "No opinion";
                                     };
                                     if (user_answer == 3) {
-                                        user_answer_text = "Saw question but didn't answer"
+                                        user_answer_text = "Saw question but didn't answer";
                                     };
                                     questions.get_user_question(current_quest.current_question, function (user_quest) {
                                         if ((user_quest.mm !== "") && (user_quest.text !== "") && (user_quest.text2 !== "") && (user_quest.text3 !== "") && (user_quest.text4 !== "")) {

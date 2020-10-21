@@ -129,15 +129,17 @@
       document.writeln("</nav>");
       document.writeln("</center>");
       document.writeln("</div>");
+      document.writeln("<div>");
+	  document.writeln("<h4><font color='#FF0000'>Here is an analysis of the answers to the sequences you have completed. If there are no results that's because you haven't completed any sequences yet (select SEQUENCES, above, and choose a sequence).</font></h4>");
+	  document.writeln("</div>");
    }
 </script>
 <div class="table-border">
-   <font color="#006500" size="4">Here is an analysis of your responses to the sequences from the SEQUENCES menu that you completed. Included are the percentage of users (including you) who provided the same Yes/No answers to the same questions (i.e., flanks) in the sequences.<br /><br /><i>Note:</i> Questions answered &quot;No Opinion&quot; or &quot;Seen but no answer given&quot; are marked as answered but are excluded from analysis.
-  </font><br /><br />
+   <font color="#006500" size="4"><i>Flanks</i> and <i>counterflanks</i> are collections of responses to a sequence.<br /><br />A <i>flank</i> is the collection of answers to a sequence from respondents with the same yes/no answers as you.<br /><br />A <i>counterflank</i> is the collection of answers to a sequence from respondents with the <i>opposite</i> yes/no answers as you.</font><br /><br />
         {% set counter = 0 %}
         {% for sequence in sequences %}
                 <b>{{sequence}}<br />
-        <b>% of users with same yes/no answers as you:</b>&nbsp;&nbsp;{{percent[counter]}}<br />
+        <b>% of users with same yes/no answers as you (including you):</b>&nbsp;&nbsp;{{percent[counter]}}<br />
         <b>% of users with opposite yes/no answers as you:</b>&nbsp;&nbsp;{{opposite_percent[counter]}}<br /><br />
         {% set counter = counter + 1 %}
         {% endfor %}
