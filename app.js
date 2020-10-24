@@ -16800,7 +16800,7 @@ db.open(function (err, db) {
                                                     sequences: cats_in_flank,
                                                     percent: percent_users_same_answers,
                                                     opposite_percent: percent_users_opposite_answers_noneg,
-                                                    title: 'Flanks and Counterflanks by Sequence (includes all respondents)',
+                                                    title: '% of respondents with your flanks and counterflanks',
                                                     sequence1: cats_in_flank[0],
                                                     sequence2: cats_in_flank[1],
                                                     sequence3: cats_in_flank[2],

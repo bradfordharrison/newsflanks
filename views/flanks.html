@@ -135,12 +135,12 @@
    }
 </script>
 <div class="table-border">
-   <font color="#006500" size="4"><i>Flanks</i> and <i>counterflanks</i> are collections of responses to a sequence.<br /><br />A <i>flank</i> is the collection of answers to a sequence from respondents with the same yes/no answers as you.<br /><br />A <i>counterflank</i> is the collection of answers to a sequence from respondents with the <i>opposite</i> yes/no answers as you.</font><br /><br />
+   <font color="#006500" size="4"><i>Flanks</i> and <i>counterflanks</i> are collections of responses to a sequence.<br /><br />&#8226;A <i>flank</i> is the collection of answers to a sequence from respondents with the same yes/no answers as you.<br />&#8226;A <i>counterflank</i> is the collection of answers to a sequence from respondents with the <i>opposite</i> yes/no answers as you.<br /><br />The more green you see in the bar chart, the greater the agreement you share with other respondents.</font><br /><br />
         {% set counter = 0 %}
         {% for sequence in sequences %}
                 <b>{{sequence}}<br />
-        <b>% of users with same yes/no answers as you (including you):</b>&nbsp;&nbsp;{{percent[counter]}}<br />
-        <b>% of users with opposite yes/no answers as you:</b>&nbsp;&nbsp;{{opposite_percent[counter]}}<br /><br />
+        <b>% of respondents (including you) who answered the same as you (flank):</b>&nbsp;&nbsp;{{percent[counter]}}<br />
+        <b>% of respondents (including you) who answered the opposite as you (counterflank):</b>&nbsp;&nbsp;{{opposite_percent[counter]}}<br /><br />
         {% set counter = counter + 1 %}
         {% endfor %}
 

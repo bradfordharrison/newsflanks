@@ -100,13 +100,13 @@
       document.writeln("</center>");
       document.writeln("</div>");
       document.writeln("<div>");
-	  document.writeln("<h4><font color='#FF0000'>Sequences are short collections of questions (questionnaires). Select a sequence, answer the questions, then select the FLANKS menu to check how your answers compare to others'.</font></h4>");
+	  document.writeln("<h4><font color='#FF0000'>Sequences are short collections of questions (questionnaires). Select a sequence, answer the questions, then select the FLANKS menu to check how your answers compare to others'. After you start a sequence, move through the questions by selecting NEXT <b>?</>.</font></h4>");
 	  document.writeln("</div>");
    }
 </script>
 <div class="table-border">
    <font color="#006500" size="4">
-   When you select a sequence (in all CAPS with asterisks****), you are sequentally presented with all the questions listed for the sequence. Move through the sequence by clicking NEXT <b>?</b>.<br><br>
+   When you select a sequence (in all CAPS with asterisks****), you are sequentially presented with all the questions listed for the sequence. Move through the sequence by clicking NEXT <b>?</b>.<br><br>
         {% for link in categories_list %}
         &#8226;<a class='rollover' href='/{{link.api}}/{{link.metacode_frame}}/{{link.impression}}/{{usercode}}/{{link.url_text}}'>{{link.name_question}}</a><br>
         {% endfor %}
