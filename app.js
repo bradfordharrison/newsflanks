@@ -11237,7 +11237,7 @@ db.open(function (err, db) {
                                             x: quest.mm_yes_x,
                                             y: quest.mm_yes_y,
                                             file: quest.mm_file_yes,
-                                            mm_win_size: quest.mm_win_all_y
+                                            mm_win_size: quest.mm_win_yes_y
                                         });
                                     });
                                 });
@@ -11258,7 +11258,7 @@ db.open(function (err, db) {
                                             x: quest.mm_no_x,
                                             y: quest.mm_no_y,
                                             file: quest.mm_file_no,
-                                            mm_win_size: quest.mm_win_all_y
+                                            mm_win_size: quest.mm_win_no_y
                                         });
                                     });
                                 });
