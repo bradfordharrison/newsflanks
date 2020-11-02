@@ -29,7 +29,7 @@ var nunjucksDate = require('nunjucks-date');
 nunjucksDate.setDefaultFormat('MMMM Do YYYY, h:mm:ss a');
 env.addFilter("date", nunjucksDate);
 
-var db = new Db('newsflanks', new Server('10.0.0.16', 27017));
+var db = new Db('newsflanks', new Server('10.0.0.6', 27017));
 
 
 db.open(function (err, db) {
@@ -17224,6 +17224,11 @@ db.open(function (err, db) {
                     }
                 });
             });
+        });
+    });
+
+    app.get('/sitemap.txt', function (req, res, next) {
+        res.render('sitemap.txt', {
         });
     });
 
