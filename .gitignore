@@ -8,6 +8,7 @@ static/css/bootstrap-theme.css
 static/css/bootstrap-theme.css.map
 static/css/bootstrap-theme.min.css
 static/css/bootstrap-theme.min.css.map
+static/templates/
 package-lock.json
 bin/
 obj/
