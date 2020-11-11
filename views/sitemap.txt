@@ -9,7 +9,7 @@ https://newsflanks.com/new_question/0/0/3/Did-Hillary-Clinton-lie-about-Benghazi
 https://newsflanks.com/new_question/0/1/3/Did-Hillary-Clinton-lie-about-sending-classified-e-mail
 https://newsflanks.com/new_question/0/2/3/Did-companies-and-countries-buy-State-Dept-access-by-donating-to-Clinton-Foundation
 https://newsflanks.com/new_question/2/0/3/Did-Donald-Trump-support-the-invasion-of-Iraq
-https://newsflanks.com/new_question/0/3/10000/Should-Donald-Trump-release-his-tax-returns
+https://newsflanks.com/new_question/0/3/3/Should-Donald-Trump-release-his-tax-returns
 https://newsflanks.com/new_question/7/0/3/Was-the-request-that-electoral-college-members-change-their-votes-for-the-2016-Presidential-election-legal-Constitutional
 https://newsflanks.com/new_question/8/0/3/Did-Russian-computer-hacking-influence-the-results-of-the-2016-Presidential-election
 https://newsflanks.com/new_question/6/0/3/Are-adolescents-who-support-Trump-more-responsible-for-violence-in-schools-than-adolescents-who-support-other-candidates
@@ -34,5 +34,6 @@ https://newsflanks.com/new_question/20/0/3/Should-private-corporations-build-and
 https://newsflanks.com/new_question/21/0/3/Does-the-repeal-of-net-neutrality-give-ISPs-and-cable-companies-too-much-control-over-the-Internet
 https://newsflanks.com/new_question/4/1/3/Is-there-a-double-standard-applied-when-it-comes-to-police-treatment-of-black-vs-white-Americans
 https://newsflanks.com/new_question/22/0/3/Should-America-adopt-a-15-per-hour-living-wage
+https://newsflanks.com/new_question/15/2/3/Was-there-massive-voter-fraud-by-the-Democrats-in-the-2020-election
 
 
