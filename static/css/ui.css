@@ -14,13 +14,12 @@ ul{
 .table-border {
    width: 100%;
    border-style: solid;
-   border-color: #006500
+   border-color: #006500;
 }
 
-.table-border-inside {
-   width: 96%;
-   border-style: solid;
-   border-color: #006500
+.table-border-question {
+   border: 10px solid white;
+   background-color: #9ff49f80  
 }
 
 /* div.options > input[type=radio   ]:not(old){
