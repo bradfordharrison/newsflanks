@@ -732,7 +732,8 @@ function UserDAO(database) {
         "use strict";
         var user_data_array = [];
         var user_data_codes_array = [];
-        this.db.collection('user').find()
+        this.db.collection('user').find({})
+            .sort({ "usercode": 1 }) //ascending order
             .toArray(function (err, user_data) {
                 assert.equal(null, err);
                 for (var i = 0; i < user_data.length; i++) {
